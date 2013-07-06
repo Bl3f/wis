@@ -8,7 +8,8 @@ import gallery.views
 
 urlpatterns = patterns('',
 
-    url(r'^plop$', 'gallery.views.hello_world')
+    url(r'^$', 'gallery.views.home'),
+    url(r'^gallery/', include('gallery.urls'))
 
     # Examples:
     # url(r'^$', 'web.views.home', name='home'),
