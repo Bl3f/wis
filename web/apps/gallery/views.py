@@ -6,22 +6,19 @@ import os
 from web.settings import MEDIA_ROOT
 
 
-class GalleryListView(ListView):
-    context_object_name = "pics_gallery"
+def gallery_home(request, name):
     template_name = "gallery.html"
 
-    def get_queryset(self):
-        self.my_list = []
-        files = os.listdir(MEDIA_ROOT + 'pic/base/')
-        self.my_list = files
+    context = dict()
+    context["title"] = name
 
-    def get_context_data(self, **kwargs):
-        context = super(GalleryListView, self).get_context_data(**kwargs)
-        context['my_list'] = self.my_list
-        return context
+    context['img'] = my_list = []
+    files = os.listdir(MEDIA_ROOT + 'pic/base/')
+    context['img'] = files
 
+    return render(request, template_name, context)
 
-def hello_world(request):
+def home(request):
     template_name = "home.html"
 
     context = dict()
