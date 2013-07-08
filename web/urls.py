@@ -1,15 +1,14 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.conf import settings
-from apps.gallery.views import *
+
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^plop/$', hello_world),
-    url(r'^gallery/$', GalleryListView.as_view())
-
+    url(r'^$', 'web.apps.gallery.views.home'),
+    url(r'^gallery/', include('web.apps.gallery.urls'))
     # Examples:
     # url(r'^$', 'web.views.home', name='home'),
     # url(r'^web/', include('web.foo.urls')),
