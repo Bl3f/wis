@@ -22,7 +22,7 @@ class GalleryListView(ListView):
 
 
 def hello_world(request):
-    template_name = "helloWorld.html"
+    template_name = "home.html"
 
     context = dict()
     context["title"] = "Hello World !"

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title> {{ title }} </title>
+
+    <link rel="stylesheet" href="{{  STATIC_URL }}css/style.css" />
+
+</head>
+
+<body>
+    <h1> Bienvenue sur {{ title }} </h1>
+
+    {% for img_path in my_list %}
+        <img src="{{ MEDIA_URL }}pic/base/{{ img_path }}" width="250">
+    {% endfor %}
+</body>
+</html>
