@@ -11,7 +11,7 @@
 <body>
     <h1> Bienvenue sur {{ title }} </h1>
 
-    {% for img_path in my_list %}
+    {% for img_path in img %}
         <img src="{{ MEDIA_URL }}pic/base/{{ img_path }}" width="250">
     {% endfor %}
 </body>
