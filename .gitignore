@@ -1,4 +1,4 @@
-web/web/settings.py
+web/settings.py
 *.pyc
 *.swp
 .idea/
