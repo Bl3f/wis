@@ -28,11 +28,16 @@
     <aside>
             <h3 id="album"> album </h2>
             <h2> {{ title }}. </h2>
+
+            <ul plain>
+                <li plain> Place </li>
+                <li> Date </li>
+            </ul>
     </aside>
 
     <section id="gallery">
         {% for img_path in img %}
-            <img class="vignette" src="{{ MEDIA_URL }}pic/base/{{ img_path }}" />
+            <img class="vignette" src="{{ MEDIA_URL }}pic/base2/{{ img_path }}" />
         {% endfor %}
     </section>
 
