@@ -9,10 +9,32 @@
 </head>
 
 <body>
-    <h1> Bienvenue sur {{ title }} </h1>
+    <header> 
 
-    {% for img_path in img %}
-        <img src="{{ MEDIA_URL }}pic/base/{{ img_path }}" width="250">
-    {% endfor %}
+        <div id="logo"> 
+            WIS
+        </div>
+
+        <div id="register"> 
+            S'inscrire
+        </div>
+
+        <div id="signIn">
+            Se connecter
+        </div>
+
+    </header>
+
+    <aside>
+            <h3 id="album"> album </h2>
+            <h2> {{ title }}. </h2>
+    </aside>
+
+    <section id="gallery">
+        {% for img_path in img %}
+            <img class="vignette" src="{{ MEDIA_URL }}pic/base/{{ img_path }}" />
+        {% endfor %}
+    </section>
+
 </body>
 </html>

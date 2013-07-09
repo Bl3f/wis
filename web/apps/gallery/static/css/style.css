@@ -5,38 +5,54 @@
 }
 
 @font-face {
+    font-family: Walkway-Light;
+    src: url("../fonts/Walkway%20Light.ttf");
+}
+
+@font-face {
     font-family: Stroke;
     src: url("../fonts/stroke.ttf"); 
 }
 
-html, body {
+body {
    width: 100%;
    padding: 0;
    margin: 0;
    background-color: #ecf0f1;
+   font-family: Walkway; 
+   font-weight: 100;
 }
 
 header {
     color: white;
     background-color: black;
     width: 100%;
-    height: 35px;
+    height: 50px;
     position: fixed;
     top: 0px;
-    padding-top: 17px;
-    font-family: Stroke;
+    box-shadow: 0 1px 0.4em 0.3em black;
 }
 
 header #signIn {
     display: inline-block;
     float: right;
     margin-right: 20px;
+    margin-top: 15px;
 }
 
 header #register {
     display: inline-block;
     float: right;
     margin-right: 20px;
+    margin-top: 15px;
+}
+
+header #logo {
+    display: inline-block;
+    float: left;
+    font-size: 2.5em;
+    margin-left: 100px;
+    margin-top: 5px;
 }
 
 #signIn:hover {
@@ -59,4 +75,55 @@ h1 {
     font-size: 12em;
     text-align: center;
     color: dark;
+}
+
+h2 {
+    font-family: Walkway, serif;
+    font-size: 2.5em;
+    font-weight: 100;
+    color: dark;
+}
+
+h3#album {
+    font-family: Walkway, serif;
+    font-size: 1em;
+    font-weight: 100;
+    margin-bottom: 0px;
+    color: #BDC3C7;
+}
+
+h3 + h2 {
+    margin-top: -5px;
+}
+
+/* Gallery style */
+
+aside {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    text-align: right;
+    border-right: 1px solid #BDC3C7;
+    padding-right: 10px;
+    padding-top: 50px;
+}
+
+section#gallery {
+    width: 760px;
+    margin-left: 385px;
+    margin-top: 60px;
+    padding-top: 40px;
+
+    -webkit-column-count: 3; /* Safari and Chrome */
+       -moz-column-count: 3; /* Firefox */
+            column-count: 3;
+
+    -webkit-column-gap: 10px; /* Safari and Chrome */
+       -moz-column-gap: 10px; /* Firefox */
+            column-gap: 10px;
+}
+
+.vignette {
+    width: 240px;
+    margin-bottom: 10px;
 }
