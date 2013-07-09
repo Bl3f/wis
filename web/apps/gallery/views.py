@@ -12,9 +12,7 @@ def gallery_home(request, name):
     context = dict()
     context["title"] = name
 
-    context['img'] = my_list = []
-    files = os.listdir(MEDIA_ROOT + 'pic/base/')
-    context['img'] = files
+    context['img'] = os.listdir(MEDIA_ROOT + 'pic/base/')
 
     return render(request, template_name, context)
 
@@ -22,7 +20,6 @@ def home(request):
     template_name = "home.html"
 
     context = dict()
-    context["title"] = "Hello World !"
-    context["body"] = "<div id=\"testBox\"> Ahaha </div>"
+    context["title"] = "WIS - Welcome"
 
     return render(request, template_name, context)

@@ -5,6 +5,6 @@ urlpatterns = patterns('web.apps.gallery.views',
 
     # Galleries url 
 #    url(r'^$', GalleryListView.as_view))
-    url(r'^(?P<name>\d{4})$', gallery_home),
+    url(r'^(?P<name>[-A-Za-z0-9_]+)$', gallery_home),
 
 )
