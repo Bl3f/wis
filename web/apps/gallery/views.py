@@ -12,7 +12,7 @@ def gallery_home(request, name):
     context = dict()
     context["title"] = name
 
-    context['img'] = os.listdir(MEDIA_ROOT + 'pic/base/')
+    context['img'] = os.listdir(MEDIA_ROOT + 'pic/base2/')
 
     return render(request, template_name, context)
 
