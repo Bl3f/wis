@@ -55,6 +55,11 @@ header #logo {
     margin-top: 5px;
 }
 
+header a {
+    color: white;
+    text-decoration: none;
+}
+
 #signIn:hover {
     color: orange;
 }

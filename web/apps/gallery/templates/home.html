@@ -1,30 +1,13 @@
-<!DOCTYPE html>
-    <head>
+{% extends "base.html" %}
 
-        <title> {{ title }} </title>
-        
-        <link rel="stylesheet" href="{{  STATIC_URL }}css/style.css" />
+{% block logo %}
+{% endblock %}
 
-    </head>
+{% block aside %}
+{% endblock %}
 
-    <body>
-        
-        <header> 
-    
-            <div id="register"> 
-                S'inscrire
-            </div>
-
-            <div id="signIn">
-                Se connecter
-            </div>
-
-        </header>
-
-        <section id="home">
-            <h1> WIS </h1>
-        </section>
-
-    </body>
-
-</html>
+{% block content %}
+<section id="home">
+    <h1> WIS </h1>
+</section>
+{% endblock %}
