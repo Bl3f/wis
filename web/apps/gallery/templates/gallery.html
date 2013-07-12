@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
+{% block aside %}
+<aside>
+    <h3 id="album">album</h3>
+    <h2>{{ gallery.title }}</h2>
+
+    <ul>
+        {% if gallery.place %}<li>{{ gallery.place }}</li>{% endif %}
+        {% if gallery.created %}<li>{{ gallery.created }}</li>{% endif %}
+        {% if images %}<li>{{ images|length }} photos</li>{% endif %}
+    </ul>
+</aside>
+{% endblock %}
+
 {% block content %}
 <section id="gallery">
-    {% for img_path in img %}
-        <img class="vignette" src="{{ MEDIA_URL }}pic/base2/{{ img_path }}" />
+    {% for image in images %}
+        <img class="vignette" src="{{ MEDIA_URL }}{{ image.path }}" />
     {% endfor %}
 </section>
 {% endblock %}

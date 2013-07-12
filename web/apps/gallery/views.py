@@ -1,20 +1,21 @@
-from django.http import HttpResponse
-
 from django.shortcuts import render
-from django.views.generic import ListView
 import os
 from web.settings import MEDIA_ROOT
 
+from web.apps.gallery.models import *
 
-def gallery_home(request, name):
+
+def gallery_home(request, id):
     template_name = "gallery.html"
 
-    context = dict()
-    context["title"] = name
+    gallery = Gallery.objects.get(pk=id)
 
-    context['img'] = os.listdir(MEDIA_ROOT + 'pic/base2/')
+    context = dict()
+    context["gallery"] = gallery
+    context["images"] = Image.objects.filter(gallery=gallery)
 
     return render(request, template_name, context)
+
 
 def home(request):
     template_name = "home.html"

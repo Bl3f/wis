@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: Walkway-Light;
-    src: url("../fonts/Walkway%20Light.ttf");
+    src: url("../fonts/Walkway%20Condensed.ttf");
 }
 
 @font-face {
@@ -114,6 +114,16 @@ aside {
     padding-top: 50px;
 }
 
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    font-family: Walkway-Light, serif;
+    font-size: 1.6em;
+    letter-spacing: 3px;
+}
+
 section#gallery {
     width: 760px;
     margin-left: 385px;
@@ -132,4 +142,17 @@ section#gallery {
 .vignette {
     width: 240px;
     margin-bottom: 10px;
+    position: relative;
+}
+
+.vignette:hover {
+
+}
+
+.image_description {
+    position: relative;
+    font-size: 1.5em;
+    width: 180px;
+    color: white;
+    margin: 0 0 0 20px;
 }

@@ -3,9 +3,9 @@
 
 <head>
 
-    <title> {% block title %} {{ title }} {% endblock %} </title>
+    <title>{% block title %}{{ title }}{% endblock %}</title>
 
-    <link rel="stylesheet" href="{{  STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
 
 </head>
 
@@ -14,7 +14,7 @@
         {% block header %}
         {% block logo %}
         <div id="logo"> 
-            <a href="{% url "apps.gallery.views.home" %}"> WIS </a>
+            <a href="{% url "apps.gallery.views.home" %}">WIS</a>
         </div>
         {% endblock %}
 
@@ -30,12 +30,12 @@
 
     {% block aside %}
     <aside>
-            <h3 id="album"> album </h3>
-            <h2> {{ title }}. </h2>
+            <h3 id="album">album</h3>
+            <h2>{{ title }}</h2>
 
             <ul plain>
-                <li plain> Place </li>
-                <li> Date </li>
+                <li plain>Place</li>
+                <li>Date</li>
             </ul>
     </aside>
     {% endblock %}
