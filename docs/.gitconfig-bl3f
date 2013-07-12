@@ -1,0 +1,15 @@
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+[alias]
+        st = status
+        ci = commit
+        co = checkout
+        lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+        gp = grep -n
+[merge]
+        conflictstyle = diff3
+        renormalize = 1
+[credential]
+	helper = cache --timeout=3600
