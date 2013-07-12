@@ -14,7 +14,7 @@
         {% block header %}
         {% block logo %}
         <div id="logo"> 
-            <a href="{% url apps.gallery.views.home %}"> WIS </a>
+            <a href="{% url "apps.gallery.views.home" %}"> WIS </a>
         </div>
         {% endblock %}
 
@@ -30,7 +30,7 @@
 
     {% block aside %}
     <aside>
-            <h3 id="album"> album </h2>
+            <h3 id="album"> album </h3>
             <h2> {{ title }}. </h2>
 
             <ul plain>

@@ -21,16 +21,17 @@ body {
    background-color: #ecf0f1;
    font-family: Walkway; 
    font-weight: 100;
+   /*background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.60) 5%, transparent 9%);*//*I really prefer this*/
 }
 
 header {
     color: white;
     background-color: black;
     width: 100%;
-    height: 50px;
+    height: 45px;
     position: fixed;
     top: 0px;
-    box-shadow: 0 1px 0.4em 0.3em black;
+    box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15); /*Less ugly with opacity like this*/
 }
 
 header #signIn {
