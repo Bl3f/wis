@@ -1,0 +1,107 @@
+- model: gallery.gallery
+  pk: 1
+  fields:
+    title: Freedom.
+    description: Voyages sur la lune.
+    public: 1
+    owner_id: 42
+    place: Paris
+- model: gallery.gallery
+  pk: 2
+  fields:
+    title: Métro.
+    description: Rat d'égout.
+    public: 1
+    owner_id: 50
+    place: Paris
+
+- model: gallery.image
+  pk: 1
+  fields:
+    path: pic/test/0001.jpg
+    description: Behind you please.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 2
+  fields:
+    path: pic/test/0002.jpg
+    description: My hair are beautiful.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 3
+  fields:
+    path: pic/test/0003.jpg
+    description: Eat my feet.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 4
+  fields:
+    path: pic/test/0004.jpg
+    description: Hair-ball.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 5
+  fields:
+    path: pic/test/0005.jpg
+    description: The secret circle.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 6
+  fields:
+    path: pic/test/0006.jpg
+    description: Please come to my table we can eat everything.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 7
+  fields:
+    path: pic/test/0007.jpg
+    description: Arm.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 8
+  fields:
+    path: pic/test/0008.jpg
+    description: Brian is in the kitchen.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 9
+  fields:
+    path: pic/test/0009.jpg
+    description: Black is black.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
+- model: gallery.image
+  pk: 10
+  fields:
+    path: pic/test/0010.jpg
+    description: You are beach.
+    uploaded: 2013-07-13 00:46
+    owner_id: 42
+    place: Paris
+    gallery: 1
