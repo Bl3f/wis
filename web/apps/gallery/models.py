@@ -2,26 +2,27 @@ from django.db import models
 import os
 
 
-def get_upload_path(instance, filename):
+def get_upload_path(filename):
     # return os.path.join("user_%d" % instance.owner.id, "car_%s" % instance.slug, filename)
     return "pic/test/" + filename
 
+# class Media(models.Model):
 
-class Media(models.Model):
+
+class Image(models.Model):
+    path = models.ImageField(upload_to=get_upload_path)
+    description = models.CharField(max_length=255, null=True)
+    uploaded = models.DateTimeField(auto_now_add=True)
     owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
-    description = models.CharField(max_length=255, null=True)
-
-    class Meta:
-        abstract = True
-
-
-class Image(Media, models.Model):
     gallery = models.ForeignKey('Gallery', null=False)
-    image = models.ImageField(upload_to=get_upload_path)
-    uploaded = models.DateTimeField(auto_now_add=True)
 
 
-class Gallery(Media, models.Model):
+class Gallery(models.Model):
     title = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, null=True)
+    public = models.BooleanField(default=True)
+    owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
+    place = models.CharField(max_length=255, null=True)
+    created = models.DateField(null=True)
