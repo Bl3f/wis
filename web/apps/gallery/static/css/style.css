@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: Walkway-Light;
-    src: url("../fonts/Walkway%20Condensed.ttf");
+    src: url("../fonts/Walkway%20Condensed%20SemiBold.ttf");
 }
 
 @font-face {
@@ -32,6 +32,7 @@ header {
     position: fixed;
     top: 0px;
     box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15); /*Less ugly with opacity like this*/
+    z-index: 1024;
 }
 
 header #signIn {
@@ -143,6 +144,7 @@ section#gallery {
     width: 240px;
     margin-bottom: 10px;
     position: relative;
+    z-index: -1;
 }
 
 .vignette:hover {
