@@ -105,3 +105,86 @@
     owner_id: 42
     place: Paris
     gallery: 1
+
+
+- model: gallery.image
+  pk: 11
+  fields:
+    path: pic/test/0011.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 12
+  fields:
+    path: pic/test/0012.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 13
+  fields:
+    path: pic/test/0013.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 14
+  fields:
+    path: pic/test/0014.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 15
+  fields:
+    path: pic/test/0015.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 16
+  fields:
+    path: pic/test/0016.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 17
+  fields:
+    path: pic/test/0017.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 18
+  fields:
+    path: pic/test/0018.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
+- model: gallery.image
+  pk: 19
+  fields:
+    path: pic/test/0019.jpg
+    description: Nothing.
+    uploaded: 2013-07-13 09:15
+    owner_id: 42
+    place: Paris
+    gallery: 2
