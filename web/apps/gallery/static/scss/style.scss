@@ -1,47 +1,30 @@
-@font-face {
-    font-family: Walkway;
-    src: url("../fonts/Walkway%20Black.ttf");
-}
-
-@font-face {
-    font-family: Walkway-Light;
-    src: url("../fonts/Walkway%20Condensed%20SemiBold.ttf");
-}
-
-@font-face {
-    font-family: Walkway-Expand;
-    src: url("../fonts/Walkway%20Expand%20SemiBold.ttf");
-}
-
-@font-face {
-    font-family: Stroke;
-    src: url("../fonts/stroke.ttf");
-}
+@import "colors.scss";
+@import "fonts.scss";
 
 body {
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #ECF0F1;
+    background-color: $background-color;
     font-family: Walkway;
     font-weight: 100;
 }
 
 header {
     color: white;
-    background-color: black;
+    background-color: $main-color;
     width: 100%;
     height: 45px;
     position: fixed;
     top: 0px;
-    box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15); /*Less ugly with opacity like this*/
+    box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15) /*Less ugly with opacity like this*/;
     z-index: 1024;
 
     #signIn, #register {
         display: inline-block;
         float: right;
         margin-right: 20px;
-        margin-top: 15px;
+        margin-top: 13px;
 
         &:hover {
             color: orange;
@@ -52,29 +35,31 @@ header {
         float: left;
         font-size: 2.5em;
         margin-left: 100px;
-        margin-top: 5px;
+        margin-top: 1px;
     }
+
     a {
         color: white;
         text-decoration: none;
     }
-
 }
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Walkway, serif;
 }
 
+
 h1 {
     font-size: 12em;
     text-align: center;
-    color: dark;
+    color: $main-color;
 }
 
 h2 {
     font-size: 2.5em;
     font-weight: 100;
-    color: dark;
+    color: $main-color;
 }
 
 h3 {
@@ -96,12 +81,25 @@ h3 {
     margin-top: 200px;
 }
 
+#login {
+    &.inline {
+        display: inline-block;
+        float: right;
+    }
+    &.inline label {
+        display: None;
+    }
+    &.inline p {
+        display: inline;
+    }
+}
+
 aside {
     width: 300px;
     height: 100%;
     position: fixed;
     text-align: right;
-    border-right: 1px solid #BDC3C7;
+    border-right: 1px solid $aside-border-color;
     padding-right: 10px;
     padding-top: 50px;
 
@@ -112,6 +110,7 @@ aside {
             font-family: Walkway-Expand, serif;
             font-size: 1.1em;
             line-height: 30px;
+            color: #34495e;
         }
     }
 }
@@ -132,6 +131,7 @@ section {
         column-gap: 10px;
     }
 }
+
 
 .vignette {
     width: 240px;
