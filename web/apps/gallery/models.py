@@ -6,8 +6,6 @@ def get_upload_path(filename):
     # return os.path.join("user_%d" % instance.owner.id, "car_%s" % instance.slug, filename)
     return "pic/test/" + filename
 
-# class Media(models.Model):
-
 
 class Image(models.Model):
     path = models.ImageField(upload_to=get_upload_path)
