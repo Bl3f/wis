@@ -18,16 +18,36 @@
         </div>
         {% endblock %}
 
-        <div id="register"> 
-            S'inscrire
-        </div>
+        {% if user.is_authenticated %}
+            <div id="signOut">
+                <a href=" {% url "apps.gallery.views.sign_out" %}">Se déconnecter</a>
+            </div>
 
-        <div id="signIn">
-            Se connecter
-        </div>
+            <div id="userId"> 
+                {{ user.username }}
+            </div>
+        {% else %}
+            <div id="register"> 
+                S'inscrire
+            </div>
+
+            <div id="signIn">
+                Se connecter
+            </div>
+
+            {% block authForm %}
+                <form id="login" class="inline" method="POST" action="{% url "apps.gallery.views.auth" %}">
+                    {% csrf_token %}
+                    {{ loginForm.as_p }}
+                    <input type="submit" value="Valider" />
+                </form>
+            {% endblock %}
+
+        {% endif %}
         {% endblock %}
+    
     </header>
-
+    
     {% block aside %}
     <aside>
             <h3 id="album">album</h3>

@@ -8,7 +8,12 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', 'web.apps.gallery.views.home'),
-    url(r'^gallery/', include('web.apps.gallery.urls'))
+    url(r'^gallery/', include('web.apps.gallery.urls')),
+
+    # Login view
+    url(r'^login$', 'web.apps.gallery.views.auth'),
+    # Logout view
+    url(r'^logout$', 'web.apps.gallery.views.sign_out'), 
     # Examples:
     # url(r'^$', 'web.views.home', name='home'),
     # url(r'^web/', include('web.foo.urls')),

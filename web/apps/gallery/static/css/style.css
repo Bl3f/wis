@@ -49,6 +49,27 @@ header {
     color: white;
     text-decoration: none; }
 
+#login.inline {
+    display: inline-block;
+    float: right;
+}
+
+#login.inline label {
+    display: None;
+}
+
+#login.inline p {
+    display: inline;
+}
+
+#signIn:hover {
+    color: orange;
+}
+
+#register:hover {
+    color: orange;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Walkway, serif; }
 
@@ -114,8 +135,26 @@ section#gallery {
   z-index: -1; }
 
 .image_description {
+<<<<<<< HEAD
   position: relative;
   font-size: 1.5em;
   width: 180px;
   color: white;
   margin: 0 0 0 20px; }
+||||||| merged common ancestors
+    position: relative;
+    font-size: 1.5em;
+    width: 180px;
+    color: white;
+    margin: 0 0 0 20px;
+}
+=======
+    position: relative;
+    font-size: 1.5em;
+    width: 180px;
+    color: white;
+    margin: 0 0 0 20px;
+}
+
+
+>>>>>>> Authentication system

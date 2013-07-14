@@ -1,3 +1,9 @@
+- model: auth.user
+  pk: 1
+  fields:
+    username: wis
+    first_name: WIS Team
+
 - model: gallery.gallery
   pk: 1
   fields:
@@ -10,7 +16,7 @@
   pk: 2
   fields:
     title: Métro.
-    description: Rat d'égout.
+    description: Rat d égout.
     public: 1
     owner_id: 50
     place: Paris
