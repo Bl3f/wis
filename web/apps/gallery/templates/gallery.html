@@ -5,7 +5,7 @@
     <h3 id="album">album</h3>
     <h2>{{ gallery.title }}</h2>
 
-    <ul>
+    <ul id="galleryInfos">
         {% if gallery.place %}<li>{{ gallery.place }}</li>{% endif %}
         {% if gallery.created %}<li>{{ gallery.created }}</li>{% endif %}
         {% if images %}<li>{{ images|length }} photos</li>{% endif %}

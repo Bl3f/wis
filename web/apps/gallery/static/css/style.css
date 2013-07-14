@@ -10,6 +10,11 @@
 }
 
 @font-face {
+    font-family: Walkway-Expand;
+    src: url("../fonts/Walkway%20Expand%20SemiBold.ttf");
+}
+
+@font-face {
     font-family: Stroke;
     src: url("../fonts/stroke.ttf"); 
 }
@@ -119,10 +124,10 @@ aside ul {
     list-style: none;
 }
 
-aside ul li {
-    font-family: Walkway-Light, serif;
-    font-size: 1.6em;
-    letter-spacing: 3px;
+aside #galleryInfos {
+    font-family: Walkway-Expand, serif;
+    font-size: 1.1em;
+    line-height: 30px;
 }
 
 section#gallery {
