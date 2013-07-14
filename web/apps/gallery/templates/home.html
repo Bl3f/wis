@@ -9,5 +9,9 @@
 {% block content %}
 <section id="home">
     <h1>WIS</h1>
+    <form action="{% url "apps.gallery.views.search" %}" method="post">
+        {% csrf_token %}
+        {{ searchForm }}
+    </form>
 </section>
 {% endblock %}

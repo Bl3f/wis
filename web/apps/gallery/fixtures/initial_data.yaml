@@ -10,7 +10,7 @@
     title: Freedom.
     description: Voyages sur la lune.
     public: 1
-    owner_id: 42
+    owner_id: 2
     place: Paris
 - model: gallery.gallery
   pk: 2
@@ -18,7 +18,7 @@
     title: Métro.
     description: Rat d égout.
     public: 1
-    owner_id: 50
+    owner_id: 1
     place: Paris
 
 - model: gallery.image
@@ -27,7 +27,7 @@
     path: pic/test/0001.jpg
     description: Behind you please.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -36,7 +36,7 @@
     path: pic/test/0002.jpg
     description: My hair are beautiful.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -45,7 +45,7 @@
     path: pic/test/0003.jpg
     description: Eat my feet.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -54,7 +54,7 @@
     path: pic/test/0004.jpg
     description: Hair-ball.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -63,7 +63,7 @@
     path: pic/test/0005.jpg
     description: The secret circle.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -72,7 +72,7 @@
     path: pic/test/0006.jpg
     description: Please come to my table we can eat everything.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -81,7 +81,7 @@
     path: pic/test/0007.jpg
     description: Arm.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -90,7 +90,7 @@
     path: pic/test/0008.jpg
     description: Brian is in the kitchen.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -99,7 +99,7 @@
     path: pic/test/0009.jpg
     description: Black is black.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 - model: gallery.image
@@ -108,7 +108,7 @@
     path: pic/test/0010.jpg
     description: You are beach.
     uploaded: 2013-07-13 00:46
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 1
 
@@ -119,7 +119,7 @@
     path: pic/test/0011.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -128,7 +128,7 @@
     path: pic/test/0012.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -137,7 +137,7 @@
     path: pic/test/0013.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -146,7 +146,7 @@
     path: pic/test/0014.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -155,7 +155,7 @@
     path: pic/test/0015.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -164,7 +164,7 @@
     path: pic/test/0016.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -173,7 +173,7 @@
     path: pic/test/0017.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -182,7 +182,7 @@
     path: pic/test/0018.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2
 - model: gallery.image
@@ -191,6 +191,6 @@
     path: pic/test/0019.jpg
     description: Nothing.
     uploaded: 2013-07-13 09:15
-    owner_id: 42
+    owner_id: 2
     place: Paris
     gallery: 2

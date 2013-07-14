@@ -16,10 +16,11 @@ context = dict()
 context['loginForm'] = AuthenticationForm()
 
 
-def gallery_home(request, id):
+def gallery_home(request, user, gallery_title):
     template_name = "gallery.html"
 
-    gallery = Gallery.objects.get(pk=id)
+    owner_id = User.objects.get(username=user).pk
+    gallery = Gallery.objects.get(title=gallery_title, owner_id=owner_id)
 
     context["gallery"] = gallery
     context["images"] = Image.objects.filter(gallery=gallery)
@@ -31,9 +32,15 @@ def home(request):
     template_name = "home.html"
 
     context["title"] = "WIS - Welcome"
+    context["searchForm"] = Search()
 
     return render(request, template_name, context)
 
+
+def search(request):
+    template_name = "gallery.html"
+
+    return redirect("gallery/" + request.POST["gallery"])
 
 def auth(request): 
     
