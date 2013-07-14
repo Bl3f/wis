@@ -1,0 +1,149 @@
+@font-face {
+    font-family: Walkway;
+    src: url("../fonts/Walkway%20Black.ttf");
+}
+
+@font-face {
+    font-family: Walkway-Light;
+    src: url("../fonts/Walkway%20Condensed%20SemiBold.ttf");
+}
+
+@font-face {
+    font-family: Walkway-Expand;
+    src: url("../fonts/Walkway%20Expand%20SemiBold.ttf");
+}
+
+@font-face {
+    font-family: Stroke;
+    src: url("../fonts/stroke.ttf");
+}
+
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #ECF0F1;
+    font-family: Walkway;
+    font-weight: 100;
+}
+
+header {
+    color: white;
+    background-color: black;
+    width: 100%;
+    height: 45px;
+    position: fixed;
+    top: 0px;
+    box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15); /*Less ugly with opacity like this*/
+    z-index: 1024;
+
+    #signIn, #register {
+        display: inline-block;
+        float: right;
+        margin-right: 20px;
+        margin-top: 15px;
+
+        &:hover {
+            color: orange;
+        }
+    }
+    #logo {
+        display: inline-block;
+        float: left;
+        font-size: 2.5em;
+        margin-left: 100px;
+        margin-top: 5px;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Walkway, serif;
+}
+
+h1 {
+    font-size: 12em;
+    text-align: center;
+    color: dark;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 100;
+    color: dark;
+}
+
+h3 {
+    &#album {
+        font-size: 1em;
+        font-weight: 100;
+        color: #BDC3C7;
+        margin-bottom: 0px;
+    }
+    & + h2 {
+        margin-top: -5px;
+    }
+}
+
+#home {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    margin-top: 200px;
+}
+
+aside {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    text-align: right;
+    border-right: 1px solid #BDC3C7;
+    padding-right: 10px;
+    padding-top: 50px;
+
+    ul {
+        list-style: none;
+
+        &#galleryInfos {
+            font-family: Walkway-Expand, serif;
+            font-size: 1.1em;
+            line-height: 30px;
+        }
+    }
+}
+
+section {
+    &#gallery {
+        width: 760px;
+        margin-left: 385px;
+        margin-top: 60px;
+        padding-top: 40px;
+
+        -webkit-column-count: 3; /* Safari and Chrome */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+
+        -webkit-column-gap: 10px; /* Safari and Chrome */
+        -moz-column-gap: 10px; /* Firefox */
+        column-gap: 10px;
+    }
+}
+
+.vignette {
+    width: 240px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: -1;
+}
+
+.image_description {
+    position: relative;
+    font-size: 1.5em;
+    width: 180px;
+    color: white;
+    margin: 0 0 0 20px;
+}
