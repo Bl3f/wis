@@ -43,14 +43,14 @@ def search(request):
     return redirect("gallery/" + request.POST["gallery"])
 
 
-def auth(request): 
-    
+def auth(request):
+
     if request.method == 'POST':
-   
+
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)       
- 
+        user = authenticate(username=username, password=password)
+
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -62,9 +62,9 @@ def auth(request):
         else:
             context['auth'] = False
         context['username'] = username
-        
+
         return redirect(request.META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
-    
+
     else:
         template_name = "login.html"
 
@@ -81,7 +81,7 @@ def sign_out(request):
 
 
 def register(request):
-       
+
     template_name = "register.html"
 
     if request.method == "POST":
@@ -90,5 +90,5 @@ def register(request):
             new_user = form.save()
             return redirect(home)
     else:
-        context['form'] = UserCreationForm() 
+        context['form'] = UserCreationForm()
     return render(request, template_name, context)

@@ -7,38 +7,39 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'web.apps.gallery.views.home'),
-    url(r'^gallery/', include('web.apps.gallery.urls')),
-    
-    # Search view
-    url(r'^search$', "web.apps.gallery.views.search"),
+                       url(r'^$', 'web.apps.gallery.views.home'),
+                       url(r'^gallery/', include('web.apps.gallery.urls')),
 
-    # Register view
-    url(r'^register', "web.apps.gallery.views.register"),
+                       # Register view
+                       url(r'^register', "web.apps.gallery.views.register"),
 
-    # Login view
-    url(r'^login$', "web.apps.gallery.views.auth"),
-    # Logout view
-    url(r'^logout$', "web.apps.gallery.views.sign_out"), 
+                       # Search view
+                       url(r'^search$', "web.apps.gallery.views.search"),
 
-    # Examples:
-    # url(r'^$', 'web.views.home', name='home'),
-    # url(r'^web/', include('web.foo.urls')),
+                       # Login view
+                       url(r'^login$', "web.apps.gallery.views.auth"),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+                       # Logout view
+                       url(r'^logout$', "web.apps.gallery.views.sign_out"),
 
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
-)
+                       # Examples:
+                       # url(r'^$', 'web.views.home', name='home'),
+                       # url(r'^web/', include('web.foo.urls')),
+
+                       # Uncomment the admin/doc line below to enable admin documentation:
+                       # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+                       # Uncomment the next line to enable the admin:
+                       # url(r'^admin/', include(admin.site.urls)),
+                       )
 
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        url(r'^data/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-            }),
-        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT,
-            }),
-    )
+                            url(r'^data/(?P<path>.*)$', 'django.views.static.serve', {
+                                'document_root': settings.MEDIA_ROOT,
+                                }),
+                            url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+                                'document_root': settings.STATIC_ROOT,
+                                }),
+                            )
