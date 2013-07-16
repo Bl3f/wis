@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     # Search view
     url(r'^search$', "web.apps.gallery.views.search"),
 
+    # Register view
+    url(r'^register', "web.apps.gallery.views.register"),
+
     # Login view
     url(r'^login$', "web.apps.gallery.views.auth"),
     # Logout view

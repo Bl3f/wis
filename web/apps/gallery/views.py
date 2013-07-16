@@ -42,6 +42,7 @@ def search(request):
 
     return redirect("gallery/" + request.POST["gallery"])
 
+
 def auth(request): 
     
     if request.method == 'POST':
@@ -77,3 +78,17 @@ def sign_out(request):
     logout(request)
 
     return redirect("/")  # home(request)
+
+
+def register(request):
+       
+    template_name = "register.html"
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return redirect(home)
+    else:
+        context['form'] = UserCreationForm() 
+    return render(request, template_name, context)
