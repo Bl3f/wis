@@ -18,6 +18,7 @@
         </div>
         {% endblock %}
 
+        {% block topRight %}
         {% if user.is_authenticated %}
             <div id="signOut">
                 <a href=" {% url "apps.gallery.views.sign_out" %}">Se déconnecter</a>
@@ -28,7 +29,7 @@
             </div>
         {% else %}
             <div id="register"> 
-                S'inscrire
+                <a href="{% url "apps.gallery.views.register" %}">S'inscrire</a>
             </div>
 
             <div id="signIn">
@@ -45,19 +46,11 @@
 
         {% endif %}
         {% endblock %}
+        {% endblock %}
     
     </header>
     
     {% block aside %}
-    <aside>
-            <h3 id="album">album</h3>
-            <h2>{{ title }}</h2>
-
-            <ul plain>
-                <li plain>Place</li>
-                <li>Date</li>
-            </ul>
-    </aside>
     {% endblock %}
 
     {% block content %}
