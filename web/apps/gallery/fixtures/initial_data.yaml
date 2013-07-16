@@ -3,6 +3,11 @@
   fields:
     username: wis
     first_name: WIS Team
+- model: auth.user
+  pk: 2
+  fields:
+    username: estelle
+    first_name: estelle
 
 - model: gallery.gallery
   pk: 1
