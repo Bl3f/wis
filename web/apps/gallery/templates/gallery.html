@@ -16,7 +16,10 @@
 {% block content %}
 <section id="gallery">
     {% for image in images %}
-        <img class="vignette" src="{{ MEDIA_URL }}{{ image.path }}" />
+        <figure class="imageGallery">
+            <img class="vignette" src="{{ MEDIA_URL }}{{ image.path }}" />
+            <figcaption>{{ image.description }}</figcaption>
+        </figure>
     {% endfor %}
 </section>
 {% endblock %}

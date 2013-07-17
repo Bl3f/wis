@@ -140,14 +140,36 @@ section {
     z-index: -1;
 }
 
-.image_description {
-    position: relative;
-    font-size: 1.5em;
-    width: 180px;
-    color: white;
-    margin: 0 0 0 20px;
-}
-
 #registerForm {
     margin-top: 200px;
+}
+
+
+figure {
+    &.imageGallery {
+        position: relative;
+        margin: 0;
+        z-index: 512;
+    }
+    figcaption {
+        position: absolute;
+        top:0px;
+        left:0px;
+        bottom:0px;
+        right:0px;
+        padding-top: 30px;
+        font-size: 2em;
+        color: white;
+        background-color:rgba(44,62,80,0.3);
+        opacity: 0;
+        transition: opacity 0.1s;
+        -webkit-transition: opacity 0.1s;
+        width: 97.5%;
+        height: 87.5%;
+    }
+    &:hover {
+        figcaption {
+            opacity: 1;
+        }
+    }
 }
