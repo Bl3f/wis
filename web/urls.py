@@ -22,6 +22,9 @@ urlpatterns = patterns('',
                        # Logout view
                        url(r'^logout$', "web.apps.gallery.views.sign_out"),
 
+                       # Upload view
+                       url(r'^upload$', "web.apps.gallery.views.upload"),
+
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
                        # url(r'^web/', include('web.foo.urls')),

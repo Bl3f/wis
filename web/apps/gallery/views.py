@@ -92,3 +92,22 @@ def register(request):
     else:
         context['form'] = UserCreationForm()
     return render(request, template_name, context)
+
+
+def upload(request):
+
+    template_name = "upload.html"
+    
+    if (request.method == "POST"):
+        form = UploadImage(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # gallery_id = 1
+            # title = request.POST['title']
+            # description = request.POST['description']
+            # owner_id = 2
+            # uploaded = '2013-07-27 19:12'
+    else:
+        context['form'] = UploadImage()
+    
+    return render(request, template_name, context)
