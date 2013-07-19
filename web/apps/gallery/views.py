@@ -99,9 +99,15 @@ def upload(request):
     template_name = "upload.html"
     
     if (request.method == "POST"):
+        # Handle file upload
         form = UploadImage(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            newdoc = Image(path = request.FILES['img'], gallery=Gallery.objects.get(pk=1))
+            newdoc.save()
+            # Redirect to the document list after POST
+        # form = UploadImage(request.POST, request.FILES)
+        # if form.is_valid():
+            # form.save()
             # gallery_id = 1
             # title = request.POST['title']
             # description = request.POST['description']

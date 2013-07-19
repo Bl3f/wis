@@ -7,8 +7,12 @@ def get_upload_path(filename):
     return "pic/test/" + filename
 
 
+class Document(models.Model):
+    docfile = models.FileField(upload_to='pic/test')
+
+
 class Image(models.Model):
-    path = models.ImageField(upload_to=get_upload_path)
+    path = models.ImageField(upload_to="upload")# get_upload_path)
     description = models.CharField(max_length=255, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
