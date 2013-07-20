@@ -56,7 +56,7 @@ def search(request):
     template_name = "gallery.html"
 
     search_bar = request.POST['search']
-    search_bar = search_bar.split(' - ')[::-1]
+    search_bar = search_bar.split(';')[::-1]
 
     return redirect("gallery/{}/{}".format(search_bar.pop(), search_bar.pop()))
 

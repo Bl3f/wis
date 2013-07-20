@@ -308,6 +308,9 @@ ul.typeahead {
             list-style: none;
             li {
                 font-size: 0.8em;
+                &:hover {
+                    cursor: pointer;
+                }
                 &.active {
                     width: 90%;
                     background: $background-color;
