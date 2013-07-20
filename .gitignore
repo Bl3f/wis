@@ -4,3 +4,4 @@ web/apps/gallery/static/generated/*
 *.swp
 .idea/
 .sass-cache/
+data/upload/
