@@ -14,6 +14,7 @@
   fields:
     title: Freedom.
     description: Voyages sur la lune.
+    slug_name: freedom
     public: 1
     owner_id: 2
     place: Paris
@@ -22,6 +23,7 @@
   fields:
     title: Métro.
     description: Rat d égout.
+    slug_name: metro
     public: 1
     owner_id: 1
     place: Paris

@@ -16,11 +16,11 @@ context = dict()
 context['loginForm'] = AuthenticationForm()
 
 
-def gallery_home(request, user, gallery_title):
+def gallery_home(request, user, gallery_slug):
     template_name = "gallery.html"
 
     owner_id = User.objects.get(username=user).pk
-    gallery = Gallery.objects.get(title=gallery_title, owner_id=owner_id)
+    gallery = Gallery.objects.get(slug_name=gallery_slug, owner_id=owner_id)
 
     context["gallery"] = gallery
     context["images"] = Image.objects.filter(gallery=gallery)

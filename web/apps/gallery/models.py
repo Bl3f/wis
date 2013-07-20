@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 import os
 
 
@@ -24,7 +25,13 @@ class Image(models.Model):
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True)
+    slug_name = models.SlugField(max_length=255)
     public = models.BooleanField(default=True)
     owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
+
+    def save(self, *args, **kwargs):
+        if self.title:
+            self.slug_name = slugify(self.title)[:255]
+        super(Gallery, self).save(*args, **kwargs)
