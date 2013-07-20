@@ -1,3 +1,4 @@
+import json
 import os
 from web.settings import MEDIA_ROOT
 
@@ -31,8 +32,13 @@ def gallery_home(request, user, gallery_slug):
 def home(request):
     template_name = "home.html"
 
+    data_source = []
+    for user, user_slugs in Gallery.objects.get_galleries_with_slug().items():
+        for slug in user_slugs:
+            data_source.append("{} - {}".format(user, slug))
+
     context["title"] = "WIS - Welcome"
-    context["searchForm"] = Search()
+    context["searchForm"] = SearchForm(json.dumps(data_source))
 
     return render(request, template_name, context)
 
@@ -40,7 +46,10 @@ def home(request):
 def search(request):
     template_name = "gallery.html"
 
-    return redirect("gallery/" + request.POST["gallery"])
+    search_bar = request.POST['search']
+    search_bar = search_bar.split(' - ')[::-1]
+
+    return redirect("gallery/{}/{}".format(search_bar.pop(), search_bar.pop()))
 
 
 def auth(request):
