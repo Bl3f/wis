@@ -15,7 +15,7 @@ from web.apps.gallery.forms import *
 from web.apps.gallery.messages import *
 
 context = dict()
-context['loginForm'] = AuthenticationForm()
+context['loginForm'] = UserForm()
 
 
 def gallery_home(request, user, gallery_slug):
@@ -96,14 +96,14 @@ def sign_out(request):
 def register(request):
 
     template_name = "register.html"
+        
+    form = UserCreationForm(request.POST or None)
 
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return redirect(home)
+    if form.is_valid():
+        new_user = form.save()
+        return redirect(home)
     else:
-        context['form'] = UserCreationForm()
+        context['form'] = form
     return render(request, template_name, context)
 
 

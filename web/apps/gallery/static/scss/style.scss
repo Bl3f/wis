@@ -23,7 +23,7 @@ header {
     box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15) /*Less ugly with opacity like this*/;
     z-index: 1024;
 
-    #signIn, #register {
+    #signIn, #register, #signOut, #userId {
         display: inline-block;
         float: right;
         margin-right: 20px;
@@ -100,6 +100,12 @@ h3 {
 }
 
 #login {
+
+    margin-top: 8px;
+    margin-right: 16px;
+
+    vertical-align: middle;
+
     &.inline {
         display: inline-block;
         float: right;
@@ -109,6 +115,9 @@ h3 {
     }
     &.inline p {
         display: inline;
+    }
+    #validate {
+        //display: none;
     }
 }
 
