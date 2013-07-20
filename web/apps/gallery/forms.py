@@ -25,7 +25,8 @@ class SearchForm(forms.Form):
 
 class UploadImage(forms.Form):
     img = forms.FileField(
-        label='Select an image',
+        label='Image',
     )
     description = forms.CharField(max_length=200)
     place = forms.CharField(max_length=60)
+    gallery_slug = forms.CharField(widget=forms.HiddenInput())

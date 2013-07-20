@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
 
+from web.apps.gallery.messages import *
 
 context = dict()
 context['loginForm'] = AuthenticationForm()
@@ -19,6 +20,9 @@ context['loginForm'] = AuthenticationForm()
 
 def gallery_home(request, user, gallery_slug):
     template_name = "gallery.html"
+
+    request.session['gallery'] = gallery_slug
+    request.session['gallery_owner'] = user
 
     owner_id = User.objects.get(username=user).pk
     gallery = Gallery.objects.get(slug_name=gallery_slug, owner_id=owner_id)
@@ -106,19 +110,29 @@ def register(request):
 def upload(request):
 
     template_name = "upload.html"
-    context['gallery'] = META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], "")
+    context['canUpload'] = False
 
-    if (request.method == "POST"):
-        # Handle file upload
-        form = UploadImage(request.POST, request.FILES)
-        if form.is_valid():
-            data = form.cleaned_data
-            newdoc = Image(path=request.FILES['img'], description=data['description'],
-                           place=data['place'], gallery=Gallery.objects.get(pk=1))
-            newdoc.save()
-        else:
-            context['error'] = "ERROR"
+    if (request.user == "AnonymousUser"):
+        context['msg'] = ERROR_NOTAUTH
+    elif (request.session['gallery_owner'] != request.user):
+        context['msg'] = ERROR_PERM
     else:
-        context['form'] = UploadImage()
+        context['canUpload'] = True
+        if (request.method == "POST"):
+            form = UploadImage(request.POST, request.FILES)
+            if form.is_valid():
+                data = form.cleaned_data
+                newdoc = Image(path=request.FILES['img'], description=data['description'],
+                               place=data['place'], gallery=Gallery.objects.get(slug_name=data['gallery_slug'], 
+                                                                                owner=request.user), 
+                               owner=request.user)
+                newdoc.save()
+            else:
+                context['msg'] = "ERROR"
+        else:
+            if request.session['gallery'] == None:
+                context['msg'] = "Error : no gallery"
+            else:
+                context['form'] = UploadImage(initial={'gallery_slug': request.session['gallery']})
 
     return render(request, template_name, context)
