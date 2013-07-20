@@ -5,3 +5,4 @@ web/apps/gallery/static/generated/*
 .idea/
 .sass-cache/
 data/upload/
+bin/git/hooks/pre-commit.py
