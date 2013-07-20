@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block assets %}
+{% endblock %}
+
 {% block logo %}
 {% endblock %}
 
@@ -9,9 +12,16 @@
 {% block content %}
 <section id="home">
     <h1>WIS</h1>
-    <form action="{% url "apps.gallery.views.search" %}" method="post">
+    <form action="{% url "apps.gallery.views.search" %}" method="post" class="js-search-form">
         {% csrf_token %}
         {{ searchForm }}
     </form>
 </section>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search-bar.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-typeahead.js"></script>
 {% endblock %}

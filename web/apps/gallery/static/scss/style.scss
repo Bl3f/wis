@@ -1,4 +1,6 @@
 @import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
 @import "colors.scss";
 @import "fonts.scss";
 
@@ -76,10 +78,25 @@ h3 {
 }
 
 #home {
-    width: 400px;
+    width: 800px;
     height: 400px;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 150px;
+
+    h1 {
+        margin: 0 auto 0 auto;
+        font-size: 20em;
+        font-weight: 100;
+        font-family: Walkway, serif;
+    }
+    .gallery_search {
+        display: block;
+        width: 100%;
+        height: 36px;
+        padding-left: 2px;
+        font-family: Arial;
+        font-size: 0.9em;
+    }
 }
 
 #login {
@@ -147,14 +164,14 @@ section {
     overflow: hidden;
 
     &:before {
-        @include transition(0.3s background-color ease, 0.5s margin-top ease);
+        @include transition(0.5s background-color ease, 0.5s margin-top ease);
         content: '';
         display: block;
         position:absolute;
         width:100%;
         height:100%;
         margin-top: 500px;
-        background: rgba(44, 62, 80, 0);
+        background-color: rgba(44, 62, 80, 0);
     }
 
     span.vignette-description {
@@ -181,7 +198,7 @@ section {
             width:100%;
             height:100%;
             margin-top: 0px;
-            background: rgba(44, 62, 80, 0.6);
+            background-color: rgba(44, 62, 80, 0.6);
         }
         .vignette-expand {
             display: block;
@@ -201,6 +218,79 @@ section {
     }
 }
 
+/* BOOTSTRAP CSS import : ugly but we discuss about that soon */
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    display: inline-block;
+    line-height: 20px;
+    color: $main-color;
+    vertical-align: middle;
+    border: 1px solid $main-color;
+
+    @include border-radius(2px);
+    @include box-shadow(inset 0 1px 1px rgba(44, 62, 80, 0.175));
+    @include transition(border linear 0.2s, box-shadow linear 0.2s);
+
+    &:focus {
+        border-color: rgba(82, 168, 236, 0.8);
+        outline: 0;
+        outline: thin dotted \9;
+        /* IE6-9 */
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+    }
+}
+
+input[type="search"] {
+    background-image: url("../../images/search.jpeg");
+    background-repeat: no-repeat;
+    background-position: 765px 4px;
+    background-size: 25px 25px;
+    padding-right: 10px;
+
+    &:focus {
+        background-image: none;
+    }
+}
+
+ul.typeahead {
+    margin-top: 0px;
+    list-style: none;
+    width: 98%;
+    background: #FFFFFF;
+    margin: 0 auto 0 auto;
+    padding: 2px 0;
+    border: 1px solid $aside-border-color;
+    border-top: 0px;
+
+    li {
+        padding: 5px;
+        a {
+            text-decoration: none;
+            color: $main-color;
+        }
+        &.active {
+            background: $background-color;
+        }
+    }
+}
+
+
+
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline-block;
@@ -219,6 +309,18 @@ section {
   background-image: url("../../images/glyphicons-halflings-white.png");
 }
 
+.icon-search {
+  background-position: -48px 0;
+}
+
 .icon-resize-full {
   background-position: -360px -96px;
+}
+
+.icon-map-marker {
+  background-position: -24px -72px;
+}
+
+.icon-picture {
+  background-position: -456px -48px;
 }

@@ -6,6 +6,7 @@
     <title>{% block title %}{{ title }}{% endblock %}</title>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}generated/css/style.css" />
+    {% block assets %}{% endblock %}
 
 </head>
 
@@ -61,6 +62,7 @@
         {% endblock %}
     </footer>
 
+{% block scripts %}{% endblock %}
 </body>
 
 </html>
