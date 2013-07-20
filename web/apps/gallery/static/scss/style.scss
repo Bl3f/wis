@@ -292,14 +292,14 @@ ul.typeahead {
     border-top: 0px;
 
     li {
-        padding: 10px 20px 10px 20px;
+        padding: 7px 20px 7px 20px;
         span {
             position: absolute;
-            margin: 10px;
+            margin: 8px;
         }
         h2 {
             margin: 0px;
-            font-size: 1.8em;
+            font-size: 1.5em;
             padding-left: 30px;
             border-bottom: 1px solid $aside-border-color;
         }
@@ -307,6 +307,7 @@ ul.typeahead {
             margin: -10px 0 0 15px;
             list-style: none;
             li {
+                font-size: 0.8em;
                 &.active {
                     width: 90%;
                     background: $background-color;
