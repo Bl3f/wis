@@ -25,6 +25,9 @@ urlpatterns = patterns('',
                        # Upload view
                        url(r'^upload$', "web.apps.gallery.views.upload"),
 
+                       # Upload view
+                       url(r'^creation$', "web.apps.gallery.views.create_gallery"),
+
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
                        # url(r'^web/', include('web.foo.urls')),

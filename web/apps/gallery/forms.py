@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
-from web.apps.gallery.models import Image
+from web.apps.gallery.models import Image, Gallery
 
 
 class SearchForm(forms.Form):
@@ -34,6 +34,7 @@ class UserForm(AuthenticationForm):
                                                             'type': 'password'
                                                         })) 
 
+
 class UploadImage(forms.Form):
     img = forms.FileField(
         label='Image',
@@ -41,3 +42,9 @@ class UploadImage(forms.Form):
     description = forms.CharField(max_length=200)
     place = forms.CharField(max_length=60)
     gallery_slug = forms.CharField(widget=forms.HiddenInput())
+
+
+class GalleryForm(forms.ModelForm):
+    class Meta:
+        model = Gallery
+        fields = ['title', 'description', 'public', 'place']

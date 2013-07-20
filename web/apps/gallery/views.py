@@ -33,6 +33,16 @@ def gallery_home(request, user, gallery_slug):
     return render(request, template_name, context)
 
 
+def user_galleries(request, user):
+    template_name = "user_galleries.html"
+
+    context['isOwner'] = (user == str(request.user))
+
+    context['galleries'] = Gallery.objects.filter(owner=User.objects.get(username=user))
+
+    return render(request, template_name, context)
+
+
 def home(request):
     template_name = "home.html"
 
@@ -50,6 +60,20 @@ def search(request):
 
     return redirect("gallery/{}/{}".format(search_bar.pop(), search_bar.pop()))
 
+
+def create_gallery(request):
+    template_name = "create_gallery.html"
+
+    form = GalleryForm(request.POST or None)
+
+    if form.is_valid():
+        data = form.cleaned_data
+        new_gallery = Gallery(title=data['title'], description=data['description'], public=data['public'], owner=request.user, place=data['place'])
+        new_gallery.save()
+    else:
+        context['form'] = form
+
+    return render(request, template_name, context)
 
 def auth(request):
 
@@ -107,9 +131,9 @@ def upload(request):
     template_name = "upload.html"
     context['canUpload'] = False
 
-    if (request.user == "AnonymousUser"):
+    if (str(request.user) == "AnonymousUser"):
         context['msg'] = ERROR_NOTAUTH
-    elif (request.session['gallery_owner'] != request.user):
+    elif (request.session['gallery_owner'] != str(request.user)):
         context['msg'] = ERROR_PERM
     else:
         context['canUpload'] = True
@@ -117,11 +141,11 @@ def upload(request):
             form = UploadImage(request.POST, request.FILES)
             if form.is_valid():
                 data = form.cleaned_data
-                newdoc = Image(path=request.FILES['img'], description=data['description'],
+                new_img = Image(path=request.FILES['img'], description=data['description'],
                                place=data['place'], gallery=Gallery.objects.get(slug_name=data['gallery_slug'],
                                                                                 owner=request.user),
                                owner=request.user)
-                newdoc.save()
+                new_img.save()
             else:
                 context['msg'] = "ERROR"
         else:

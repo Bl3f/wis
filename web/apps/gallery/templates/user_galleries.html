@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <br />
+    <br /> 
+    <br />
+    
+    {% for gallery in galleries %}
+        <p> {{ gallery.title }}</p>
+    {% endfor %}
+    
+    {% if isOwner %}
+        <p><a href="{% url "apps.gallery.views.create_gallery" %}"> Créer une nouvelle galerie </a></p> 
+    {% endif %}
+
+{% endblock %}
