@@ -23,6 +23,16 @@ class Image(models.Model):
     gallery = models.ForeignKey('Gallery', null=False)
 
 
+class GalleryManager(models.Manager):
+    def get_galleries_with_slug(self):
+        galleries = {}
+        for gallery in self.all():
+            if gallery.owner.username not in galleries.keys():
+                galleries[gallery.owner.username] = []
+            galleries[gallery.owner.username].append(gallery.slug_name)
+        return galleries
+
+
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True)
@@ -31,8 +41,12 @@ class Gallery(models.Model):
     owner = models.ForeignKey(User, null=False)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
+    objects = GalleryManager()
 
     def save(self, *args, **kwargs):
         if self.title:
             self.slug_name = slugify(self.title)[:255]
         super(Gallery, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.title
