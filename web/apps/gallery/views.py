@@ -123,14 +123,14 @@ def upload(request):
             if form.is_valid():
                 data = form.cleaned_data
                 newdoc = Image(path=request.FILES['img'], description=data['description'],
-                               place=data['place'], gallery=Gallery.objects.get(slug_name=data['gallery_slug'], 
-                                                                                owner=request.user), 
+                               place=data['place'], gallery=Gallery.objects.get(slug_name=data['gallery_slug'],
+                                                                                owner=request.user),
                                owner=request.user)
                 newdoc.save()
             else:
                 context['msg'] = "ERROR"
         else:
-            if request.session['gallery'] == None:
+            if request.session['gallery'] is None:
                 context['msg'] = "Error : no gallery"
             else:
                 context['form'] = UploadImage(initial={'gallery_slug': request.session['gallery']})
