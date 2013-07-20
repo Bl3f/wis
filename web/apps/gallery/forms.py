@@ -13,13 +13,12 @@ class SearchForm(forms.Form):
                                    'class': 'gallery_search',
                                    'type': 'search',
                                    'autocomplete': 'off',
-                                   'data-provide': 'typeahead',
-                                   'data-source': '[]',
+                                   'data-dict': '[]',
                                    'data-items': '4',
                              }))
 
     def __init__(self, data_source):
-        self.base_fields['search'].widget.attrs['data-source'] = data_source
+        self.base_fields['search'].widget.attrs['data-dict'] = data_source
         super(SearchForm, self).__init__()
 
 

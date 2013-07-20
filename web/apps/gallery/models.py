@@ -29,7 +29,11 @@ class GalleryManager(models.Manager):
         for gallery in self.all():
             if gallery.owner.username not in galleries.keys():
                 galleries[gallery.owner.username] = []
-            galleries[gallery.owner.username].append(gallery.slug_name)
+            galleries[gallery.owner.username].append({
+                'slug': gallery.slug_name,
+                'name': gallery.title,
+                'count': Image.objects.filter(gallery=gallery).count(),
+            })
         return galleries
 
 

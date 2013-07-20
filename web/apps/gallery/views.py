@@ -36,13 +36,8 @@ def gallery_home(request, user, gallery_slug):
 def home(request):
     template_name = "home.html"
 
-    data_source = []
-    for user, user_slugs in Gallery.objects.get_galleries_with_slug().items():
-        for slug in user_slugs:
-            data_source.append("{} - {}".format(user, slug))
-
     context["title"] = "WIS - Welcome"
-    context["searchForm"] = SearchForm(json.dumps(data_source))
+    context["searchForm"] = SearchForm(json.dumps(Gallery.objects.get_galleries_with_slug()))
 
     return render(request, template_name, context)
 
