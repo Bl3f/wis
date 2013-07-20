@@ -277,7 +277,6 @@ input[type="search"] {
 }
 
 ul.typeahead {
-    margin-top: 0px;
     list-style: none;
     width: 98%;
     background: #FFFFFF;
@@ -287,14 +286,28 @@ ul.typeahead {
     border-top: 0px;
 
     li {
-        padding: 5px;
-        a {
-            text-decoration: none;
-            color: $main-color;
+        padding: 10px 20px 10px 20px;
+        span {
+            position: absolute;
+            margin: 10px;
         }
-        &.active {
-            background: $background-color;
+        h2 {
+            margin: 0px;
+            font-size: 1.8em;
+            padding-left: 30px;
+            border-bottom: 1px solid $aside-border-color;
         }
+        ul {
+            margin: -10px 0 0 15px;
+            list-style: none;
+            li {
+                &.active {
+                    width: 90%;
+                    background: $background-color;
+                }
+            }
+        }
+
     }
 }
 
@@ -332,4 +345,8 @@ ul.typeahead {
 
 .icon-picture {
   background-position: -456px -48px;
+}
+
+.icon-user {
+  background-position: -168px 0;
 }
