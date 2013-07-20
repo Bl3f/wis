@@ -97,23 +97,19 @@ def register(request):
 def upload(request):
 
     template_name = "upload.html"
-    
+    context['gallery'] = META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], "")
+
     if (request.method == "POST"):
         # Handle file upload
         form = UploadImage(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Image(path = request.FILES['img'], gallery=Gallery.objects.get(pk=1))
+            data = form.cleaned_data
+            newdoc = Image(path=request.FILES['img'], description=data['description'],
+                           place=data['place'], gallery=Gallery.objects.get(pk=1))
             newdoc.save()
-            # Redirect to the document list after POST
-        # form = UploadImage(request.POST, request.FILES)
-        # if form.is_valid():
-            # form.save()
-            # gallery_id = 1
-            # title = request.POST['title']
-            # description = request.POST['description']
-            # owner_id = 2
-            # uploaded = '2013-07-27 19:12'
+        else:
+            context['error'] = "ERROR"
     else:
         context['form'] = UploadImage()
-    
+
     return render(request, template_name, context)
