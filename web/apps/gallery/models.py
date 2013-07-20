@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 import os
+from django.contrib.auth.models import User
 
 
 def get_upload_path(filename):
@@ -13,10 +14,10 @@ class Document(models.Model):
 
 
 class Image(models.Model):
-    path = models.ImageField(upload_to="upload")# get_upload_path)
+    path = models.ImageField(upload_to="upload")                # get_upload_path)
     description = models.CharField(max_length=255, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
-    owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
+    owner = models.ForeignKey(User, null=False)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
     gallery = models.ForeignKey('Gallery', null=False)
@@ -27,7 +28,7 @@ class Gallery(models.Model):
     description = models.CharField(max_length=255, null=True)
     slug_name = models.SlugField(max_length=255)
     public = models.BooleanField(default=True)
-    owner_id = models.SmallIntegerField(null=True, blank=True, default=1)
+    owner = models.ForeignKey(User, null=False)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
 
