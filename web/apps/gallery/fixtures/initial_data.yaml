@@ -1,7 +1,7 @@
 - model: auth.user
   pk: 1
   fields:
-    username: wis
+    username: wisest
     first_name: WIS Team
 - model: auth.user
   pk: 2
@@ -24,6 +24,42 @@
     title: Métro.
     description: Rat d égout.
     slug_name: metro
+    public: 1
+    owner: 1
+    place: Paris
+- model: gallery.gallery
+  pk: 3
+  fields:
+    title: Une étoile est née
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 4
+  fields:
+    title: Une étoile est née
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 5
+  fields:
+    title: Une étoile est née
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 6
+  fields:
+    title: Une étoile est née
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
     public: 1
     owner: 1
     place: Paris
