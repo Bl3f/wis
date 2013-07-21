@@ -30,7 +30,7 @@
 - model: gallery.gallery
   pk: 3
   fields:
-    title: Une étoile est née
+    title: Une étoile est née1
     description: Au lit mon enfant.
     slug_name: bloupynou-piezhf
     public: 1
@@ -39,7 +39,7 @@
 - model: gallery.gallery
   pk: 4
   fields:
-    title: Une étoile est née
+    title: Une étoile est née2
     description: Au lit mon enfant.
     slug_name: bloupynou-piezhf
     public: 1
@@ -48,7 +48,7 @@
 - model: gallery.gallery
   pk: 5
   fields:
-    title: Une étoile est née
+    title: Une étoile est née3
     description: Au lit mon enfant.
     slug_name: bloupynou-piezhf
     public: 1
@@ -57,7 +57,7 @@
 - model: gallery.gallery
   pk: 6
   fields:
-    title: Une étoile est née
+    title: Une étoile est née4
     description: Au lit mon enfant.
     slug_name: bloupynou-piezhf
     public: 1

@@ -121,42 +121,37 @@ h3 {
         background-color: #FFFFFF;
         color: $aside-border-color;
     }
-    ul.typeahead {
+   .tt-dropdown-menu {
         list-style: none;
-        width: 78%;
+        width: 82%;
         background: #FFFFFF;
         margin: 0 auto 0 auto;
         padding: 2px 0;
         border: 1px solid $aside-border-color;
         border-top: 0px;
 
-        li {
-            padding: 7px 20px 7px 20px;
-            span {
-                position: absolute;
-                margin: 8px;
+        h2 {
+            margin: 0px;
+            font-size: 1.5em;
+            padding-left: 30px;
+            width: 90%;
+            margin: 10px 0 10px 20px;
+            border-bottom: 1px solid $aside-border-color;
+        }
+        .tt-suggestions {
+            display: block;
+            padding: 6px 20px 6px 20px;
+            margin-left: 20px;
+            p {
+                margin: 0;
             }
-            h2 {
-                margin: 0px;
-                font-size: 1.5em;
-                padding-left: 30px;
-                border-bottom: 1px solid $aside-border-color;
+            &.active, &:hover {
+                width: 80%;
+                background: $background-color;
             }
-            ul {
-                margin: -10px 0 0 15px;
-                list-style: none;
-                li {
-                    font-size: 0.8em;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    &.active {
-                        width: 90%;
-                        background: $background-color;
-                    }
-                }
+            &:hover {
+                cursor:pointer;
             }
-
         }
     }
 }
