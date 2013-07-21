@@ -36,21 +36,38 @@
         this.element.parent().append(this.options.menu);
         this.dropdown = this.element.next($.parseHTML(this.options.menu).class).hide();
 
-        var _ = this;
+        var that = this;
 
         // Listener on input
         this.element.on('input', function() {
             var input = $(this).val()
 
             if (input.length == 0) {
-                return _.dropdown.slideUp(400);
+                return that.dropdown.slideUp(400);
             }
 
-            var galleries = _.find_galleries(input);
-            if (_.display_in_dropdown(galleries)) {
-                _.dropdown.slideDown(400);
+            var galleries = that.find_galleries(input);
+            if (that.display_in_dropdown(galleries)) {
+                that.dropdown.slideDown(400);
             }
-        })
+        });
+        this.element.keydown(function(e) {
+            var keyCode = e.keyCode || e.which;
+
+            if (that.dropdown.children().length == 0) {
+                return 0;
+            }
+            if (keyCode == 40 || keyCode == 9) {
+                e.preventDefault();
+                that.active_next();
+            } else if (keyCode == 38) {
+                e.preventDefault();
+                that.active_previous();
+            } else if (keyCode == 13) {
+                e.preventDefault();
+                console.log("iuhiuh");
+            }
+        });
     }
 
     SearchBar.prototype.find_galleries = function(input) {
@@ -88,7 +105,6 @@
             }
             this.dropdown.append($('<span>').html(this.options.item).find('span').append(this.format_suggestions(gallery)));
         }
-        console.log(owners_header);
         return true;
     }
 
@@ -98,6 +114,36 @@
 
     SearchBar.prototype.format_header = function(gallery) {
         return gallery.owner;
+    }
+
+    SearchBar.prototype.active_next = function() {
+        var active = this.dropdown.find('.active');
+        var items = $('.tt-suggestions', this.dropdown);
+        var index = 0;
+
+        for (var i = 0; i < items.length; i++) {
+            if (items.eq(i).hasClass('active')) {
+                index = (i + 1) % items.length;
+            }
+        }
+        active.removeClass('active');
+        items.eq(index).addClass('active');
+    }
+
+    SearchBar.prototype.active_previous = function() {
+        var active = this.dropdown.find('.active');
+        var items = $('.tt-suggestions', this.dropdown);
+        var index = items.length - 1;
+
+        for (var i = 0; i < items.length; i++) {
+            if (items.eq(i).hasClass('active')) {
+                if (i - 1 >= 0) {
+                    index = (i - 1);
+                }
+            }
+        }
+        active.removeClass('active');
+        items.eq(index).addClass('active');
     }
 
     var options = {
