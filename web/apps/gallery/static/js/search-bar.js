@@ -73,6 +73,18 @@
                 that.active_previous();
             } else if (keyCode == 13) {
                 e.preventDefault();
+                $.ajax({
+                    url:"/search",
+                    type: "POST",
+                    data: that.get_gallery_active(),
+                    success:function(data){
+                        window.location.href = data.redirect;
+                    },
+                    complete:function(){},
+                    error:function (xhr, textStatus, thrownError){
+
+                    }
+                });
             }
             if (that.is_active()) {
                 that.display_hint(that.get_active());
@@ -187,6 +199,12 @@
             return gallery.owner;
         }
         return;
+    }
+
+    SearchBar.prototype.get_gallery_active = function() {
+        if (this.is_active()) {
+            return this.galleries[$('.active', this.dropdown).attr('data-index')];
+        }
     }
 
     SearchBar.prototype.display_hint = function(hint) {
