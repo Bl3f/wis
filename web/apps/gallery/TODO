@@ -3,8 +3,15 @@ Gallery Creation        [ ]
 See my galleries        [ ]
 Comment pictures        [ ]
 
+****** Search bar ******
+Search results plural   [ ]
+Search bar width/opacity[ ]
+Use TAB to navigate     [ ]
+Better search algorithm [ ]
+
 *** Technical impovements ***
 Use context processors  [ ]
+Middleware              [ ]
 
 ********* Features *********
 Messages to user        [ ]
