@@ -25,11 +25,10 @@ class Image(models.Model):
 
 class GalleryManager(models.Manager):
     def get_galleries_with_slug(self):
-        galleries = {}
+        galleries = []
         for gallery in self.all():
-            if gallery.owner.username not in galleries.keys():
-                galleries[gallery.owner.username] = []
-            galleries[gallery.owner.username].append({
+            galleries.append({
+                'owner': gallery.owner.username,
                 'slug': gallery.slug_name,
                 'name': gallery.title,
                 'count': Image.objects.filter(gallery=gallery).count(),
