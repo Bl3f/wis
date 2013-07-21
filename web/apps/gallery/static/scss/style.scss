@@ -124,9 +124,9 @@ h3 {
    .tt-dropdown-menu {
         list-style: none;
         width: 82%;
-        background: #FFFFFF;
+        background: rgba(255, 255, 255, 0.5);
         margin: 0 auto 0 auto;
-        padding: 2px 0;
+        padding: 2px 0 20px 0;
         border: 1px solid $aside-border-color;
         border-top: 0px;
 
