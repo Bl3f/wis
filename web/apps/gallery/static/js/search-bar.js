@@ -24,11 +24,6 @@
         this.init_listeners();
     }
 
-    SearchBar.prototype.debugMyObj = function() {
-        console.log("Limit is defined to " + this.limit + " elements");
-        console.log(this.galleries);
-    }
-
     SearchBar.prototype.init_listeners = function() {
         // DOM initialisation with elements we need
         this.element.empty();
@@ -58,11 +53,15 @@
             if (that.display_in_dropdown(galleries)) {
                 that.dropdown.slideDown(400);
             }
-        });
-        this.element.keydown(function(e) {
+            that.active_next();
+        }).focus(function() {
+            return !that.input_is_empty() && that.dropdown.slideDown(400);
+        }).blur(function() {
+            that.dropdown.slideUp(400);
+        }).keydown(function(e) {
             var keyCode = e.keyCode || e.which;
 
-            if (that.dropdown.children().length == 0 || that.element.val() == '') {
+            if (that.dropdown.children().length == 0 || that.input_is_empty()) {
                 return 0;
             }
             if (keyCode == 40 || keyCode == 9) {
@@ -85,9 +84,6 @@
 
                     }
                 });
-            }
-            if (that.is_active()) {
-                that.display_hint(that.get_active());
             }
         });
     }
@@ -150,6 +146,7 @@
         }
         active.removeClass('active');
         items.eq(index).addClass('active');
+        this.display_hint(this.get_active());
     }
 
     SearchBar.prototype.active_previous = function() {
@@ -166,6 +163,7 @@
         }
         active.removeClass('active');
         items.eq(index).addClass('active');
+        this.display_hint(this.get_active());
     }
 
     SearchBar.prototype.is_active = function() {
@@ -173,6 +171,10 @@
             return true;
         }
         return false;
+    }
+
+    SearchBar.prototype.input_is_empty = function() {
+        return this.element.val() == '';
     }
 
     SearchBar.prototype.get_active = function() {
@@ -208,8 +210,10 @@
     }
 
     SearchBar.prototype.display_hint = function(hint) {
-        console.log(hint);
-        this.hint.val(hint);
+        if (this.is_active()) {
+                this.hint.val(hint);
+            }
+
     }
 
     var options = {
