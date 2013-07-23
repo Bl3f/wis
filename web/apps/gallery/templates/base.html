@@ -33,7 +33,7 @@
                 <a href="{% url "apps.gallery.views.register" %}">S'inscrire</a>
             </div>
 
-            <div id="signIn">
+            <div id="signIn" onclick="hideElement('signIn'); displayElement('login');" >
                 Se connecter
             </div>
 
@@ -41,7 +41,7 @@
                 <form id="login" class="inline" method="POST" action="{% url "apps.gallery.views.auth" %}">
                     {% csrf_token %}
                     {{ loginForm.as_p }}
-                    <input type="submit" id="validate" value="Go!" />
+                    <input type="submit" id="validate" value="Go!" /> 
                 </form>
             {% endblock %}
 
@@ -62,7 +62,9 @@
         {% endblock %}
     </footer>
 
-{% block scripts %}{% endblock %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/common.js"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 
 </html>
