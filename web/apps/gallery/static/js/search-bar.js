@@ -26,6 +26,7 @@
 
     SearchBar.prototype.init_listeners = function() {
         // DOM initialisation with elements we need
+        this.element.attr('autofocus', true)
         this.element.empty();
         this.element.parent().append(this.options.hint);
         this.element.insertAfter($('.tt-hint'));
@@ -180,27 +181,29 @@
     SearchBar.prototype.get_active = function() {
         var index = $('.active', this.dropdown).attr('data-index');
         var gallery = this.galleries[index];
-        var input = this.element.val(), error_owner = false, error_name = false;
-        var lower_owner = false, lower_name = false;
-        for (var i = 0; i < input.length; i++) {
-            if (input[i] != gallery.owner[i]) {
-                error_owner = true;
+        var input = this.element.val();
+        var name_result = '', owner_result = '';
+        var owner_end = Infinity, name_end = 0;
+        for (var i = 0; i < gallery.owner.length; i++) {
+            if (input[i] != undefined && input[i].toLowerCase() == gallery.owner[i].toLowerCase()) {
+                owner_result += input[i];
+            } else {
+                owner_end = i;
+                owner_result += gallery.owner.slice(i, gallery.owner.length);
                 break;
             }
         }
-        for (var i = 0; i < input.length; i++) {
-            if (input[i] != gallery.name[i]) {
-                error_name = true;
+        for (var i = 0; i < gallery.name.length; i++) {
+            if (input[i] != undefined && input[i].toLowerCase() == gallery.name[i].toLowerCase()) {
+                name_result += input[i];
+            } else {
+                name_end = i
+                name_result += gallery.name.slice(i, gallery.name.length)
                 break;
             }
         }
-        if (!error_name) {
-            return gallery.name;
-        }
-        if (!error_owner) {
-            return gallery.owner;
-        }
-        return;
+
+        return (owner_end > name_end) ? owner_result : name_result;
     }
 
     SearchBar.prototype.get_gallery_active = function() {
