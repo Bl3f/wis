@@ -1,6 +1,6 @@
 ****** Main functions ******
-Gallery Creation        [ ]
-See my galleries        [ ]
+Gallery Creation        [X]
+See my galleries        [X]
 Comment pictures        [ ]
 
 ****** Search bar ******
@@ -22,7 +22,9 @@ Messages to user        [ ]
 
 ********** Style **********
 Register page           [ ]
+Gallery list page       [ ]
 Upload page             [ ]
+New gallery             [ ]
 
 *********** MISC ***********
 Make a better TODO List [ ]
