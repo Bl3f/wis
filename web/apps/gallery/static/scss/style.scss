@@ -4,6 +4,8 @@
 @import "colors.scss";
 @import "fonts.scss";
 
+$headerHeight: 46px;
+
 body {
     width: 100%;
     padding: 0;
@@ -15,9 +17,10 @@ body {
 
 header {
     color: white;
+    background-color: $background-color;
     background-color: $main-color;
     width: 100%;
-    height: 45px;
+    height: $headerHeight;
     position: fixed;
     top: 0px;
     box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15) /*Less ugly with opacity like this*/;
@@ -33,6 +36,11 @@ header {
             color: orange;
         }
     }
+
+    #signIn {
+        margin-right: 10px;
+    }
+
     #logo {
         display: inline-block;
         float: left;
@@ -50,22 +58,6 @@ header {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: Walkway, serif;
-}
-
-@-webkit-keyframes rotation {
-    from {
-        -webkit-transform: rotateX(0deg);
-    }
-    50% {
-        -webkit-transform: rotateX(10deg);
-    }
-    to { 
-        -webkit-transform: rotateX(180deg);
-    }
-}
-
-.rotatingForm {
-    -webkit-animation: rotation 1s;
 }
 
 h1 {
@@ -122,7 +114,6 @@ h3 {
     vertical-align: middle;
 
     &.inline {
-        display: None;
         float: right;
     }
     &.inline label {
@@ -364,4 +355,54 @@ ul.typeahead {
 
 .icon-user {
   background-position: -168px 0;
+}
+
+
+// FLIPPING FORM
+/* entire container, keeps perspective */
+.flipFormContainer {
+    -webkit-perspective: 1000;
+    float: right;
+    margin-right: 10px;
+    background-color: $background-color;
+    height: $headerHeight + 0px;
+}
+    /* flip the pane when hovered */
+    .flipFormContainer:hover .flipper, .flipFormContainer.hover .flipper {
+        -webkit-transform: rotateX(-180deg);
+    }
+
+.flipFormContainer, .front, .back {
+    width: 400px;
+    position: relative;
+}
+
+/* flip speed goes here */
+.flipper {
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 100% $headerHeight / 2; /* half of height */
+
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    background-color: $main-color;
+    height: $headerHeight;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+    -webkit-transform: rotateX(180deg);
 }

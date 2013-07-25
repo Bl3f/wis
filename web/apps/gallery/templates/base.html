@@ -33,16 +33,24 @@
                 <a href="{% url "apps.gallery.views.register" %}">S'inscrire</a>
             </div>
 
-            <div id="signIn" onclick="hideElement('signIn'); displayElement('login');" >
-                Se connecter
-            </div>
-
             {% block authForm %}
-                <form id="login" class="inline" method="POST" action="{% url "apps.gallery.views.auth" %}">
-                    {% csrf_token %}
-                    {{ loginForm.as_p }}
-                    <input type="submit" id="validate" value="Go!" /> 
-                </form>
+            <div class="flipFormContainer">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="signIn"><!-- onclick="hideElement('signIn'); displayElement('login');" -->
+                            Se connecter
+                        </div>
+                    </div>
+                    <div class="back">
+                        <form id="login" class="inline" method="POST" action="{% url "apps.gallery.views.auth" %}">
+                            {% csrf_token %}
+                            {{ loginForm.as_p }}
+                            <input type="submit" id="validate" value="Go!" /> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
             {% endblock %}
 
         {% endif %}
