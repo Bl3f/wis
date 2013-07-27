@@ -45,13 +45,14 @@
                 return that.dropdown.slideUp(400);
             }
 
-            var galleries = that.find_galleries(input);
-            if (galleries.length == 0) {
+            var galleries_header = that.find_galleries(input);
+            console.log(galleries_header.matching)
+            if (galleries_header.matching.length == 0) {
                 that.dropdown.slideUp(400);
                 that.hint.val('');
                 return;
             }
-            if (that.display_in_dropdown(galleries)) {
+            if (that.display_in_dropdown(galleries_header.matching, galleries_header.owners_header)) {
                 that.dropdown.slideDown(400);
             }
             that.active_next();
@@ -93,42 +94,40 @@
         var re = new RegExp(input.toLowerCase());
         var galleries = this.galleries;
         var matching = [];
+        var owners = [];
+
         for (var i = 0; i < galleries.length; i++) {
-            if (matching.length >= this.limit) {
-                return matching;
-            }
-            if (galleries[i].owner.toLowerCase().match(re) || galleries[i].name.toLowerCase().match(re)) {
+            if (galleries[i].name.toLowerCase().match(re)) {
                 matching.push(galleries[i]);
+                if (owners.indexOf(galleries[i].owner) == -1) {
+                    owners.push(galleries[i].owner);
+                }
+            }
+            if (matching.length >= this.limit) {
+                break;
             }
         }
-        return matching.sort(function(elt1, elt2) {
-            if (elt1.owner > elt2.owner) {
-                return -1;
-            } else if (elt1.owner < elt2.owner) {
-                return 1;
-            } else {
-                return 0;
-            }
-        });
+        return {matching: matching, owners_header: owners};
     }
 
-    SearchBar.prototype.display_in_dropdown = function(galleries) {
+    SearchBar.prototype.display_in_dropdown = function(matching, headers) {
         this.dropdown.empty();
-        var owners_header = new Array();
 
-        for (var i = 0; i < galleries.length; i++) {
-            var gallery = galleries[i];
-            if ($.inArray(gallery.owner, owners_header)) {
-                this.dropdown.append($('<h2>').html(this.options.header).find('h2').append(this.format_header(gallery)));
-                owners_header.push(gallery.owner);
+        for (var i = 0; i < headers.length; i ++) {
+            this.dropdown.append($('<h2>').html(this.options.header).find('h2').append('<a href="/gallery/' + headers[i] + '">' + headers[i] + '</a>'));
+            for (var j = 0; j < matching.length; j++) {
+                if (matching[j].owner == headers[i]) {
+                    this.dropdown.append($('<span>').html(this.options.item).find('span').append(this.format_suggestions(matching[j])).attr('data-index', this.galleries.indexOf(matching[j])));
+                }
             }
-            this.dropdown.append($('<span>').html(this.options.item).find('span').append(this.format_suggestions(gallery)).attr('data-index', i));
         }
         return true;
     }
 
     SearchBar.prototype.format_suggestions = function(gallery){
-        return '<p>' + gallery.name + ' - ' + gallery.count + ' photos</p>';
+        var word = ' photo';
+        if (gallery.count > 0) word += 's';
+        return '<p>' + gallery.name + ' - ' + gallery.count + word + '</p>';
     }
 
     SearchBar.prototype.format_header = function(gallery) {
@@ -180,10 +179,14 @@
 
     SearchBar.prototype.get_active = function() {
         var index = $('.active', this.dropdown).attr('data-index');
+
+        if (index == undefined) return
+
         var gallery = this.galleries[index];
         var input = this.element.val();
         var name_result = '', owner_result = '';
         var owner_end = Infinity, name_end = 0;
+
         for (var i = 0; i < gallery.owner.length; i++) {
             if (input[i] != undefined && input[i].toLowerCase() == gallery.owner[i].toLowerCase()) {
                 owner_result += input[i];
@@ -202,6 +205,8 @@
                 break;
             }
         }
+        if (owner_end == Infinity) return '';
+        if (name_end == 0) return '';
 
         return (owner_end > name_end) ? owner_result : name_result;
     }
