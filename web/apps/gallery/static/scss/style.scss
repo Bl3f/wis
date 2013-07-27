@@ -96,13 +96,69 @@ h3 {
         font-weight: 100;
         font-family: Walkway, serif;
     }
-    .gallery_search {
+    .tt-query, .tt-hint {
         display: block;
-        width: 100%;
+        position: relative;
+        width: 85%;
+        margin: 0 auto 0 auto;
         height: 36px;
-        padding-left: 2px;
+        padding-left: 15px;
+        padding-right: 0px;
         font-family: Arial;
         font-size: 0.9em;
+
+        background-color: transparent;
+    }
+    .tt-query {
+        margin-top: -40px;
+    }
+    .tt-hint {
+        position: relative;
+        background-image: url("../../images/search.jpeg");
+        background-repeat: no-repeat;
+        background-position: 660px 5px;
+        background-size: 25px 25px;
+        background-color: #FFFFFF;
+        color: $aside-border-color;
+    }
+   .tt-dropdown-menu {
+        list-style: none;
+        width: 82%;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 0 auto 0 auto;
+        padding: 2px 0 20px 0;
+        border: 1px solid $aside-border-color;
+        border-top: 0px;
+
+        h2 {
+            margin: 0px;
+            font-size: 1.5em;
+            padding-left: 30px;
+            width: 90%;
+            margin: 10px 0 10px 20px;
+            border-bottom: 1px solid $aside-border-color;
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+        .tt-suggestions {
+            display: block;
+            padding: 0 20px 0 20px;
+            margin-left: 20px;
+            height: 32px;
+            line-height: 32px;
+            p {
+                margin: 0;
+            }
+            &.active {
+                width: 80%;
+                background: $background-color;
+            }
+            &:hover {
+                cursor:pointer;
+            }
+        }
     }
 }
 
@@ -276,48 +332,12 @@ input[type="search"] {
     background-position: 765px 4px;
     background-size: 25px 25px;
     padding-right: 10px;
+    background-color: transparent;
 
     &:focus {
         background-image: none;
     }
 }
-
-ul.typeahead {
-    list-style: none;
-    width: 98%;
-    background: #FFFFFF;
-    margin: 0 auto 0 auto;
-    padding: 2px 0;
-    border: 1px solid $aside-border-color;
-    border-top: 0px;
-
-    li {
-        padding: 10px 20px 10px 20px;
-        span {
-            position: absolute;
-            margin: 10px;
-        }
-        h2 {
-            margin: 0px;
-            font-size: 1.8em;
-            padding-left: 30px;
-            border-bottom: 1px solid $aside-border-color;
-        }
-        ul {
-            margin: -10px 0 0 15px;
-            list-style: none;
-            li {
-                &.active {
-                    width: 90%;
-                    background: $background-color;
-                }
-            }
-        }
-
-    }
-}
-
-
 
 [class^="icon-"],
 [class*=" icon-"] {

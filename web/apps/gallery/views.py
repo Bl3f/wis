@@ -1,5 +1,7 @@
 import json
 import os
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from web.settings import MEDIA_ROOT
 
 from django.contrib.auth import authenticate
@@ -51,14 +53,15 @@ def home(request):
 
     return render(request, template_name, context)
 
-
+@csrf_exempt
 def search(request):
     template_name = "gallery.html"
 
-    search_bar = request.POST['search']
-    search_bar = search_bar.split(' - ')[::-1]
+    gallery_to_go = dict(request.POST)
 
-    return redirect("gallery/{}/{}".format(search_bar.pop(), search_bar.pop()))
+    data = {'redirect': "/gallery/{}/{}".format(gallery_to_go['owner'].pop(), gallery_to_go['slug'].pop())}
+
+    return HttpResponse(json.dumps(data), mimetype='application/json')
 
 
 def create_gallery(request):

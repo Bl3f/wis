@@ -10,8 +10,8 @@ class SearchForm(forms.Form):
                              label='',
                              widget=forms.TextInput(attrs={
                                    'placeholder': 'Voir une galerie',
-                                   'class': 'gallery_search',
-                                   'type': 'search',
+                                   'class': 'tt-query',
+                                   'type': 'text',
                                    'autocomplete': 'off',
                                    'data-dict': '[]',
                                    'data-items': '4',
@@ -27,12 +27,12 @@ class UserForm(AuthenticationForm):
                                                                     'placeholder': 'Login',
                                                                     'id': 'id_username',
                                                                     'type': 'text'
-                                                                })) 
+                                                                }))
     password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={
                                                             'placeholder': 'Mot de passe',
                                                             'id': 'id_password',
                                                             'type': 'password'
-                                                        })) 
+                                                        }))
 
 
 class UploadImage(forms.Form):
