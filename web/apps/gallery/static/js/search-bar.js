@@ -46,7 +46,6 @@
             }
 
             var galleries_header = that.find_galleries(input);
-            console.log(galleries_header.matching)
             if (galleries_header.matching.length == 0) {
                 that.dropdown.slideUp(400);
                 that.hint.val('');
@@ -74,18 +73,7 @@
                 that.active_previous();
             } else if (keyCode == 13) {
                 e.preventDefault();
-                $.ajax({
-                    url:"/search",
-                    type: "POST",
-                    data: that.get_gallery_active(),
-                    success:function(data){
-                        window.location.href = data.redirect;
-                    },
-                    complete:function(){},
-                    error:function (xhr, textStatus, thrownError){
-
-                    }
-                });
+                return that.redirect_gallery(that.get_gallery_active());
             }
         });
     }
@@ -121,6 +109,10 @@
                 }
             }
         }
+        var that = this;
+        $('.tt-suggestions', this.dropdown).hover(function() {
+            that.set_active($(this));
+        });
         return true;
     }
 
@@ -177,6 +169,16 @@
         return this.element.val() == '';
     }
 
+    SearchBar.prototype.set_active = function(gallery) {
+        $('.active', this.dropdown).removeClass('active');
+        var that = this;
+        gallery.addClass('active').click(function () {
+            return that.redirect_gallery(that.get_gallery_active());
+        });
+        this.display_hint(this.get_active());
+        return;
+    }
+
     SearchBar.prototype.get_active = function() {
         var index = $('.active', this.dropdown).attr('data-index');
 
@@ -219,9 +221,23 @@
 
     SearchBar.prototype.display_hint = function(hint) {
         if (this.is_active()) {
-                this.hint.val(hint);
-            }
+            this.hint.val(hint);
+        }
+    }
 
+    SearchBar.prototype.redirect_gallery = function(gallery) {
+        $.ajax({
+            url:"/search",
+            type: "POST",
+            data: gallery,
+            success:function(data){
+                window.location.href = data.redirect;
+            },
+            complete:function(){},
+            error:function (xhr, textStatus, thrownError){
+
+            }
+        });
     }
 
     var options = {
