@@ -3,11 +3,13 @@
   fields:
     username: wisest
     first_name: WIS Team
+    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ
 - model: auth.user
   pk: 2
   fields:
     username: estelle
     first_name: Estelle
+    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ=
 
 - model: gallery.gallery
   pk: 1
