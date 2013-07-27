@@ -53,10 +53,9 @@ def home(request):
 
     return render(request, template_name, context)
 
+
 @csrf_exempt
 def search(request):
-    template_name = "gallery.html"
-
     gallery_to_go = dict(request.POST)
 
     data = {'redirect': "/gallery/{}/{}".format(gallery_to_go['owner'].pop(), gallery_to_go['slug'].pop())}
@@ -71,12 +70,17 @@ def create_gallery(request):
 
     if form.is_valid():
         data = form.cleaned_data
-        new_gallery = Gallery(title=data['title'], description=data['description'], public=data['public'], owner=request.user, place=data['place'])
+        new_gallery = Gallery(title=data['title'],
+                              description=data['description'],
+                              public=data['public'],
+                              owner=request.user,
+                              place=data['place'])
         new_gallery.save()
     else:
         context['form'] = form
 
     return render(request, template_name, context)
+
 
 def auth(request):
 
@@ -118,7 +122,7 @@ def sign_out(request):
 def register(request):
 
     template_name = "register.html"
-        
+
     form = UserCreationForm(request.POST or None)
 
     if form.is_valid():
@@ -134,20 +138,22 @@ def upload(request):
     template_name = "upload.html"
     context['canUpload'] = False
 
-    if (str(request.user) == "AnonymousUser"):
+    if str(request.user) == "AnonymousUser":
         context['msg'] = ERROR_NOTAUTH
-    elif (request.session['gallery_owner'] != str(request.user)):
+    elif request.session['gallery_owner'] != str(request.user):
         context['msg'] = ERROR_PERM
     else:
         context['canUpload'] = True
-        if (request.method == "POST"):
+        if request.method == "POST":
             form = UploadImage(request.POST, request.FILES)
             if form.is_valid():
                 data = form.cleaned_data
-                new_img = Image(path=request.FILES['img'], description=data['description'],
-                               place=data['place'], gallery=Gallery.objects.get(slug_name=data['gallery_slug'],
-                                                                                owner=request.user),
-                               owner=request.user)
+                new_img = Image(path=request.FILES['img'],
+                                description=data['description'],
+                                place=data['place'],
+                                gallery=Gallery.objects.get(slug_name=data['gallery_slug'],
+                                                            owner=request.user),
+                                owner=request.user)
                 new_img.save()
             else:
                 context['msg'] = "ERROR"

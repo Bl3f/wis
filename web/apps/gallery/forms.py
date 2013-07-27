@@ -24,15 +24,15 @@ class SearchForm(forms.Form):
 
 class UserForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30, widget=forms.TextInput(attrs={
-                                                                    'placeholder': 'Login',
-                                                                    'id': 'id_username',
-                                                                    'type': 'text'
-                                                                }))
+        'placeholder': 'Login',
+        'id': 'id_username',
+        'type': 'text'
+    }))
     password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={
-                                                            'placeholder': 'Mot de passe',
-                                                            'id': 'id_password',
-                                                            'type': 'password'
-                                                        }))
+        'placeholder': 'Mot de passe',
+        'id': 'id_password',
+        'type': 'password'
+    }))
 
 
 class UploadImage(forms.Form):
