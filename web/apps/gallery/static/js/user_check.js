@@ -54,9 +54,13 @@
 
         // If the server returns False, it means that the username is already used
         if (data === "False") {
+            $("#" + field).removeClass("has-success");
             $("#" + field).addClass("has-error");
+            $("#" + field + "> div.help-block").html("Ce pseudo est déjà utilisé.");
         } else {
             $("#" + field).removeClass("has-error");
+            $("#" + field).addClass("has-success");
+            $("#" + field + "> div.help-block").html("Ce pseudo est disponible.");
         }
     }
 
