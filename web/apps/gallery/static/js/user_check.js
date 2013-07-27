@@ -1,53 +1,70 @@
+!function($) {
 
-// Constructor of an XMLHttpRequest object
-function getXMLHttpRequest() {
-    var xhr = null;
-     
-    if (window.XMLHttpRequest || window.ActiveXObject) {
-        if (window.ActiveXObject) {
-            try {
-                xhr = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch(e) {
-                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    // Constructor of an XMLHttpRequest object
+    var getXMLHttpRequest = function() {
+        var xhr = null;
+         
+        if (window.XMLHttpRequest || window.ActiveXObject) {
+            if (window.ActiveXObject) {
+                try {
+                    xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch(e) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            } else {
+                xhr = new XMLHttpRequest(); 
             }
         } else {
-            xhr = new XMLHttpRequest(); 
+            // XMLHttpRequest not supported by the browser
+            return null;
         }
-    } else {
-        // XMLHttpRequest not supported by the browser
-        return null;
+         
+        return xhr;
     }
-     
-    return xhr;
-}
 
+    // AJAX method to check is username is available for registration 
+    var checkAvailability = function(callback, div, field) {
 
-function isAvailable(callback, field) {
-    // Creation of an object
-    var xhr = getXMLHttpRequest(); 
+        // Creation of an object
+        var xhr = getXMLHttpRequest(); 
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-            callback(xhr.responseText);
-        } else if (xhr.readyState < 4) {
-            document.getElementById("loader").style.display = "inline";
+        // AJAX function on change    
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+                // Callback for results
+                callback(div, xhr.responseText);
+            } else if (xhr.readyState < 4) {
+                // The request is in treatment, displaying loader image
+                document.getElementById("loader").style.display = "inline";
+            }
+        };
+    
+        var user = document.getElementById(field).value;
+    
+        // Initialisation
+        xhr.open("GET", "checkUser/" + user, true);
+        // Sending request
+        xhr.send(null);
+    }
+
+    var userCheckCallback = function(field, data) {
+
+        // Hidding loader
+        document.getElementById("loader").style.display = "none";
+
+        // If the server returns False, it means that the username is already used
+        if (data === "False") {
+            $("#" + field).addClass("has-error");
+        } else {
+            $("#" + field).removeClass("has-error");
         }
-    };
-
-    var user = document.getElementById(field).value;
-
-    // Initialisation
-    xhr.open("GET", "checkUser/" + user, true);
-    // Sending request
-    xhr.send(null);
-}
-
-function informUser(data) {
-    document.getElementById("loader").style.display = "none";
-    userObject = document.getElementById("username");
-    if (data != "True") {
-        userObject.className += " has-error";
-    } else {
-        userObject.className = userObject.className.replace(/ has-error/g, "");
     }
-}
+
+
+    // Handler for username input
+    $('#id_username').on('change', function () {
+        $("#id_username").addClass("form-control");
+        checkAvailability(userCheckCallback, "usernameField", "id_username");
+    });
+
+}(window.jQuery);
