@@ -13,7 +13,6 @@ from django.shortcuts import redirect
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-
 from web.apps.gallery.messages import *
 
 context = dict()
@@ -30,7 +29,7 @@ def gallery_home(request, user, gallery_slug):
     gallery = Gallery.objects.get(slug_name=gallery_slug, owner_id=owner_id)
 
     context["gallery"] = gallery
-    context["images"] = Image.objects.filter(gallery=gallery)
+    context["photos"] = Photo.objects.filter(gallery=gallery)
 
     return render(request, template_name, context)
 
@@ -148,7 +147,7 @@ def upload(request):
             form = UploadImage(request.POST, request.FILES)
             if form.is_valid():
                 data = form.cleaned_data
-                new_img = Image(path=request.FILES['img'],
+                new_img = Photo(large_path=request.FILES['img'],
                                 description=data['description'],
                                 place=data['place'],
                                 gallery=Gallery.objects.get(slug_name=data['gallery_slug'],

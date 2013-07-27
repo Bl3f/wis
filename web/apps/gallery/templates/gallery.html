@@ -16,11 +16,11 @@
 
 {% block content %}
 <section id="gallery">
-    {% for image in images %}
+    {% for photo in photos %}
         <a href="#" class="overlay">
-            <span class="vignette-description">{{ image.description }}</span>
+            <span class="vignette-description">{{ photo.description }}</span>
             <span class="icon-resize-full icon-white vignette-expand"></span>
-            <img class="vignette" src="{{ MEDIA_URL }}{{ image.path }}" />
+            <img class="vignette" src="{{ MEDIA_URL }}{{ photo.medium_path }}" />
         </a>
     {% endfor %}
 </section>
