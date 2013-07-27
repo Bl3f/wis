@@ -25,8 +25,11 @@ urlpatterns = patterns('',
                        # Upload view
                        url(r'^upload$', "web.apps.gallery.views.upload"),
 
-                       # Upload view
+                       # Creation of a new gallery view
                        url(r'^creation$', "web.apps.gallery.views.create_gallery"),
+
+                       # Check username availability view
+                       url(r'^checkUser/(?P<username>(.+))$$', "web.apps.gallery.views.check_user_availability"),
 
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),

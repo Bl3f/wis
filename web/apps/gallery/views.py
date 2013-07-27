@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
@@ -155,3 +156,10 @@ def upload(request):
                 context['form'] = UploadImage(initial={'gallery_slug': request.session['gallery']})
 
     return render(request, template_name, context)
+
+
+def check_user_availability(request, username):
+    if username in [u['username'] for u in User.objects.values('username')]:
+        return HttpResponse(False)
+    else:
+        return HttpResponse(True)
