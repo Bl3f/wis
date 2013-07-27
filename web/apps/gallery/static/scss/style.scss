@@ -417,8 +417,46 @@ ul.typeahead {
     }
 }
 
-/* Validation of forms */
+/* Forms */
+
+.formContainer {
+    display: block;
+
+    width: 750px;
+    text-align: left;
+    margin: auto;
+
+    .field {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .label {
+        display: inline-block;
+        width: 250px;
+    }
+
+    input {
+        width: 150px;
+        margin-left: 50px;
+    }
+
+    #submitButton {
+        display: inline-block;
+        margin-top: 50px;
+    }
+
+}
+
+.help-block {
+    display: inline-block;
+}
+
 /* Get an error */
+.has-error .help-block {
+  color: #b94a48;
+}
+
 .has-error .form-control {
   border-color: #b94a48;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -430,3 +468,19 @@ ul.typeahead {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
 }
 /* All OK */
+.has-success .help-block {
+  color: #468847;
+}
+
+.has-success .form-control {
+  border-color: #468847;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-success .form-control:focus {
+  border-color: #356635;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b;
+}
+

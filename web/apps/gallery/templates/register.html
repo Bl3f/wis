@@ -5,19 +5,27 @@
 
 {% block content %}
 
-<form id="registerForm" method="post" action="{% url "apps.gallery.views.register" %}">
+<form class="formContainer" id="registerForm" method="post" action="{% url "apps.gallery.views.register" %}">
     {% csrf_token %}
     {% for field in form %}
-            {{ field.errors }}
-            {{ field.label }} 
-        <div id="{{ field.name }}Field">
-            {{ field }}
-            {% if field.name == "username" %}
-                <span id="loader"><img src="{{ STATIC_URL }}images/infinity-loader.gif" alt="Vérification ..." /></span>
-            {% endif %}
+        <div class="fieldContainer">
+            <div class="label">
+                {{ field.label }} 
+            </div>
+            <div class="field" id="{{ field.name }}Field">
+                {{ field }}
+                {% if field.name == "username" %}
+                    <span id="loader"><img src="{{ STATIC_URL }}images/infinity-loader.gif" alt="Vérification ..." /></span>
+                {% endif %}
+                <div class="help-block">
+                    {{ field.errors }}
+                </div>
+            </div>
         </div>
     {% endfor %}
-    <input type="submit" value="Create the account">
+    <div id="submitButton"> 
+        <input type="submit" value="Create the account">
+    </div>
 </form>
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
