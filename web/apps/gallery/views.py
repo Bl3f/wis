@@ -8,17 +8,22 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.shortcuts import redirect
+from django.template import RequestContext
+from django.middleware.csrf import get_token
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
 
 from web.apps.gallery.messages import *
 
+from ajaxuploader.views import AjaxFileUploader
+
 context = dict()
 context['loginForm'] = UserForm()
 
+import_uploader = AjaxFileUploader()
 
 def gallery_home(request, user, gallery_slug):
     template_name = "gallery.html"
@@ -164,3 +169,9 @@ def upload(request):
                 context['form'] = UploadImage(initial={'gallery_slug': request.session['gallery']})
 
     return render(request, template_name, context)
+
+def ajax_upload(request):
+    csrf_token = get_token(request)
+    return render_to_response('ajaxupload.html',
+        {'csrf_token': csrf_token}, context_instance = RequestContext(request))
+
