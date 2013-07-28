@@ -28,6 +28,10 @@ urlpatterns = patterns('',
                        # Upload view
                        url(r'^creation$', "web.apps.gallery.views.create_gallery"),
 
+                        # Ajax upload
+                        url(r'start$', "web.apps.gallery.views.ajax_upload", name="ajax_upload"),
+                        url(r'ajax-upload$', "web.apps.gallery.views.import_uploader", name="my_ajax_upload"),
+
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
                        # url(r'^web/', include('web.foo.urls')),
