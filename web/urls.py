@@ -24,9 +24,11 @@ urlpatterns = patterns('',
 
                        # Upload view
                        url(r'^upload$', "web.apps.gallery.views.upload"),
+                       url(r'^multiupload$', "web.apps.gallery.views.multiupload"),
+                       # url(r'^multiupload$', "web.apps.gallery.views.multiupload"),
 
-                       # Upload view
-                       url(r'^creation$', "web.apps.gallery.views.create_gallery"),
+                       # Upload views
+                       url(r'^creation$', include('multiuploader.urls')),
 
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),

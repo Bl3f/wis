@@ -60,6 +60,27 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "../data/").replace("\\", "
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/data/'
 
+MULTIUPLOADER_FILES_FOLDER = '/data/multiuploader'
+
+MULTIUPLOADER_FORMS_SETTINGS = {
+    'images':{
+        'FILE_TYPES' : ['jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp', 'tiff', 'ico' ],
+        'CONTENT_TYPES' : [
+            'image/gif',
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/svg+xml',
+            'image/tiff',
+            'image/vnd.microsoft.icon',
+            'image/vnd.wap.wbmp',
+        ],
+        'MAX_FILE_SIZE': 10485760,
+        'MAX_FILE_NUMBER':5,
+        'AUTO_UPLOAD': True,
+    },
+}
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -125,6 +146,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'multiuploader',
     'web.apps.gallery',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -160,6 +182,11 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'multiuploader.context_processors.booleans,'        
+)
+
 
 # Adding slash at the end of urls
 APPEND_SLASH = True
