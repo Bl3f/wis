@@ -1,31 +1,34 @@
-import os
+import time
+import hashlib
 from PIL import Image
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from web.apps.gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
-    MEDIUM_WIDTH, MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT
+    MEDIUM_WIDTH, MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
 
 
-def get_upload_path(filename):
-    # return os.path.join("user_%d" % instance.owner.id, "car_%s" % instance.slug, filename)
-    return "pic/test/" + filename
+def content_file_name(instance, filename):
+    cypher = hashlib.new('sha512')
 
+    photo_extension = filename.rsplit('.', 1)[1]
+    cypher.update("{}{}{}".format(filename.rsplit('.', 1)[0], instance.owner.username, str(time.time())[:10]))
+    instance.photo_hash = cypher.hexdigest()
 
-class Document(models.Model):
-    docfile = models.FileField(upload_to='pic/test')
+    return '/'.join([UPLOAD_FOLDER, LARGE_FOLDER, "{}-large.{}".format(instance.photo_hash[:10], photo_extension)])
 
 
 class Photo(models.Model):
-    large_path = models.ImageField(upload_to="upload/{}".format(LARGE_FOLDER))
+    large_path = models.ImageField(upload_to=content_file_name)
     medium_path = models.CharField(max_length=255, blank=True)
     small_path = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, null=False)
-    place = models.CharField(max_length=255, null=True)
+    place = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateField(null=True)
     gallery = models.ForeignKey('Gallery', null=False)
+    photo_hash = models.CharField(max_length=255)
 
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)
@@ -33,14 +36,28 @@ class Photo(models.Model):
         image = Image.open(path)
 
         photo_extension = path.rsplit('/', 2)[2].rsplit('.', 1)[1]
-        photo_name = path.rsplit('/', 2)[2].rsplit('.', 1)[0]
-        abs_path = path.rsplit('/', 2)[0]
+        photo_name = self.photo_hash[:10]
+        abs_path = path.rsplit('/', 3)[0]
 
-        image.resize((MEDIUM_WIDTH, MEDIUM_HEIGTH, Image.ANTIALIAS))
-        image.save("{}/{}/{}-medium.{}".format(abs_path, MEDIUM_FOLDER, photo_name, photo_extension))
+        self.medium_path = '/'.join([UPLOAD_FOLDER, MEDIUM_FOLDER, "{}-medium.{}".format(photo_name, photo_extension)])
+        image.thumbnail((MEDIUM_WIDTH, MEDIUM_HEIGTH), Image.ANTIALIAS)
+        image.save('/'.join([abs_path, self.medium_path]))
 
-        image.thumbnail((SMALL_WIDTH, SMALL_HEIGHT, Image.ANTIALIAS))
-        image.save("{}/{}/{}-small.{}".format(abs_path, SMALL_FOLDER, photo_name, photo_extension))
+        if image.size[0] <= image.size[1]:
+            size = (SMALL_WIDTH, 'auto')
+        else:
+            size = ('auto', SMALL_HEIGHT)
+
+        self.small_path = '/'.join([UPLOAD_FOLDER, SMALL_FOLDER, "{}-small.{}".format(photo_name, photo_extension)])
+        image.thumbnail(size, Image.ANTIALIAS)
+        image_width, image_height = image.size
+        image = image.crop(((image_width - SMALL_WIDTH) / 2,
+                            (image_height - SMALL_HEIGHT) / 2,
+                            (image_width - SMALL_WIDTH) / 2 + SMALL_WIDTH,
+                            (image_height - SMALL_HEIGHT) / 2 + SMALL_HEIGHT))
+        image.save('/'.join([abs_path, self.small_path]))
+
+        super(Photo, self).save(*args, **kwargs)
 
 
 class GalleryManager(models.Manager):
