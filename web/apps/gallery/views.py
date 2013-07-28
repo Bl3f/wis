@@ -164,3 +164,11 @@ def upload(request):
                 context['form'] = UploadImage(initial={'gallery_slug': request.session['gallery']})
 
     return render(request, template_name, context)
+
+
+def multiuploader(request):
+    template_name = "multiuploader.html"
+
+    context['uploadForm'] = MultiUploadForm()
+
+    return render(request, template_name, context=context)
