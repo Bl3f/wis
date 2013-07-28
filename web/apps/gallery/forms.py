@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from web.apps.gallery.models import Image, Gallery
+from multiuploader.forms import MultiUploadForm
 
 
 class SearchForm(forms.Form):
