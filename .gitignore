@@ -4,5 +4,6 @@ web/apps/gallery/static/generated/*
 *.swp
 .idea/
 .sass-cache/
+.DS_Store
 data/upload/
 bin/git/hooks/pre-commit.py
