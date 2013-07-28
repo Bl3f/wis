@@ -5,7 +5,7 @@
   fields:
     username: wisest
     first_name: WIS Team
-    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ
+    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ=
 - model: auth.user
   pk: 2
   fields:
@@ -72,214 +72,118 @@
 
 # Fixtures for Photo model
 
-- model: gallery.photo
+- fields: {created: null, description: Je mise 3 gobelets sur Roger Hanin et je repasse
+      mon singe, gallery: 1, large_path: pic/test/large/0fc7e7dfcd-large.jpg, medium_path: pic/test/medium/0fc7e7dfcd-medium.jpg,
+    owner: 2, photo_hash: 0fc7e7dfcd1ed9a091894b33b706b7c219ed86765548ae51a0f55aa4579bdd576fae05db7ec85f7cc0aa9fa3ecc8d25221ec5546266cd823b597cdbb17b1e3ed,
+    place: Paris, small_path: pic/test/small/0fc7e7dfcd-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:26:29.436104+00:00'}
+  model: gallery.photo
   pk: 1
-  fields:
-    large_path: pic/test/large/0001.jpg
-    medium_path: pic/test/medium/0001-medium.jpg
-    small_path: pic/test/small/0001-small.jpg
-    description: Behind you please.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
-  pk: 2
-  fields:
-    large_path: pic/test/large/0002.jpg
-    medium_path: pic/test/medium/0002-medium.jpg
-    small_path: pic/test/small/0002-small.jpg
-    description: My hair are beautiful.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: Plop, gallery: 1, large_path: pic/test/large/ee24d54046-large.jpg,
+    medium_path: pic/test/medium/ee24d54046-medium.jpg, owner: 2, photo_hash: ee24d540466a84106c8af6a0121433d06d1b77ef665c0ed8b26bbdf16387eb014df116a507c31b537ad28a131f464c463f5cf0a048c1bfc4751297f056226fb2,
+    place: Paris, small_path: pic/test/small/ee24d54046-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:03.491426+00:00'}
+  model: gallery.photo
   pk: 3
-  fields:
-    large_path: pic/test/large/0003.jpg
-    medium_path: pic/test/medium/0003-medium.jpg
-    small_path: pic/test/small/0003-small.jpg
-    description: Eat my feet.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/e76981501c-large.jpg,
+    medium_path: pic/test/medium/e76981501c-medium.jpg, owner: 2, photo_hash: e76981501c6ab095a6d780bf7b49c802c4a0dffb401b953fd5fdc98a6215971b84a648f754027fb636d2480036a43f858db34da5412a020551f3ab5d1a6f8a50,
+    place: '', small_path: pic/test/small/e76981501c-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:09.649037+00:00'}
+  model: gallery.photo
   pk: 4
-  fields:
-    large_path: pic/test/large/0004.jpg
-    medium_path: pic/test/medium/0004-medium.jpg
-    small_path: pic/test/small/0004-small.jpg
-    description: Hair-ball.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/fa774a0380-large.jpg,
+    medium_path: pic/test/medium/fa774a0380-medium.jpg, owner: 2, photo_hash: fa774a038091cc0dae93a205653695f89c8611351e712ff853160214f48d70870b8b06e31b6123df62cee62d417bf884997c3108de9fb0e27be932459691a423,
+    place: '', small_path: pic/test/small/fa774a0380-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:13.363412+00:00'}
+  model: gallery.photo
   pk: 5
-  fields:
-    large_path: pic/test/large/0005.jpg
-    medium_path: pic/test/medium/0005-medium.jpg
-    small_path: pic/test/small/0005-small.jpg
-    description: The secret circle.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/948392babc-large.jpg,
+    medium_path: pic/test/medium/948392babc-medium.jpg, owner: 2, photo_hash: 948392babcd5b02d2ba7507022b9c66c2f86fe79278edd1c4c03fcdfba541c54a6a48befa1a0983a9c0e1a39874260ba57a49ec4aaa31ef2fd0d311fcdeb6844,
+    place: '', small_path: pic/test/small/948392babc-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:17.698780+00:00'}
+  model: gallery.photo
   pk: 6
-  fields:
-    large_path: pic/test/large/0006.jpg
-    medium_path: pic/test/medium/0006-medium.jpg
-    small_path: pic/test/small/0006-small.jpg
-    description: Please come to my table we can eat everything.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/b9fc5c551b-large.jpg,
+    medium_path: pic/test/medium/b9fc5c551b-medium.jpg, owner: 2, photo_hash: b9fc5c551b6c4fbba691075513dacb7d026d8c0bba777a622e6831bfea0b8e057278d117b8155f7335e5b912264fca207c2498fb5082a1af98a414463c13c799,
+    place: '', small_path: pic/test/small/b9fc5c551b-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:21.302187+00:00'}
+  model: gallery.photo
   pk: 7
-  fields:
-    large_path: pic/test/large/0007.jpg
-    medium_path: pic/test/medium/0007-medium.jpg
-    small_path: pic/test/small/0007-small.jpg
-    description: Arm.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/d01196e0ec-large.jpg,
+    medium_path: pic/test/medium/d01196e0ec-medium.jpg, owner: 2, photo_hash: d01196e0ecf4b62c7f31d8bcb6d21acff78f4c185b90487336bcd43cc732f8640719e2cbe4e4aa3a4eff859d535e63f5c33ccc5e0c0a3da2150a4401b213f014,
+    place: '', small_path: pic/test/small/d01196e0ec-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:25.341326+00:00'}
+  model: gallery.photo
   pk: 8
-  fields:
-    large_path: pic/test/large/0008.jpg
-    medium_path: pic/test/medium/0008-medium.jpg
-    small_path: pic/test/small/0008-small.jpg
-    description: Brian is in the kitchen.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/655801bcd7-large.jpg,
+    medium_path: pic/test/medium/655801bcd7-medium.jpg, owner: 2, photo_hash: 655801bcd79a0a264dfc9fc4068544558eea548718890dd6dc670be601c2ddc6f84691248cab03bc11bd96bf9322c0018d93d1a3f22968ca84daeafdaafb87b1,
+    place: '', small_path: pic/test/small/655801bcd7-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:29.250957+00:00'}
+  model: gallery.photo
   pk: 9
-  fields:
-    large_path: pic/test/large/0009.jpg
-    medium_path: pic/test/medium/0009-medium.jpg
-    small_path: pic/test/small/0009-small.jpg
-    description: Black is black.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/c567add93b-large.jpg,
+    medium_path: pic/test/medium/c567add93b-medium.jpg, owner: 2, photo_hash: c567add93b3ad7f8174612521df8be85e80b11413f3884a606453966cd51aef9f860dc3b9c4f15c877b7e0b950ff1a3cceb0742d8152c60f5de004b758186aa9,
+    place: '', small_path: pic/test/small/c567add93b-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:27:34.025995+00:00'}
+  model: gallery.photo
   pk: 10
-  fields:
-    large_path: pic/test/large/0010.jpg
-    medium_path: pic/test/medium/0010-medium.jpg
-    small_path: pic/test/small/0010-small.jpg
-    description: You are beach.
-    uploaded: 2013-07-13 00:46
-    owner: 2
-    place: Paris
-    gallery: 1
-
-
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/2449954a0b-large.jpg,
+    medium_path: pic/test/medium/2449954a0b-medium.jpg, owner: 1, photo_hash: 2449954a0b9a579605ade3ac8b020fa364baaa9f271b8e6e1ab3ba7df217ea6ebe951c49dfabe8a0f04d680bdb29503adca2e3262fa679b085eee5fe10a9ba41,
+    place: '', small_path: pic/test/small/2449954a0b-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:05.211900+00:00'}
+  model: gallery.photo
   pk: 11
-  fields:
-    large_path: pic/test/large/0011.jpg
-    medium_path: pic/test/medium/0011-medium.jpg
-    small_path: pic/test/small/0011-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/55ddf91bb2-large.jpg,
+    medium_path: pic/test/medium/55ddf91bb2-medium.jpg, owner: 1, photo_hash: 55ddf91bb2fade6b458a67b55cdba4639c6a3db4ba392a74740e49114890b613fedb552e6e39b37ac1a29e711a2750155703576e978759612668bcbf004b2700,
+    place: '', small_path: pic/test/small/55ddf91bb2-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:09.693009+00:00'}
+  model: gallery.photo
   pk: 12
-  fields:
-    large_path: pic/test/large/0012.jpg
-    medium_path: pic/test/medium/0012-medium.jpg
-    small_path: pic/test/small/0012-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/7a619a6f70-large.jpg,
+    medium_path: pic/test/medium/7a619a6f70-medium.jpg, owner: 1, photo_hash: 7a619a6f706b063c8019e44df54dad685dc0189308f2b3757a69e7d5b4addb98a96aa414774fd76320a31c179073aa22b47d05f04f113f3db7c1ef105d8a460c,
+    place: '', small_path: pic/test/small/7a619a6f70-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:13.656556+00:00'}
+  model: gallery.photo
   pk: 13
-  fields:
-    large_path: pic/test/large/0013.jpg
-    medium_path : pic/test/0013-medium.jpg
-    small_path: pic/test/small/0013-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/8fe430dbc9-large.jpg,
+    medium_path: pic/test/medium/8fe430dbc9-medium.jpg, owner: 1, photo_hash: 8fe430dbc926bdb9fd19229152038592d736a9b98629b18c4f94582923713265b579dc3c617772329c8851dde8b67d374526e4dcf5a8c60ac67ff6a888c2e693,
+    place: '', small_path: pic/test/small/8fe430dbc9-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:17.874808+00:00'}
+  model: gallery.photo
   pk: 14
-  fields:
-    large_path: pic/test/large/0014.jpg
-    medium_path : pic/test/0014-medium.jpg
-    small_path: pic/test/small/0014-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/d50c5d7d80-large.jpg,
+    medium_path: pic/test/medium/d50c5d7d80-medium.jpg, owner: 1, photo_hash: d50c5d7d8027a606219fcfa95be2c36c127b3ddfbaa8cb8b9c788fa469725a9111cdbd85114409a64113040e60e77368a43df19eb6a72f35a7bb2305071a6677,
+    place: '', small_path: pic/test/small/d50c5d7d80-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:22.010356+00:00'}
+  model: gallery.photo
   pk: 15
-  fields:
-    large_path: pic/test/large/0015.jpg
-    medium_path : pic/test/0015-medium.jpg
-    small_path: pic/test/small/0015-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/39ec358ad3-large.jpg,
+    medium_path: pic/test/medium/39ec358ad3-medium.jpg, owner: 1, photo_hash: 39ec358ad3f84a2cd3e1c6411f3e2f45094b5650c6c510a7455db3bb26c2542c9b86f6a5173a252de1c193a427766622a580bc6d6bd1ae0e8f6955c87bae1ac2,
+    place: '', small_path: pic/test/small/39ec358ad3-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:27.005412+00:00'}
+  model: gallery.photo
   pk: 16
-  fields:
-    large_path: pic/test/large/0016.jpg
-    medium_path : pic/test/0016-medium.jpg
-    small_path: pic/test/small/0016-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/1a7742d151-large.jpg,
+    medium_path: pic/test/medium/1a7742d151-medium.jpg, owner: 1, photo_hash: 1a7742d151a8a0726ca14cd2bfc81feb61cebb2b8ff07654dd989a411eb91f8eba8410eac5a7f74414d5633aa05ee06daa0e613dff3e50d391967a7c674bf231,
+    place: '', small_path: pic/test/small/1a7742d151-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:31.169129+00:00'}
+  model: gallery.photo
   pk: 17
-  fields:
-    large_path: pic/test/large/0017.jpg
-    medium_path : pic/test/0017-medium.jpg
-    small_path: pic/test/small/0017-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/2912868ca7-large.jpg,
+    medium_path: pic/test/medium/2912868ca7-medium.jpg, owner: 1, photo_hash: 2912868ca7b4a3ed09501737c1c89cf984a70eb502bd5b48235dc91e84b8966830bf0d8d6d711bebe09581561d1de4a35c8f8fdad64e7d803bccf7efa97344af,
+    place: '', small_path: pic/test/small/2912868ca7-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:35.315139+00:00'}
+  model: gallery.photo
   pk: 18
-  fields:
-    large_path: pic/test/large/0018.jpg
-    medium_path : pic/test/0018-medium.jpg
-    small_path: pic/test/small/0018-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
-- model: gallery.photo
+- fields: {created: null, description: '', gallery: 2, large_path: pic/test/large/28691249c6-large.jpg,
+    medium_path: pic/test/medium/28691249c6-medium.jpg, owner: 1, photo_hash: 28691249c69350a4d60c6ee84b34025bb18a6ba9ec6cdfcf6f32c4dbdcc2099322603905010861c363c27e0fcc1150b75e8f67bbaea1bdd934d8c64a038f238c,
+    place: '', small_path: pic/test/small/28691249c6-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:29:39.727498+00:00'}
+  model: gallery.photo
   pk: 19
-  fields:
-    small_path: pic/test/small/0019.jpg
-    medium_path: pic/test/medium/0019-medium.jpg
-    small_path: pic/test/small/0019-small.jpg
-    description: Nothing.
-    uploaded: 2013-07-13 09:15
-    owner: 2
-    place: Paris
-    gallery: 2
+- fields: {created: null, description: '', gallery: 1, large_path: pic/test/large/bc37c41fad-large.jpg,
+    medium_path: pic/test/medium/bc37c41fad-medium.jpg, owner: 2, photo_hash: bc37c41fad2349ecd806deecc1220f66dc413ebf1ca2c61df229a908945b1281ecd53e59963d82625bb1917104d8906d919ca403ebb5bd710a91db198d14a5ee,
+    place: '', small_path: pic/test/small/bc37c41fad-small.jpg, uploaded: !!timestamp '2013-07-28
+      20:30:12.912224+00:00'}
+  model: gallery.photo
+  pk: 20
