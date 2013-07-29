@@ -20,8 +20,13 @@
         <a href="#" class="overlay">
             <span class="vignette-description">{{ photo.description }}</span>
             <span class="icon-resize-full icon-white vignette-expand"></span>
-            <img class="vignette" src="{{ MEDIA_URL }}{{ photo.medium_path }}" />
+            <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.large_path }}" src="" data-index="{{ forloop.counter }}"/>
         </a>
     {% endfor %}
 </section>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/gallery.js"></script>
 {% endblock %}
