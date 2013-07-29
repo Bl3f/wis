@@ -170,8 +170,8 @@ def upload(request):
 
     return render(request, template_name, context)
 
+
 def ajax_upload(request):
     csrf_token = get_token(request)
     return render_to_response('ajaxupload.html',
         {'csrf_token': csrf_token}, context_instance = RequestContext(request))
-
