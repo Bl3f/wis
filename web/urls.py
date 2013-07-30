@@ -31,6 +31,7 @@ urlpatterns = patterns('',
                         # Ajax upload
                         url(r'start$', "web.apps.gallery.views.ajax_upload", name="ajax_upload"),
                         url(r'ajax-upload$', "web.apps.gallery.views.import_uploader", name="my_ajax_upload"),
+                        url(r'ajax$', "web.apps.gallery.views.ajax"),
 
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
