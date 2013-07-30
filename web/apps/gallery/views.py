@@ -175,3 +175,19 @@ def ajax_upload(request):
     csrf_token = get_token(request)
     return render_to_response('ajaxupload.html',
         {'csrf_token': csrf_token}, context_instance = RequestContext(request))
+
+def ajax(request):
+    template_name = "upload.html"
+
+    id = request.POST['id']
+    path = '%s' % id
+    f = request.FILES['picture']
+    destination = open(path, 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()
+    return HttpResponse(True)
+    # return status to client
+    
+    return render(request, template_name, context)
+    
