@@ -31,6 +31,8 @@ class Photo(models.Model):
     photo_hash = models.CharField(max_length=255)
 
     def save(self, *args, **kwargs):
+        dict_sizes = [0, 240, 595, 750]
+
         super(Photo, self).save(*args, **kwargs)
         path = self.large_path.path
         image = Image.open(path)
@@ -38,6 +40,12 @@ class Photo(models.Model):
         photo_extension = path.rsplit('/', 2)[2].rsplit('.', 1)[1]
         photo_name = self.photo_hash[:10]
         abs_path = path.rsplit('/', 3)[0]
+
+        image_width, image_height = image.size
+        for size in dict_sizes[::-1]:
+            if image_width > size:
+                MEDIUM_WIDTH = size if size != 0 else dict_sizes[1]
+                break
 
         self.medium_path = '/'.join([UPLOAD_FOLDER, MEDIUM_FOLDER, "{}-medium.{}".format(photo_name, photo_extension)])
         image.thumbnail((MEDIUM_WIDTH, MEDIUM_HEIGTH), Image.ANTIALIAS)
