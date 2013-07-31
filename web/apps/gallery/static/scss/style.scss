@@ -211,13 +211,11 @@ section {
         margin-top: 60px;
         padding-top: 40px;
 
-        -webkit-column-count: 3; /* Safari and Chrome */
-        -moz-column-count: 3; /* Firefox */
-        column-count: 3;
-
-        -webkit-column-gap: 10px; /* Safari and Chrome */
-        -moz-column-gap: 10px; /* Firefox */
-        column-gap: 10px;
+        .column {
+            width: 240px;
+            float: left;
+            margin-right: 13px;
+        }
     }
 }
 
