@@ -16,6 +16,9 @@
 
 {% block content %}
 <section id="gallery">
+    <div id="left_column" class="column"></div>
+    <div id="center_column" class="column"></div>
+    <div id="right_column" class="column"></div>
     {% for photo in photos %}
         <a href="#" class="overlay">
             <span class="vignette-description">{{ photo.description }}</span>
