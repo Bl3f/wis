@@ -7,13 +7,22 @@
 <br />
 <br />
 <br />
-<form id="form_upload" action="/ajax" method="POST">
+<form id="form_upload" action="/ajax" method="POST" enctype="multipart/form-data">
   <input type="file" name="picture" id="picture" />
   <input type="hidden" id="X-Progress-ID" name="X-Progress-ID" value=""/>
   <input type="hidden" id="id" name="id" value=""/>
   <input id="form_submit_button" class="tp-button" type="submit" value="Submit" />
 </form>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.form.js"></script>
+<h1>Ajax File Upload Demo</h1>
+<form name="form_upload" id="file_upload" action="/ajax" method="POST" enctype="multipart/form-data">
+    Please select a file and click Upload button
+    <input id="picture" type="file" size="45" name="picture" class="input">
+    <button class="button" id="buttonUpload" onclick="return ajaxFileUpload();">Upload</button>
+    <input type="submit" value="Plop">
+</form>     
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/ajax-file-upload.js"></script>
 
 {% endblock %}

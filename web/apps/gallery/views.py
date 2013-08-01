@@ -12,6 +12,7 @@ from django.shortcuts import render, render_to_response
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.middleware.csrf import get_token
+from django.views.decorators.csrf import csrf_exempt
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
@@ -173,20 +174,22 @@ def upload(request):
 
 def ajax_upload(request):
     csrf_token = get_token(request)
-    return render_to_response('ajaxupload.html',
+    return render_to_response('startbis.html',
         {'csrf_token': csrf_token}, context_instance = RequestContext(request))
 
-def ajax(request):
-    template_name = "upload.html"
 
-    id = request.POST['id']
-    path = '%s' % id
-    f = request.FILES['picture']
-    destination = open(path, 'wb+')
-    for chunk in f.chunks():
-        destination.write(chunk)
-    destination.close()
-    return HttpResponse(True)
+@csrf_exempt
+def ajax(request):
+
+    if request.method == 'POST':
+        print request
+        new_img = Image(path=request.FILES[u'files[]'],
+                        description="Au matin je vis avec joie ...",
+                        place="Ushuaia",
+                        gallery=Gallery.objects.get(slug_name="freedom",),
+                        owner=User.objects.get(username="estelle"))
+        new_img.save()
+        return HttpResponse(True)
     # return status to client
     
     return render(request, template_name, context)
