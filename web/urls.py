@@ -28,11 +28,11 @@ urlpatterns = patterns('',
                        # Creation of a new gallery view
                        url(r'^creation$', "web.apps.gallery.views.create_gallery"),
 
-                        # For the Django Jquery Upload
-                        url(r'^upload$', 'web.apps.gallery.views.ajax_upload'),
+                       # For the Django Jquery Upload
+                       url(r'^upload$', 'web.apps.gallery.views.ajax_upload'),
 
-                        # Edit photos description
-                        url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
+                       # Edit photos description
+                       url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
 
                        # Check username availability view
                        url(r'^checkUser/(?P<username>(.+))$$', "web.apps.gallery.views.check_user_availability"),

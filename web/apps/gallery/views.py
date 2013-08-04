@@ -1,8 +1,7 @@
 import json
 import os
-from django.http import HttpResponse, HttpResponseBadRequest,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from web.settings import MEDIA_ROOT
 
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -11,8 +10,6 @@ from django.contrib.auth import logout
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils import simplejson
-from django.template import Context, loader
-from django.core.context_processors import csrf
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
@@ -33,7 +30,9 @@ def edit_descriptions(request):
     template_name = "edit_descriptions.html"
 
     gallery_slug = request.session['gallery']
-    context["photos"] = Photo.objects.filter(gallery=Gallery.objects.get(owner=User.objects.get(username=request.session["gallery_owner"]), slug_name=gallery_slug))
+    context["photos"] = Photo.objects.filter(gallery=Gallery.objects.get(owner=User.objects.get(
+        username=request.session["gallery_owner"]),
+        slug_name=gallery_slug))
 
     return render(request, template_name, context)
 
@@ -56,14 +55,14 @@ def gallery_home(request, user, gallery_slug):
         gallery.save()
 
         # Editing image description and place
-        for input,val in request.POST.items():
+        for input, val in request.POST.items():
             if input.endswith(".desc"):
-                photo_id = input.replace(".desc","")
+                photo_id = input.replace(".desc", "")
                 photo = Photo.objects.get(pk=photo_id)
                 setattr(photo, 'description', val)
                 photo.save()
             elif input.endswith(".place"):
-                photo_id = input.replace(".place","")
+                photo_id = input.replace(".place", "")
                 photo = Photo.objects.get(pk=photo_id)
                 setattr(photo, 'place', val)
                 photo.save()
@@ -211,7 +210,6 @@ def upload(request):
 
 def ajax_upload(request):
     """
-    
     ## View for file uploads ##
 
     It does the following actions:
@@ -249,9 +247,9 @@ def ajax_upload(request):
     #   and check validity late in the code
     options = {
         # the maximum file size (must be in bytes)
-        "maxfilesize": 2 * 2 ** 20, # 2 Mb
+        "maxfilesize": 2 * 2 ** 20,  # 2 Mb
         # the minimum file size (must be in bytes)
-        "minfilesize": 1 * 2 ** 10, # 1 Kb
+        "minfilesize": 1 * 2 ** 10,  # 1 Kb
         # the file types which are going to be allowed for upload
         #   must be a mimetype
         "acceptedformats": (
@@ -274,7 +272,7 @@ def ajax_upload(request):
 
         # if 'f' query parameter is not specified
         # file is being uploaded
-        if not ("f" in request.GET.keys()): # upload file
+        if not ("f" in request.GET.keys()):  # upload file
 
             # make sure some files have been uploaded
             if not request.FILES:
@@ -315,7 +313,6 @@ def ajax_upload(request):
             if file.content_type not in options["acceptedformats"]:
                 error = "acceptFileTypes"
 
-
             # the response data which will be returned to the uploader as json
             response_data = {
                 "name": file.name,
@@ -332,7 +329,6 @@ def ajax_upload(request):
                 # return response to uploader with error
                 # so it can display error message
                 return HttpResponse(response_data, mimetype='application/json')
-
 
             # make temporary dir if not exists already
             if not os.path.exists(temp_path):
@@ -373,7 +369,7 @@ def ajax_upload(request):
 
             # url for deleting the file in case user decides to delete it
             response_data["delete_url"] = request.path + "?" + urllib.urlencode(
-                    {"f": uid + "/" + os.path.split(filename)[1]})
+                {"f": uid + "/" + os.path.split(filename)[1]})
             # specify the delete type - must be POST for csrf
             response_data["delete_type"] = "POST"
 
@@ -397,7 +393,7 @@ def ajax_upload(request):
             # return the data to the uploading plugin
             return HttpResponse(response_data, mimetype=response_type)
 
-        else: # file has to be deleted
+        else:  # file has to be deleted
 
             # get the file path by getting it from the query (e.g. '?f=filename.here')
             filepath = os.path.join(temp_path, request.GET["f"])
@@ -421,7 +417,7 @@ def ajax_upload(request):
             # here it always has to be json
             return HttpResponse(response_data, mimetype="application/json")
 
-    else: #GET
+    else:  # GET
         template_name = "ajax.html"
         context['uid'] = uuid.uuid4()
         context['open_tv'] = u'{{'
@@ -429,7 +425,7 @@ def ajax_upload(request):
         context['maxfilesize'] = options['maxfilesize']
         context['minfilesize'] = options['minfilesize']
         context["gallery_slug"] = request.session['gallery']
-        return render(request,template_name,context)
+        return render(request, template_name, context)
 
 
 def check_user_availability(request, username):
