@@ -22,7 +22,7 @@
         {% block topRight %}
         {% if user.is_authenticated %}
             <div id="userId"> 
-                {{ user.username }}
+                <a href="{% url "apps.gallery.views.user_galleries" user.username %}">{{ user.username }}</a>
             </div>
 
             <div id="signOut">
