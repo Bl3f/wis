@@ -31,6 +31,9 @@ urlpatterns = patterns('',
                         # For the Django Jquery Upload
                         url(r'^upload$', 'web.apps.gallery.views.ajax_upload'),
 
+                        # Edit photos description
+                        url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
+
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
                        # url(r'^web/', include('web.foo.urls')),

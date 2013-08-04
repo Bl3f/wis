@@ -9,6 +9,7 @@
         {% if gallery.place %}<li>{{ gallery.place }}</li>{% endif %}
         {% if gallery.created %}<li>{{ gallery.created }}</li>{% endif %}
         {% if images %}<li>{{ images|length }} photos</li>{% endif %}
+        <li><a href="{% url "apps.gallery.views.edit_descriptions" %}">Editer</a></li>
         <li><a href="{% url "apps.gallery.views.ajax_upload" %}">Ajouter des images</a></li>
     </ul>
 </aside>

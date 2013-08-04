@@ -22,7 +22,24 @@ context = dict()
 context['loginForm'] = UserForm()
 
 
+def edit_descriptions(request):
+
+    # Verification of permissions
+    if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
+        return HttpResponseBadRequest(ERROR_AUTH)
+    elif request.user.username != request.session["gallery_owner"]:
+        return HttpResponseBadRequest(ERROR_PERM)
+
+    template_name = "edit_descriptions.html"
+
+    gallery_slug = request.session['gallery']
+    context["photos"] = Photo.objects.filter(gallery=Gallery.objects.get(owner=User.objects.get(username=request.session["gallery_owner"]), slug_name=gallery_slug))
+
+    return render(request, template_name, context)
+
+
 def gallery_home(request, user, gallery_slug):
+
     template_name = "gallery.html"
 
     request.session['gallery'] = gallery_slug
@@ -31,10 +48,32 @@ def gallery_home(request, user, gallery_slug):
     owner_id = User.objects.get(username=user).pk
     gallery = Gallery.objects.get(slug_name=gallery_slug, owner_id=owner_id)
 
+    # if true, the gallery has been edited
+    if request.method == "POST":
+
+        # Editing gallery name
+        setattr(gallery, 'title', request.POST['gallery_name'])
+        gallery.save()
+
+        # Editing image description and place
+        for input,val in request.POST.items():
+            if input.endswith(".desc"):
+                photo_id = input.replace(".desc","")
+                photo = Photo.objects.get(pk=photo_id)
+                setattr(photo, 'description', val)
+                photo.save()
+            elif input.endswith(".place"):
+                photo_id = input.replace(".place","")
+                photo = Photo.objects.get(pk=photo_id)
+                setattr(photo, 'place', val)
+                photo.save()
+
+        return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
+
     context["gallery"] = gallery
+    context['gallery_owner'] = user
     context["gallery_slug"] = request.session['gallery']
     context["photos"] = Photo.objects.filter(gallery=gallery)
-    
 
     return render(request, template_name, context)
 
@@ -221,6 +260,10 @@ def ajax_upload(request):
             )
     }
 
+    if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
+        return HttpResponseBadRequest(ERROR_AUTH)
+    elif request.user.username != request.session["gallery_owner"]:
+        return HttpResponseBadRequest(ERROR_PERM)
 
     # POST request
     #   meaning user has triggered an upload action
@@ -248,9 +291,6 @@ def ajax_upload(request):
                 return HttpResponseBadRequest("UID not specified.")
                 # if here, uid has been specified, so record it
             uid = request.POST[u"uid"]
-
-            if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
-                return HttpResponseBadRequest("Not logged in.")
 
             # update the temporary path by creating a sub-folder within
             # the upload folder with the uid name
@@ -390,4 +430,3 @@ def ajax_upload(request):
         context['minfilesize'] = options['minfilesize']
         context["gallery_slug"] = request.session['gallery']
         return render(request,template_name,context)
-
