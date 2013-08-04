@@ -25,7 +25,7 @@ urlpatterns = patterns('',
                        # Upload view
                        # url(r'^upload$', "web.apps.gallery.views.upload"),
 
-                       # Upload view
+                       # Creation of a new gallery view
                        url(r'^creation$', "web.apps.gallery.views.create_gallery"),
 
                         # For the Django Jquery Upload
@@ -33,6 +33,9 @@ urlpatterns = patterns('',
 
                         # Edit photos description
                         url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
+
+                       # Check username availability view
+                       url(r'^checkUser/(?P<username>(.+))$$', "web.apps.gallery.views.check_user_availability"),
 
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),

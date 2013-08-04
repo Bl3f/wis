@@ -430,3 +430,10 @@ def ajax_upload(request):
         context['minfilesize'] = options['minfilesize']
         context["gallery_slug"] = request.session['gallery']
         return render(request,template_name,context)
+
+
+def check_user_availability(request, username):
+    if username in [u['username'] for u in User.objects.values('username')]:
+        return HttpResponse(False)
+    else:
+        return HttpResponse(True)
