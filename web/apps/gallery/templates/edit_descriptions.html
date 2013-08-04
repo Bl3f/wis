@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <form name="editForm" id="editForm" method="post" action="{% url "web.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}">
+        {% csrf_token %}
+        <p>Nom de la galerie : <input name="gallery_name" value="{{ gallery }}">
+        <table>
+            <tr>
+                <th></th>
+                <th>Description</th>
+                <th>Lieu</th>
+            </tr>
+            {% for photo in photos %}
+            <tr>
+                <td><img src="{{ MEDIA_URL }}{{ photo.small_path }}" width="50px"></td>
+                <td><input name="{{ photo.pk }}.desc" value="{{ photo.description }}"></td>
+                <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}"></td>
+            {% endfor %}
+        </table>
+        
+        <input type="submit" value="Enregistrer">
+    </form>
+
+{% endblock %}

@@ -23,10 +23,16 @@ urlpatterns = patterns('',
                        url(r'^logout$', "web.apps.gallery.views.sign_out"),
 
                        # Upload view
-                       url(r'^upload$', "web.apps.gallery.views.upload"),
+                       # url(r'^upload$', "web.apps.gallery.views.upload"),
 
                        # Upload view
                        url(r'^creation$', "web.apps.gallery.views.create_gallery"),
+
+                        # For the Django Jquery Upload
+                        url(r'^upload$', 'web.apps.gallery.views.ajax_upload'),
+
+                        # Edit photos description
+                        url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
 
                        # Examples:
                        # url(r'^$', 'web.views.home', name='home'),
