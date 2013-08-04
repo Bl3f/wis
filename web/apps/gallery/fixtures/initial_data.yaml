@@ -191,3 +191,5 @@
     medium_path: pic/test/medium/ff60a30f97-medium.jpg, owner: 1, photo_hash: ff60a30f97076ac40e00f7c181c545ca45107869045bf2026692f7dbfd038e65c9c98a615b1c0e2273bb420a52210cdbe6108cc7493702eb1081b682ca111da8,
     place: bastille, small_path: pic/test/small/ff60a30f97-small.jpg, uploaded: !!timestamp '2013-07-31
       18:55:45.887009+00:00'}
+  model: gallery.photo
+  pk: 18
