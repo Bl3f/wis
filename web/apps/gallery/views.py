@@ -181,7 +181,7 @@ def upload(request):
     context['canUpload'] = False
 
     if str(request.user) == "AnonymousUser":
-        context['msg'] = ERROR_NOTAUTH
+        context['msg'] = ERROR_AUTH
     elif request.session['gallery_owner'] != str(request.user):
         context['msg'] = ERROR_PERM
     else:

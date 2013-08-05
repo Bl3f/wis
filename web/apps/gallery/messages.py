@@ -5,4 +5,4 @@
 of his action. """
 
 ERROR_PERM = "Erreur : vous n'avez pas la permission d'effectuer cette action."
-ERROR_NOTAUTH = "Erreur : cette action nécessite d'être authentifié."
+ERROR_AUTH = "Erreur : cette action nécessite d'être authentifié."
