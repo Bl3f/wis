@@ -51,8 +51,9 @@
                 <span>Ajouter des images</span>
                 <input type="file" name="files[]" multiple>
             </label>
-            <button type="submit" class="start">Démarrer tout</button>
-            <button type="reset" class="cancel">Supprimer tout</button>
+            <button type="submit" class="start">Envoyer tout</button>
+            <button type="reset" class="cancel">Annuler tout</button>
+            <a href="{% url "web.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}">Retour à la galerie</a>
         </div>
     </form>
     <div class="fileupload-content">
@@ -80,7 +81,7 @@
             <div></div>
         </td>
         <td class="start">
-            <button>Démarrer</button>
+            <button>Envoyer</button>
         </td>
         {{ open_tv }}/if{{ close_tv }}
         <td class="cancel">
