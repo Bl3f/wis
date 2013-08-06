@@ -349,8 +349,6 @@ def ajax_upload(request):
             destination.close()
 
             new_img = Photo(large_path=file,
-                            description=None,
-                            place=None,
                             gallery=Gallery.objects.get(slug_name=request.POST['gallery_slug'],
                                                         owner=request.user),
                             owner=request.user)

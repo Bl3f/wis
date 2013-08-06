@@ -22,7 +22,7 @@ class Photo(models.Model):
     large_path = models.ImageField(upload_to=content_file_name)
     medium_path = models.CharField(max_length=255, blank=True)
     small_path = models.CharField(max_length=255, blank=True)
-    description = models.CharField(max_length=255, null=True, blank=True)
+    description = models.CharField(max_length=255, null=True, blank=True, default="")
     uploaded = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, null=False)
     place = models.CharField(max_length=255, null=True, blank=True)
@@ -40,6 +40,8 @@ class Photo(models.Model):
         photo_extension = path.rsplit('/', 2)[2].rsplit('.', 1)[1]
         photo_name = self.photo_hash[:10]
         abs_path = path.rsplit('/', 3)[0]
+        
+        self.place = self.gallery.place
 
         image_width, image_height = image.size
         for size in dict_sizes[::-1]:
