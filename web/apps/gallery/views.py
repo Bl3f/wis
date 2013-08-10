@@ -118,6 +118,7 @@ def create_gallery(request):
                               owner=request.user,
                               place=data['place'])
         new_gallery.save()
+        return redirect("/gallery/" + request.user.username)
     else:
         context['form'] = form
 
@@ -144,7 +145,7 @@ def auth(request):
             context['auth'] = False
         context['username'] = username
 
-        return redirect(request.META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
+        return redirect(request.session['history'][-2]) #META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
 
     else:
         template_name = "login.html"
@@ -158,7 +159,7 @@ def sign_out(request):
 
     logout(request)
 
-    return redirect("/")  # home(request)
+    return redirect("/")
 
 
 def register(request):
@@ -169,7 +170,10 @@ def register(request):
 
     if form.is_valid():
         new_user = form.save()
-        return redirect(home)
+        user = authenticate(username=request.POST['username'],password = request.POST['password1'])
+        login(request, user)
+        return redirect(request.session['history'][-2])
+    # request.session['redirect'])
     else:
         context['form'] = form
     return render(request, template_name, context)
