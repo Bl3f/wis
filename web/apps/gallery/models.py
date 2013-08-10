@@ -3,9 +3,9 @@ import hashlib
 from PIL import Image
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
 from web.apps.gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
     MEDIUM_WIDTH, MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
+from web.utils.slug import unique_slugify
 
 
 def content_file_name(instance, filename):
@@ -95,7 +95,7 @@ class Gallery(models.Model):
 
     def save(self, *args, **kwargs):
         if self.title:
-            self.slug_name = slugify(self.title)[:255]
+            unique_slugify(self, self.title[:255], slug_field_name='slug_name')
         super(Gallery, self).save(*args, **kwargs)
 
     def __unicode__(self):
