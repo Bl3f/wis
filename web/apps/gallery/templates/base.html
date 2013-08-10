@@ -19,6 +19,14 @@
         </div>
         {% endblock %}
 
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <span class="message{% if message.tags %} {{ message.tags }}{% endif %}">{{ message }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         {% block topRight %}
         {% if user.is_authenticated %}
             <div id="userId"> 

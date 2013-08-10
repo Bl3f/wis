@@ -3,6 +3,7 @@ import os
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
+from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth import login
@@ -13,7 +14,7 @@ from django.utils import simplejson
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-from web.apps.gallery.messages import *
+from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH, SUCCESS_GALLERY_CREATION
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -23,7 +24,7 @@ def edit_descriptions(request):
 
     # Verification of permissions
     if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
-        return HttpResponseBadRequest(ERROR_AUTH)
+        return HttpResponseBadRequest(ERROR_PERM)
     elif request.user.username != request.session["gallery_owner"]:
         return HttpResponseBadRequest(ERROR_PERM)
 
@@ -122,6 +123,7 @@ def create_gallery(request):
     else:
         context['form'] = form
 
+    messages.success(request,SUCCESS_GALLERY_CREATION)
     return render(request, template_name, context)
 
 
@@ -138,11 +140,13 @@ def auth(request):
                 login(request, user)
                 # Redirect to a success page.
                 context['auth'] = True
+                messages.success(request, SUCCESS_AUTH)
             else:
                 context['auth'] = False
-             # Return a 'disabled account' error message
+                messages.error(request, ERROR_AUTH)
         else:
             context['auth'] = False
+            messages.error(request, ERROR_AUTH)
         context['username'] = username
 
         return redirect(request.session['history'][-2]) #META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
@@ -172,11 +176,12 @@ def register(request):
         new_user = form.save()
         user = authenticate(username=request.POST['username'],password = request.POST['password1'])
         login(request, user)
+        messages.success(request, SUCCESS_AUTH)
         return redirect(request.session['history'][-2])
     # request.session['redirect'])
     else:
         context['form'] = form
-    return render(request, template_name, context)
+        return render(request, template_name, context)
 
 
 def upload(request):
@@ -185,7 +190,7 @@ def upload(request):
     context['canUpload'] = False
 
     if str(request.user) == "AnonymousUser":
-        context['msg'] = ERROR_AUTH
+        messages.error(request, ERROR_PERM)
     elif request.session['gallery_owner'] != str(request.user):
         context['msg'] = ERROR_PERM
     else:
@@ -263,9 +268,11 @@ def ajax_upload(request):
     }
 
     if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
-        return HttpResponseBadRequest(ERROR_AUTH)
+        messages.error(request,ERROR_PERM)
+        return redirect(request.session['history'][-2])
     elif request.user.username != request.session["gallery_owner"]:
-        return HttpResponseBadRequest(ERROR_PERM)
+        messages.error(request,ERROR_PERM)
+        return redirect(request.session['history'][-2])
 
     # POST request
     #   meaning user has triggered an upload action
