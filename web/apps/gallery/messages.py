@@ -6,7 +6,7 @@ of his action. """
 
 # Error messages
 ERROR_PERM = "Erreur : vous n'avez pas la permission d'effectuer cette action."
-ERROR_AUTH = "L'authentifiction a échouée (mauvais login/mot de passe ?)."
+ERROR_AUTH = "L'authentification a échoué. "
 
 # Success messages
 SUCCESS_AUTH = "Vous êtes désormais authentifié."
