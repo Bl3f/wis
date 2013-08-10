@@ -45,8 +45,13 @@ def gallery_home(request, user, gallery_slug):
     request.session['gallery'] = gallery_slug
     request.session['gallery_owner'] = user
 
-    owner_id = User.objects.get(username=user).pk
-    gallery = Gallery.objects.get(slug_name=gallery_slug, owner_id=owner_id)
+    owner = User.objects.get(username=user)
+    gallery = Gallery.objects.get(slug_name=gallery_slug, owner=owner)
+
+    if owner == request.user:
+        context['isOwner'] = True
+    else:
+        context['isOwner'] = False
 
     # if true, the gallery has been edited
     if request.method == "POST":
