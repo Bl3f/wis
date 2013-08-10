@@ -149,7 +149,7 @@ def auth(request):
             messages.error(request, ERROR_AUTH)
         context['username'] = username
 
-        return redirect(request.session['history'][-2]) #META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
+        return redirect(request.session['history'][-1]) #META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
 
     else:
         template_name = "login.html"
@@ -177,7 +177,7 @@ def register(request):
         user = authenticate(username=request.POST['username'],password = request.POST['password1'])
         login(request, user)
         messages.success(request, SUCCESS_AUTH)
-        return redirect(request.session['history'][-2])
+        return redirect(request.session['history'][-1])
     # request.session['redirect'])
     else:
         context['form'] = form
