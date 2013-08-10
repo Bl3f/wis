@@ -14,7 +14,7 @@ from django.utils import simplejson
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH,SUCCESS_LOGOUT,SUCCESS_GALLERY_CREATION
+from web.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -128,7 +128,7 @@ def create_gallery(request):
     else:
         context['form'] = form
 
-    messages.success(request,SUCCESS_GALLERY_CREATION)
+    messages.success(request, SUCCESS_GALLERY_CREATION)
     return render(request, template_name, context)
 
 
@@ -154,7 +154,8 @@ def auth(request):
             messages.error(request, ERROR_AUTH)
         context['username'] = username
 
-        return redirect(request.session['history'][-1]) #META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
+        # META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
+        return redirect(request.session['history'][-1])
 
     else:
         template_name = "login.html"
@@ -181,7 +182,7 @@ def register(request):
 
     if form.is_valid():
         new_user = form.save()
-        user = authenticate(username=request.POST['username'],password = request.POST['password1'])
+        user = authenticate(username=request.POST['username'], password=request.POST['password1'])
         login(request, user)
         messages.success(request, SUCCESS_AUTH)
         return redirect(request.session['history'][-1])
@@ -275,10 +276,10 @@ def ajax_upload(request):
     }
 
     if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
-        messages.error(request,ERROR_PERM)
+        messages.error(request, ERROR_PERM)
         return redirect(request.session['history'][-2])
     elif request.user.username != request.session["gallery_owner"]:
-        messages.error(request,ERROR_PERM)
+        messages.error(request, ERROR_PERM)
         return redirect(request.session['history'][-2])
 
     # POST request

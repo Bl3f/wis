@@ -40,7 +40,7 @@ class Photo(models.Model):
         photo_extension = path.rsplit('/', 2)[2].rsplit('.', 1)[1]
         photo_name = self.photo_hash[:10]
         abs_path = path.rsplit('/', 3)[0]
-        
+
         self.place = self.gallery.place
 
         image_width, image_height = image.size
