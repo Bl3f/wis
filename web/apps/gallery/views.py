@@ -14,7 +14,7 @@ from django.utils import simplejson
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH, SUCCESS_GALLERY_CREATION
+from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH,SUCCESS_LOGOUT,SUCCESS_GALLERY_CREATION
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -167,6 +167,8 @@ def auth(request):
 def sign_out(request):
 
     logout(request)
+
+    messages.success(request, SUCCESS_LOGOUT)
 
     return redirect("/")
 
