@@ -121,6 +121,7 @@ button.close {
 }
 
 #message {
+    z-index: 99;
     font-family: "Hevletica Neue", sans-serif;
     font-size: 14px;
     position: fixed;
