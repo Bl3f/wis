@@ -89,7 +89,7 @@ class Gallery(models.Model):
     description = models.CharField(max_length=255, null=True)
     slug_name = models.SlugField(max_length=255)
     public = models.BooleanField(default=True)
-    password = models.CharField(max_length=255, default="")
+    password = models.CharField(max_length=255, default="", blank=True)
     owner = models.ForeignKey(User, null=False)
     place = models.CharField(max_length=255, null=True)
     created = models.DateField(null=True)
