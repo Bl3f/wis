@@ -26,7 +26,7 @@
         <a href="#" class="overlay">
             <span class="vignette-description">{{ photo.description }}</span>
             <span class="icon-resize-full icon-white vignette-expand"></span>
-            <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.large_path }}" src="" data-index="{{ forloop.counter }}"/>
+            <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.medium_path }}" src="" data-index="{{ forloop.counter }}" data-width="" data-height="" />
         </a>
     {% endfor %}
 </section>
