@@ -264,7 +264,7 @@ def ajax_upload(request):
     #   and check validity late in the code
     options = {
         # the maximum file size (must be in bytes)
-        "maxfilesize": 2 * 2 ** 20,  # 2 Mb
+        "maxfilesize": 2 * 2 ** 60,  # 6 Mb
         # the minimum file size (must be in bytes)
         "minfilesize": 1 * 2 ** 10,  # 1 Kb
         # the file types which are going to be allowed for upload
