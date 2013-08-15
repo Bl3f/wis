@@ -14,7 +14,7 @@ from django.utils import simplejson
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-from web.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION
+from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH,SUCCESS_LOGOUT,SUCCESS_GALLERY_CREATION, ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -48,38 +48,54 @@ def gallery_home(request, user, gallery_slug):
     owner = User.objects.get(username=user)
     gallery = Gallery.objects.get(slug_name=gallery_slug, owner=owner)
 
+    if user + gallery_slug not in request.session.keys():
+        request.session[user + gallery_slug] = False
+
     if owner == request.user:
         context['isOwner'] = True
+        request.session[user + gallery_slug] = True
     else:
         context['isOwner'] = False
+      
+    if gallery.public == True:
+        request.session[user + gallery_slug] = True
 
     # if true, the gallery has been edited
     if request.method == "POST":
-
-        # Editing gallery name
-        setattr(gallery, 'title', request.POST['gallery_name'])
-        gallery.save()
-
-        # Editing image description and place
-        for input, val in request.POST.items():
-            if input.endswith(".desc"):
-                photo_id = input.replace(".desc", "")
-                photo = Photo.objects.get(pk=photo_id)
-                setattr(photo, 'description', val)
-                photo.save()
-            elif input.endswith(".place"):
-                photo_id = input.replace(".place", "")
-                photo = Photo.objects.get(pk=photo_id)
-                setattr(photo, 'place', val)
-                photo.save()
-
-        return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
+        if request.POST['type'] == "edit":
+            if user != owner:
+                messages.error(request,ERROR_PERM)
+            else:
+                # Editing gallery name
+                setattr(gallery, 'title', request.POST['gallery_name'])
+                gallery.save()
+        
+                # Editing image description and place
+                for input, val in request.POST.items():
+                    if input.endswith(".desc"):
+                        photo_id = input.replace(".desc", "")
+                        photo = Photo.objects.get(pk=photo_id)
+                        setattr(photo, 'description', val)
+                        photo.save()
+                    elif input.endswith(".place"):
+                        photo_id = input.replace(".place", "")
+                        photo = Photo.objects.get(pk=photo_id)
+                        setattr(photo, 'place', val)
+                        photo.save()
+                return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
+        elif request.POST['type'] == "password":
+            if request.POST['password'] == gallery.password:
+                request.session[user + gallery_slug] = True
+                messages.success(request,SUCCESS_ACCESS_GALLERY)
+            else:
+                messages.error(request,ERROR_ACCESS_GALLERY)
 
     context["gallery"] = gallery
     context['gallery_owner'] = user
     context["gallery_slug"] = request.session['gallery']
     context["photos"] = Photo.objects.filter(gallery=gallery)
 
+    context['canView'] = request.session[user + gallery_slug]
     return render(request, template_name, context)
 
 
@@ -121,14 +137,15 @@ def create_gallery(request):
         new_gallery = Gallery(title=data['title'],
                               description=data['description'],
                               public=data['public'],
+                              password=data['password'],
                               owner=request.user,
                               place=data['place'])
         new_gallery.save()
+        messages.success(request,SUCCESS_GALLERY_CREATION)
         return redirect("/gallery/" + request.user.username)
     else:
         context['form'] = form
 
-    messages.success(request, SUCCESS_GALLERY_CREATION)
     return render(request, template_name, context)
 
 
