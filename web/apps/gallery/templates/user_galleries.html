@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br />
-    <br /> 
-    <br />
-    
+    <section id="galleries"> 
     {% for gallery in galleries %}
-        <p><a href="{% url "web.apps.gallery.views.gallery_home" user.username gallery.slug_name %}">{{ gallery.title }}</a></p>
+            <a href="{% url "web.apps.gallery.views.gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
+                <img src="{{ STATIC_URL }}images/gallery_bg.jpg" height="100px" alt="Gallery Cover">
+                <div class="gMeta">
+                    <div class="gName">{{ gallery.title }}</div>
+                    <p class="gDesc">{{ gallery.description }}</p>
+                </div>
+                {# <span class="gDate">{{ gallery.created }}</span> #}
+            </div></a>
     {% endfor %}
     
     {% if isOwner %}
-        <p><a href="{% url "apps.gallery.views.create_gallery" %}"> Créer une nouvelle galerie </a></p> 
+        <p id="creation"><a href="{% url "apps.gallery.views.create_gallery" %}"><button>Créer une nouvelle galerie</button></a></p> 
     {% endif %}
-
+    </section>
 {% endblock %}
