@@ -47,4 +47,4 @@ class UploadImage(forms.Form):
 class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
-        fields = ['title', 'description', 'public', 'place']
+        fields = ['title', 'description', 'place', 'public', 'password']
