@@ -9,3 +9,16 @@ function hideElement(div) {
     document.getElementById(div).style.display = "None";
     return
 }
+
+
+!function($){
+
+    $("#id_public").on('change', function() {
+            if ($(this).is(":checked")) {
+                $("#id_password").parent().hide();
+            } else {
+                $("#id_password").parent().show();
+            }
+    });
+
+}(window.jQuery);

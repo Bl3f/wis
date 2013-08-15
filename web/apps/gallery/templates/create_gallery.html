@@ -7,7 +7,19 @@
     <br />
     <form method="post" action="{% url "apps.gallery.views.create_gallery" %}">
         {% csrf_token %}
-        {{ form.as_p }} 
+        {% for field in form %}
+            {% if field.name == "password" %}
+                <p class="hidden">
+                    <label>{{ field.label_tag }}</label>
+                    {{ field }}
+                </p>
+            {% else %}
+                <p>
+                    <label>{{ field.label_tag }}</label>
+                    {{ field }}
+                </p>
+            {% endif %}
+        {% endfor %}
         <input type="submit" value="Créer">
     </form>
 {% endblock %}
