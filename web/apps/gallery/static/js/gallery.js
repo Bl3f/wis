@@ -62,17 +62,15 @@
             if(width >= LARGE_WIDTH) {columns[RIGHT_COLUMN] = $('#' + RIGHT_COLUMN);}
         }
         if (column == CENTER_COLUMN) {
-            if(width >= MEDIUM_WIDTH) {margin_left = -STEP; columns[RIGHT_COLUMN] = $('#' + RIGHT_COLUMN);}
-            if(width >= LARGE_WIDTH) {margin_left = -STEP; columns[LEFT_COLUMN] = $('#' + LEFT_COLUMN);}
+            if(width >= MEDIUM_WIDTH) {margin_left = -STEP; columns[LEFT_COLUMN] = $('#' + LEFT_COLUMN);}
+            if(width >= LARGE_WIDTH) {margin_left = -STEP;columns[RIGHT_COLUMN] = $('#' + RIGHT_COLUMN);}
         }
         if (column == RIGHT_COLUMN) {
             if(width >= MEDIUM_WIDTH) {margin_left = -STEP; columns[CENTER_COLUMN] = $('#' + CENTER_COLUMN);}
             if(width >= LARGE_WIDTH) {margin_left = -STEP * 2; columns[LEFT_COLUMN] = $('#' + LEFT_COLUMN);}
         }
         best_down = _this.move_columns(columns, (old_position.top + old_height) / 2, 'down');
-        if (image.offset().top != $('#gallery').offset().top + parseInt($('#gallery').css('padding-top'))) {
-            best_up = _this.move_columns(columns, (old_position.top + old_height) / 2, 'up');
-        }
+        best_up = _this.move_columns(columns, (old_position.top + old_height) / 2, 'up');
 
         if (parseInt(width) > 240) {
             image.removeClass('js-overlay')
