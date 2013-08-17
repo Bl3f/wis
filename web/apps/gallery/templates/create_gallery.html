@@ -6,17 +6,31 @@
     <form class="formContainer" method="post" action="{% url "apps.gallery.views.create_gallery" %}">
         {% csrf_token %}
         {% for field in form %}
-            <div class="fieldContainer">
-                <div class="label">
-                    {{ field.label }} 
-                </div>
-                <div class="field" id="{{ field.name }}Field">
-                    {{ field }}
-                    <div class="help-block">
-                        {{ field.errors }}
+            {% if field.name == "password" %}
+                <div class="fieldContainer hidden">
+                    <div class="label">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="field" id="{{ field.name }}Field">
+                       {{ field }}
+                        <div class="help-block">
+                            {{ field.errors }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% else %}
+                <div class="fieldContainer">
+                    <div class="label">
+                        {{ field.label }} 
+                    </div>
+                    <div class="field" id="{{ field.name }}Field">
+                       {{ field }}
+                        <div class="help-block">
+                            {{ field.errors }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
         <div id="submitButton"> 
             <input type="submit" value="Créer">

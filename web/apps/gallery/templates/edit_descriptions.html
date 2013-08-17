@@ -19,6 +19,7 @@
                 <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"></td>
             {% endfor %}
         </table>
+        <input type="hidden" name="type" value="edit">
         <div id="submitButton"> 
             <input type="submit" value="Enregistrer">
             <a href="{% url "web.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
