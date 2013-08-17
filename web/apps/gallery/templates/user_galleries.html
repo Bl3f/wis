@@ -2,6 +2,10 @@
 
 {% block content %}
     <section id="galleries"> 
+    {% if isOwner %}
+        <p id="creation"><a href="{% url "apps.gallery.views.create_gallery" %}"><button>Créer une nouvelle galerie</button></a></p> 
+    {% endif %}
+    
     {% for gallery in galleries %}
             <a href="{% url "web.apps.gallery.views.gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
                 <img src="{{ STATIC_URL }}images/gallery_bg.jpg" height="100px" alt="Gallery Cover">
@@ -12,9 +16,5 @@
                 {# <span class="gDate">{{ gallery.created }}</span> #}
             </div></a>
     {% endfor %}
-    
-    {% if isOwner %}
-        <p id="creation"><a href="{% url "apps.gallery.views.create_gallery" %}"><button>Créer une nouvelle galerie</button></a></p> 
-    {% endif %}
     </section>
 {% endblock %}

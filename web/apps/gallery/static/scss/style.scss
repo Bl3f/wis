@@ -544,7 +544,10 @@ form {
     }
 
     #creation {
-        float: right;
+        display: block;
+        width: 100%;
+        margin-bottom: 60px;
+        text-align: right;
     }
 
     .userGallery {
