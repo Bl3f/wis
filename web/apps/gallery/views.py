@@ -94,13 +94,14 @@ def gallery_home(request, user, gallery_slug):
                         if photo.place != val:
                             setattr(photo, 'place', val)
                             photo.save()
-                return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
         elif request.POST['type'] == "password":
             if request.POST['password'] == gallery.password:
                 request.session[user + gallery_slug] = True
                 messages.success(request,SUCCESS_ACCESS_GALLERY)
             else:
                 messages.error(request,ERROR_ACCESS_GALLERY)
+        
+        return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
 
     return render(request, template_name, context)
 
