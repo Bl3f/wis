@@ -13,7 +13,8 @@ from django.shortcuts import redirect
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
-from web.apps.gallery.messages import ERROR_PERM,ERROR_AUTH,SUCCESS_AUTH,SUCCESS_LOGOUT,SUCCESS_GALLERY_CREATION, ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY
+from web.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION, \
+    ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -62,8 +63,8 @@ def gallery_home(request, user, gallery_slug):
         request.session[user + gallery_slug] = True
     else:
         context['isOwner'] = False
-      
-    if gallery.public == True:
+
+    if gallery.public:
         request.session[user + gallery_slug] = True
 
     context['canView'] = request.session[user + gallery_slug]
@@ -73,12 +74,12 @@ def gallery_home(request, user, gallery_slug):
 
         if request.POST['type'] == "edit":
             if user != owner:
-                messages.error(request,ERROR_PERM)
+                messages.error(request, ERROR_PERM)
             else:
                 # Editing gallery name
                 setattr(gallery, 'title', request.POST['gallery_name'])
                 gallery.save()
-        
+
                 # Editing image description and place
                 for input, val in request.POST.items():
                     if input.endswith(".desc"):
@@ -96,10 +97,10 @@ def gallery_home(request, user, gallery_slug):
         elif request.POST['type'] == "password":
             if request.POST['password'] == gallery.password:
                 request.session[user + gallery_slug] = True
-                messages.success(request,SUCCESS_ACCESS_GALLERY)
+                messages.success(request, SUCCESS_ACCESS_GALLERY)
             else:
-                messages.error(request,ERROR_ACCESS_GALLERY)
-        
+                messages.error(request, ERROR_ACCESS_GALLERY)
+
         return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
 
     return render(request, template_name, context)
@@ -147,7 +148,7 @@ def create_gallery(request):
                               owner=request.user,
                               place=data['place'])
         new_gallery.save()
-        messages.success(request,SUCCESS_GALLERY_CREATION)
+        messages.success(request, SUCCESS_GALLERY_CREATION)
         return redirect("/gallery/" + request.user.username)
     else:
         context['form'] = form
@@ -418,9 +419,8 @@ def ajax_upload(request):
             # response type
             response_type = "application/json"
 
-            for i in xrange(0,10000000):
+            for i in xrange(0, 10000000):
                 True
-
 
             # QUIRK HERE
             # in jQuey uploader, when it falls back to uploading using iFrames
