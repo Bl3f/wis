@@ -229,9 +229,14 @@ hr {
     margin-bottom: 40px;
 }
 
-#registerForm, #creationForm, #uploadForm {
+#registerForm, #creationForm, #uploadForm, #editForm {
     margin-top: 170px;
+    margin-bottom: 170px;
     text-align: center;
+}
+
+#editForm {
+    margin-top: 100px;
 }
 
 .overlay {
