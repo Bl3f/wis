@@ -15,9 +15,9 @@ function hideElement(div) {
 
     $("#id_public").on('change', function() {
             if ($(this).is(":checked")) {
-                $("#id_password").parent().hide();
+                $("#passwordContainer").hide();
             } else {
-                $("#id_password").parent().show();
+                $("#passwordContainer").show();
             }
     });
 

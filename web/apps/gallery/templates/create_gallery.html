@@ -7,7 +7,7 @@
         {% csrf_token %}
         {% for field in form %}
             {% if field.name == "password" %}
-                <div class="fieldContainer hidden">
+                <div class="fieldContainer hidden" id="passwordContainer">
                     <div class="label">
                         {{ field.label_tag }}
                     </div>
