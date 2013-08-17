@@ -7,8 +7,8 @@
     var CENTER_COLUMN = 'center_column';
 
     var SMALL_WIDTH = 240;
-    var MEDIUM_WIDTH = 595;
-    var LARGE_WIDTH = 750;
+    var MEDIUM_WIDTH = 493;
+    var LARGE_WIDTH = 746;
     var ESCAPE_MARGIN = 13;
     var STEP = 240 + ESCAPE_MARGIN;
 
