@@ -31,8 +31,12 @@ class Photo(models.Model):
     gallery = models.ForeignKey('Gallery', null=False)
     photo_hash = models.CharField(max_length=255)
 
+    @property
+    def can_expand(self):
+        return Image.open(self.large_path.path).size[0] > 493
+
     def save(self, *args, **kwargs):
-        dict_sizes = [0, 240, 595, 750]
+        dict_sizes = [0, 240, 493, 746]
 
         super(Photo, self).save(*args, **kwargs)
         path = self.large_path.path

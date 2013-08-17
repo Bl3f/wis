@@ -24,10 +24,12 @@
         <div id="center_column" class="column"></div>
         <div id="right_column" class="column"></div>
         {% for photo in photos %}
-            <a href="#" class="overlay">
+            <a href="#" class="overlay js-overlay">
                 <span class="vignette-description">{{ photo.description }}</span>
-                <span class="icon-resize-full icon-white vignette-expand"></span>
-                <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.large_path }}" src="" data-index="{{ forloop.counter }}"/>
+                {% if photo.can_expand %}
+                    <span class="icon-resize-full icon-white vignette-expand"></span>
+                {% endif %}
+                <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.medium_path }}" src="" data-index="{{ forloop.counter }}"/>
             </a>
         {% endfor %}
 {% else %}
