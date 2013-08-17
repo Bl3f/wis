@@ -20,7 +20,7 @@
         }
         for (var key in columns) {
             if (columns[key] == null) {continue;}
-            columns[key].find('a').each(function() {
+            columns[key].find('div.overlay').each(function() {
                 var this_line = ($(this).offset().top + $(this).height()) / 2
                 if (this_line > line) {
                     if (best[key] == null || (best[key].offset().top + best[key].height()) / 2 > this_line) {
@@ -33,7 +33,7 @@
             for (var key in best) {
                 if (best[key] == null) {
                     for (var alt_key in columns) {
-                        if (alt_key == key && columns[key] != null) {best[key] = columns[alt_key].find('a').last()}
+                        if (alt_key == key && columns[key] != null) {best[key] = columns[alt_key].find('div.overlay').last()}
                     }
                     continue;
                 }
@@ -88,8 +88,10 @@
             }, 500);
         }
 
+        image.css('cursor', 'pointer');
         image.unbind('click').bind('click', function(event) {
             event.preventDefault()
+
             $('html, body').animate({scrollTop: $(this).offset().top - 200}, 500);
             for (var key in best_down) {
                 var elt = best_down[key]
@@ -120,9 +122,13 @@
                 }
             });
 
-            $('#gallery a').unbind('click').bind('click', function(event) {
+            $('#gallery div.overlay').css('cursor', 'pointer')
+            $('#gallery div.overlay').unbind('click').bind('click', function(event) {
                 event.preventDefault()
-                  _this.display_picture($(this));
+
+                $('#gallery div.overlay').css('cursor', 'default')
+                $('#gallery div.overlay').unbind('click');
+                _this.display_picture($(this));
             })
         })
     }
@@ -140,9 +146,12 @@
         });
         _min.append(image.fadeIn(400));
 
+        image.css('cursor', 'pointer');
         image.unbind('click').bind('click', function(event) {
             event.preventDefault()
-            $('#gallery a').unbind('click');
+
+            $('#gallery div.overlay').css('cursor', 'default')
+            $('#gallery div.overlay').unbind('click');
             _this.display_picture($(this));
         });
     }
@@ -151,7 +160,7 @@
         var _this = this;
         var images = Array();
 
-        $('#gallery a img').each(function(index) {
+        $('#gallery div.overlay img').each(function(index) {
             var img = $(this).attr('src', $(this).attr('data-url')).load(function() {
                 if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
                     console.log('Broken image.')

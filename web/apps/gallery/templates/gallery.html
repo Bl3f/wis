@@ -24,13 +24,13 @@
         <div id="center_column" class="column"></div>
         <div id="right_column" class="column"></div>
         {% for photo in photos %}
-            <a href="#" class="overlay js-overlay">
+            <div class="overlay js-overlay">
                 <span class="vignette-description">{{ photo.description }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
                 {% endif %}
                 <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.medium_path }}" src="" data-index="{{ forloop.counter }}"/>
-            </a>
+            </div>
         {% endfor %}
 {% else %}
     Cette galerie est protégée par un mot de passe.
