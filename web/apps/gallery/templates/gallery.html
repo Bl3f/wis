@@ -25,7 +25,7 @@
         <div id="right_column" class="column"></div>
         {% for photo in photos %}
             <div class="overlay js-overlay">
-                <span class="vignette-description">{{ photo.description }}</span>
+                <span class="vignette-description">{{ photo.description|truncatechars:60 }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
                 {% endif %}

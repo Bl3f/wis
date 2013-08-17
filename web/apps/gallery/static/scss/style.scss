@@ -260,11 +260,11 @@ hr {
     span.vignette-description {
         @include transition(0.3s margin-left ease 0.2s);
         display: block;
-        width: 220px;
+        width: 195px;
         position: absolute;
         color: $background-color;
         font-family: Walkway-Expand, serif;
-        font-size: 1.3em;
+        font-size: 0.9em;
         margin-top: 40px;
         margin-left: 300px;
     }
