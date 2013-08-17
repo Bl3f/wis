@@ -10,7 +10,6 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.utils import simplejson
 
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
@@ -368,7 +367,7 @@ def ajax_upload(request):
                 # append error message
                 response_data["error"] = error
                 # generate json
-                response_data = simplejson.dumps([response_data])
+                response_data = json.dumps([response_data])
                 # return response to uploader with error
                 # so it can display error message
                 return HttpResponse(response_data, mimetype='application/json')
@@ -415,7 +414,7 @@ def ajax_upload(request):
             response_data["delete_type"] = "POST"
 
             # generate the json data
-            response_data = simplejson.dumps([response_data])
+            response_data = json.dumps([response_data])
             # response type
             response_type = "application/json"
 
@@ -456,7 +455,7 @@ def ajax_upload(request):
             # generate true json result
             # in this case is it a json True value
             # if true is not returned, the file will not be removed from the upload queue
-            response_data = simplejson.dumps(True)
+            response_data = json.dumps(True)
 
             # return the result data
             # here it always has to be json
