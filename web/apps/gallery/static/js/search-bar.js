@@ -131,7 +131,7 @@
     SearchBar.prototype.format_suggestions = function(gallery){
         var word = ' photo';
         if (gallery.count > 0) word += 's';
-        return '<p>' + gallery.name + ' - ' + gallery.count + word + '</p>';
+        return '<p>' + gallery.name + '<span class="badge">' + gallery.count + '</span></p>';
     }
 
     SearchBar.prototype.format_header = function(gallery) {
