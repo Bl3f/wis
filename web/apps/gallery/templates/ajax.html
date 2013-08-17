@@ -2,15 +2,9 @@
 
 {% block content %}
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+<section id="uploadForm">
+
+    <h2>Ajouter des images</h2>
 
     <!--
 
@@ -41,26 +35,25 @@
     <script src="/static/js/jquery.fileupload.js"></script>
     <script src="/static/js/jquery.fileupload-ui.js"></script>
 
-
+    <hr>
 
 <div id="fileupload">
     <form action="{% url "web.apps.gallery.views.ajax_upload" %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">
-                <span>Ajouter des images</span>
                 <input type="file" name="files[]" multiple>
             </label>
             <button type="submit" class="start">Envoyer tout</button>
             <button type="reset" class="cancel">Annuler tout</button>
-            <a href="{% url "web.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}">Retour à la galerie</a>
+            <a href="{% url "web.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
         </div>
     </form>
     <div class="fileupload-content">
         <table class="files"></table>
         <div class="fileupload-progressbar"></div>
+        </div>
     </div>
-</div>
 
 <script id="template-upload" type="text/x-jquery-tmpl">
     <tr class="template-upload{{ open_tv }}if error{{ close_tv }} ui-state-error{{ open_tv }}/if{{ close_tv }}">
@@ -82,6 +75,7 @@
         </td>
         <td class="start">
             <button>Envoyer</button>
+            <span id="loader"><img src="{{ STATIC_URL }}images/jumping-loader.gif" alt="Upload en cours ..." /></span>
         </td>
         {{ open_tv }}/if{{ close_tv }}
         <td class="cancel">
@@ -119,8 +113,7 @@
             {{ open_tv }}/if{{ close_tv }}
         </td>
         <td class="name">
-            <a href="${url}" {{ open_tv }}if thumbnail_url{{ close_tv }}
-               target="_blank"{{ open_tv }}/if{{ close_tv }}>${name}</a>
+            ${name}
         </td>
         <td class="size">${sizef}</td>
         <td colspan="2"></td>
@@ -169,4 +162,5 @@
 
         });
     </script>
+</section>
 {% endblock %}

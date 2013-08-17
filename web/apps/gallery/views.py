@@ -395,6 +395,10 @@ def ajax_upload(request):
             # response type
             response_type = "application/json"
 
+            for i in xrange(0,10000000):
+                True
+
+
             # QUIRK HERE
             # in jQuey uploader, when it falls back to uploading using iFrames
             # the response content type has to be text/html

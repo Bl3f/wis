@@ -4,8 +4,9 @@
 {% endblock %}
 
 {% block content %}
-
-<form class="formContainer" id="registerForm" method="post" action="{% url "apps.gallery.views.register" %}">
+<section id="registerForm">
+<h2>Inscription</h2>
+<form class="formContainer" method="post" action="{% url "apps.gallery.views.register" %}">
     {% csrf_token %}
     {% for field in form %}
         <div class="fieldContainer">
@@ -24,12 +25,12 @@
         </div>
     {% endfor %}
     <div id="submitButton"> 
-        <input type="submit" value="Create the account">
+        <input type="submit" value="Créer mon compte">
     </div>
 </form>
 
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/user_check.js"></script>
-
+</section>
 {% endblock %}
 

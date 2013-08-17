@@ -95,6 +95,7 @@
                         parseInt(100, 10)
                     );
                 }
+                document.getElementById("loader").style.display = "inline";
             },
             // Callback for successful uploads:
             done: function (e, data) {

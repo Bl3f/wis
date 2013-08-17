@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <br />
-    <br />
-    <br />
-    <br />
-    <form method="post" action="{% url "apps.gallery.views.create_gallery" %}">
+<section id="creationForm">
+    <h2>Création d'une galerie</h2>
+    <form class="formContainer" method="post" action="{% url "apps.gallery.views.create_gallery" %}">
         {% csrf_token %}
-        {{ form.as_p }} 
-        <input type="submit" value="Créer">
+        {% for field in form %}
+            <div class="fieldContainer">
+                <div class="label">
+                    {{ field.label }} 
+                </div>
+                <div class="field" id="{{ field.name }}Field">
+                    {{ field }}
+                    <div class="help-block">
+                        {{ field.errors }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div id="submitButton"> 
+            <input type="submit" value="Créer">
+        </div>
     </form>
 {% endblock %}
