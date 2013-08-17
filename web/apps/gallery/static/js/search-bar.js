@@ -11,7 +11,7 @@
 
     var SearchBar = function(element, options) {
         this.element = element;
-        this.limit = element.attr('data-items');
+        this.limit = Infinity;
         this.galleries = [];
 
         var data = JSON.parse(element.attr('data-dict'));
@@ -86,7 +86,19 @@
 
         for (var i = 0; i < galleries.length; i++) {
             if (galleries[i].name.toLowerCase().match(re)) {
-                matching.push(galleries[i]);
+                if (matching.indexOf(galleries[i]) == -1) {
+                    matching.push(galleries[i]);
+                }
+                if (owners.indexOf(galleries[i].owner) == -1) {
+                    owners.push(galleries[i].owner);
+                }
+            }
+            if (galleries[i].owner.toLowerCase().match(re)) {
+                for (var j = 0; j < galleries.length; j++) {
+                    if (galleries[j].owner == galleries[i].owner && matching.indexOf(galleries[j]) == -1) {
+                        matching.push(galleries[j]);
+                    }
+                }
                 if (owners.indexOf(galleries[i].owner) == -1) {
                     owners.push(galleries[i].owner);
                 }
@@ -138,6 +150,8 @@
         }
         active.removeClass('active');
         items.eq(index).addClass('active');
+        this.dropdown.get(0).scrollTop = items.eq(index).position().top - this.dropdown.offset().top - 46;
+
         this.display_hint(this.get_active());
     }
 
@@ -155,6 +169,7 @@
         }
         active.removeClass('active');
         items.eq(index).addClass('active');
+        this.dropdown.get(0).scrollTop = items.eq(index).position().top - this.dropdown.offset().top + 46;
         this.display_hint(this.get_active());
     }
 
