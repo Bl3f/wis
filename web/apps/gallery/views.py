@@ -31,6 +31,8 @@ def edit_descriptions(request):
     template_name = "edit_descriptions.html"
 
     gallery_slug = request.session['gallery']
+    context['gallery_owner'] = request.user
+    context["gallery_slug"] = gallery_slug
     context["photos"] = Photo.objects.filter(gallery=Gallery.objects.get(owner=User.objects.get(
         username=request.session["gallery_owner"]),
         slug_name=gallery_slug))
@@ -47,6 +49,11 @@ def gallery_home(request, user, gallery_slug):
 
     owner = User.objects.get(username=user)
     gallery = Gallery.objects.get(slug_name=gallery_slug, owner=owner)
+
+    context["gallery"] = gallery
+    context['gallery_owner'] = user
+    context["gallery_slug"] = request.session['gallery']
+    context["photos"] = Photo.objects.filter(gallery=gallery)
 
     if owner == request.user:
         context['isOwner'] = True
@@ -65,20 +72,17 @@ def gallery_home(request, user, gallery_slug):
             if input.endswith(".desc"):
                 photo_id = input.replace(".desc", "")
                 photo = Photo.objects.get(pk=photo_id)
-                setattr(photo, 'description', val)
-                photo.save()
+                if photo.description != val:
+                    setattr(photo, 'description', val)
+                    photo.save()
             elif input.endswith(".place"):
                 photo_id = input.replace(".place", "")
                 photo = Photo.objects.get(pk=photo_id)
-                setattr(photo, 'place', val)
-                photo.save()
+                if photo.place != val:
+                    setattr(photo, 'place', val)
+                    photo.save()
 
         return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
-
-    context["gallery"] = gallery
-    context['gallery_owner'] = user
-    context["gallery_slug"] = request.session['gallery']
-    context["photos"] = Photo.objects.filter(gallery=gallery)
 
     return render(request, template_name, context)
 
