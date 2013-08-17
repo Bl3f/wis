@@ -37,7 +37,7 @@
                     }
                     continue;
                 }
-                best[key] = best[key].prev();
+                best[key] = best[key].prev().length > 0 ? best[key].prev() : null;
             }
         }
         return best;
