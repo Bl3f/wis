@@ -250,7 +250,7 @@ hr {
 
 .overlay {
     position: relative;
-    display: inline-block;
+    display: block;
     margin-bottom: 13px;
     overflow: hidden;
 
@@ -281,6 +281,7 @@ hr {
         margin-bottom: -3px;
         position: relative;
         z-index: -1;
+        display: block;
     }
     .vignette-expand {
         display: none;

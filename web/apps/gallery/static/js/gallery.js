@@ -132,7 +132,7 @@
                 var elt = best_down[key];
                 if (elt == null){continue;}
                 elt.animate({
-                    marginTop: height + ESCAPE_MARGIN
+                    marginTop: height + ESCAPE_MARGIN * 2
                 },{
                     duration:500,
                     complete: function() {
