@@ -117,8 +117,8 @@
                 }
             });
 
-            $('#gallery div.overlay').css('cursor', 'pointer')
-            $('#gallery div.overlay').unbind('click').bind('click', function(event) {
+            $('#gallery div.overlay.expandable').css('cursor', 'pointer')
+            $('#gallery div.overlay.expandable').unbind('click').bind('click', function(event) {
                 event.preventDefault()
 
                 $('#gallery div.overlay').css('cursor', 'default')
@@ -141,14 +141,16 @@
         });
         _min.append(image.fadeIn(400));
 
-        image.css('cursor', 'pointer');
-        image.unbind('click').bind('click', function(event) {
-            event.preventDefault()
+        if (image.find('.vignette-expand').length > 0) {
+            image.css('cursor', 'pointer');
+            image.unbind('click').bind('click', function(event) {
+                event.preventDefault()
 
-            $('#gallery div.overlay').css('cursor', 'default')
-            $('#gallery div.overlay').unbind('click');
-            _this.display_picture($(this));
-        });
+                $('#gallery div.overlay').css('cursor', 'default')
+                $('#gallery div.overlay').unbind('click');
+                _this.display_picture($(this));
+            });
+        }
     }
 
     $.fn.gallery_init = function() {
