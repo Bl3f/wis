@@ -237,7 +237,7 @@ hr {
     margin-top: 130px;
     margin-bottom: 170px;
     text-align: center;
-    width: 550px;
+    width: 800px;
 
     h2 {
         padding-bottom: 40px;
@@ -468,7 +468,7 @@ form {
 .formContainer {
     display: block;
 
-    width: 550px;
+    width: 100%;
     text-align: left;
     margin: auto;
     margin-top: 40px;
@@ -486,7 +486,7 @@ form {
 
     .label {
         display: inline-block;
-        width: 250px;
+        width: 45%;
         margin-right: 10px;
         text-align: right;
     }
@@ -507,6 +507,7 @@ form {
 
 .help-block {
     display: inline-block;
+    font-size: 0.6em;
 }
 
 /* Get an error */
@@ -646,4 +647,9 @@ form {
     background-color: #CCCCCC;
     border-radius: 10px;
     margin: -3px 0 0 5px;
+}
+
+
+table {
+    margin: auto;
 }

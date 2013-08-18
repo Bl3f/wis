@@ -23,17 +23,17 @@
                     <div class="label">
                         {{ field.label }} 
                     </div>
-                    <div class="field" id="{{ field.name }}Field">
-                       {{ field }}
-                        <div class="help-block">
-                            {{ field.errors }}
+                    <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
+                           {{ field }}
+                            <div class="help-block">
+                                {{ field.errors.as_text }}
+                            </div>
                         </div>
-                    </div>
                 </div>
             {% endif %}
         {% endfor %}
         <div id="submitButton"> 
-            <input type="submit" value="Créer">
+            <input type="submit" value="Créer ma galerie">
         </div>
     </form>
 {% endblock %}

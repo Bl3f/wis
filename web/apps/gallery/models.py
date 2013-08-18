@@ -91,12 +91,12 @@ class GalleryManager(models.Manager):
 
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
     slug_name = models.SlugField(max_length=255)
     public = models.BooleanField(default=True)
     password = models.CharField(max_length=255, default="", blank=True)
     owner = models.ForeignKey(User, null=False)
-    place = models.CharField(max_length=255, null=True)
+    place = models.CharField(max_length=255, blank=True, null=True)
     created = models.DateField(null=True)
     objects = GalleryManager()
 

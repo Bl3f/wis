@@ -45,6 +45,18 @@ class UploadImage(forms.Form):
 
 
 class GalleryForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.base_fields['title'].label = "Titre"
+        self.base_fields['title'].widget = forms.TextInput(attrs={'placeholder': "Champ obligatoire"})
+        self.base_fields['description'].label = "Description"
+        self.base_fields['description'].widget = forms.TextInput(attrs={'placeholder': "Champ facultatif"})
+        self.base_fields['place'].label = "Lieu"
+        self.base_fields['place'].widget = forms.TextInput(attrs={'placeholder': "Champ facultatif"})
+        self.base_fields['public'].label = "Publique ?"
+        self.base_fields['password'].label = "Mot de passe"
+        super(GalleryForm, self).__init__(*args, **kwargs)
+
     class Meta:
         model = Gallery
         fields = ['title', 'description', 'place', 'public', 'password']

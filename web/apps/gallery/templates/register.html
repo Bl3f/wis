@@ -13,13 +13,13 @@
             <div class="label">
                 {{ field.label }} 
             </div>
-            <div class="field" id="{{ field.name }}Field">
+            <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
                 {{ field }}
                 {% if field.name == "username" %}
                     <span id="loader"><img src="{{ STATIC_URL }}images/infinity-loader.gif" alt="Vérification ..." /></span>
                 {% endif %}
                 <div class="help-block">
-                    {{ field.errors }}
+                    {{ field.errors.as_text }}
                 </div>
             </div>
         </div>

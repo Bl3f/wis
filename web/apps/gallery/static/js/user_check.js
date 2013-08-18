@@ -56,7 +56,7 @@
         if (data === "False") {
             $("#" + field).removeClass("has-success");
             $("#" + field).addClass("has-error");
-            $("#" + field + "> div.help-block").html("Ce pseudo est déjà utilisé.");
+            $("#" + field + "> div.help-block").html("* Ce pseudo est déjà utilisé.");
         } else {
             $("#" + field).removeClass("has-error");
             $("#" + field).addClass("has-success");
