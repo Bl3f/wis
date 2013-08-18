@@ -14,7 +14,7 @@ from django.shortcuts import redirect
 from web.apps.gallery.models import *
 from web.apps.gallery.forms import *
 from web.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION, \
-    ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY
+    ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY, SUCCESS_EDIT
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -73,7 +73,7 @@ def gallery_home(request, user, gallery_slug):
     if request.method == "POST":
 
         if request.POST['type'] == "edit":
-            if user != owner:
+            if request.user != owner:
                 messages.error(request, ERROR_PERM)
             else:
                 # Editing gallery name
@@ -94,6 +94,7 @@ def gallery_home(request, user, gallery_slug):
                         if photo.place != val:
                             setattr(photo, 'place', val)
                             photo.save()
+                messages.success(request, SUCCESS_EDIT)
         elif request.POST['type'] == "password":
             if request.POST['password'] == gallery.password:
                 request.session[user + gallery_slug] = True
