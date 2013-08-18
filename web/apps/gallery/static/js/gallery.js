@@ -43,7 +43,55 @@
         return best;
     }
 
-    $.fn.display_picture= function(image) {
+    $.fn.reduce_picture = function(image, old_width, old_height, best_down, best_up) {
+        var _this = this
+        var image_container = image.find('.vignette');
+
+        image.css('cursor', 'pointer');
+        image.unbind('click').bind('click', function(event) {
+            event.preventDefault()
+
+            $('html, body').animate({scrollTop: $(this).offset().top - 200}, 500);
+            image_container.animate({
+                width: old_width,
+                height: old_height,
+                zIndex: -1,
+                marginLeft: 0
+            },
+            {
+                duration: 500,
+                complete: function() {
+                    image.find('.vignette-description').show()
+                    image.addClass('js-overlay');
+                    image.css('overflow', 'hidden');
+                    for (var key in best_down) {
+                    var elt = best_down[key]
+                    if (elt == null){continue;}
+                        elt.animate({
+                            marginTop: 0
+                        },500);
+                    }
+                    for (var key in best_up) {
+                        var elt = best_up[key]
+                        if (elt == null){continue;}
+                        elt.parents('.column').children().first().animate({
+                            marginTop: 0
+                        }, 500);
+                    }
+                    $('#gallery div.overlay.expandable').css('cursor', 'pointer')
+                    $('#gallery div.overlay.expandable').unbind('click').bind('click', function(event) {
+                        event.preventDefault()
+
+                        $('#gallery div.overlay').css('cursor', 'default')
+                        $('#gallery div.overlay').unbind('click');
+                        _this.display_picture($(this));
+                    })
+                }
+            });
+        })
+    }
+
+    $.fn.display_picture = function(image) {
         var _this = this;
         var image_container = image.find('.vignette');
         var width = parseInt(image_container.attr('data-width')), height = parseInt(image_container.attr('data-height'));
@@ -80,52 +128,24 @@
             image_container.css('z-index', 512);
             $('html, body').animate({scrollTop: image_container.offset().top - 200}, 500);
             for (var key in best_up) {var elt = best_up[key];if (elt == null){continue;}elt.parents('.column').children().first().animate({marginTop: -(elt.offset().top + elt.height() - old_position.top + ESCAPE_MARGIN)},500);}
-            for (var key in best_down) {var elt = best_down[key];if (elt == null){continue;}elt.animate({marginTop: height + ESCAPE_MARGIN},{duration:500, complete: function() {image_container.animate({width: width,height: height,marginLeft: margin_left}, 500);}});}
-        }
-
-        image.css('cursor', 'pointer');
-        image.unbind('click').bind('click', function(event) {
-            event.preventDefault()
-
-            $('html, body').animate({scrollTop: $(this).offset().top - 200}, 500);
-            image_container.animate({
-                width: old_width,
-                height: old_height,
-                zIndex: -1,
-                marginLeft: 0
-            },
-            {
-                duration: 500,
-                complete: function() {
-                    image.find('.vignette-description').show()
-                    image.addClass('js-overlay');
-                    image.css('overflow', 'hidden');
-                    for (var key in best_down) {
-                    var elt = best_down[key]
-                    if (elt == null){continue;}
-                        elt.animate({
-                            marginTop: 0
-                        },500);
-                    }
-                    for (var key in best_up) {
-                        var elt = best_up[key]
-                        if (elt == null){continue;}
-                        elt.parents('.column').children().first().animate({
-                            marginTop: 0
+            for (var key in best_down) {
+                var elt = best_down[key];
+                if (elt == null){continue;}
+                elt.animate({
+                    marginTop: height + ESCAPE_MARGIN
+                },{
+                    duration:500,
+                    complete: function() {
+                        image_container.animate({
+                            width: width,
+                            height: height,
+                            marginLeft: margin_left
                         }, 500);
+                        _this.reduce_picture(image, old_width, old_height, best_down, best_up)
                     }
-                }
-            });
-
-            $('#gallery div.overlay.expandable').css('cursor', 'pointer')
-            $('#gallery div.overlay.expandable').unbind('click').bind('click', function(event) {
-                event.preventDefault()
-
-                $('#gallery div.overlay').css('cursor', 'default')
-                $('#gallery div.overlay').unbind('click');
-                _this.display_picture($(this));
-            })
-        })
+                });
+            }
+        }
     }
 
     $.fn.add_picture = function(image) {
