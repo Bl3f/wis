@@ -88,9 +88,9 @@
   model: gallery.photo
   pk: 2
 - fields: {created: null, description: "Le onze de d\xE9part de l'OM : Mandanda -\
-      \ Fanni", gallery: 1, large_path: pic/test/large/d9e5055e49-large.jpg, medium_path: pic/test/medium/d9e5055e49-medium.jpg,
-    owner: 2, photo_hash: d9e5055e49edb0a169492e4ad4f8e923747ff3d62af38c1e57a0b5b7cd9ff1b2994c8b03e6f5e94c334f6f46c2d73ae4f1c4588e807f54d745a7d598bb074059,
-    place: Marseille, small_path: pic/test/small/d9e5055e49-small.jpg, uploaded: !!timestamp '2013-07-31
+      \ Fanni", gallery: 1, large_path: pic/test/large/338c5d8a2b-large.jpg, medium_path: pic/test/medium/338c5d8a2b-medium.jpg,
+    owner: 2, photo_hash: 338c5d8a2b,
+    place: Marseille, small_path: pic/test/small/338c5d8a2b-small.jpg, uploaded: !!timestamp '2013-07-31
       18:46:30.070481+00:00'}
   model: gallery.photo
   pk: 3
