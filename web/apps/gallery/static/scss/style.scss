@@ -289,6 +289,24 @@ hr {
         right: 10px;
         bottom: 10px;
     }
+    .delete-photo {
+        position: absolute;
+        z-index: 4096;
+        font-size: 1.5em;
+        color: #FFF;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 300;
+        text-align: right;
+        width: 240px;
+        right: 10px;
+        display: none;
+    }
+    &:hover {
+        .delete-photo {
+            display: block;
+        }
+    }
 }
 .js-overlay {
     &:hover {

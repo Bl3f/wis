@@ -25,6 +25,9 @@
         <div id="right_column" class="column"></div>
         {% for photo in photos %}
             <div class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
+                {% if user == photo.owner %}
+                    <a data-toggle="modal" href="{% url "delete" obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
+                {% endif %}
                 <span class="vignette-description">{{ photo.description|truncatechars:60 }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
@@ -42,11 +45,13 @@
     </form>
 {% endif %}
 </section>
-{% endblock %}
+{% include "partials/_modal.html" with id="popinDelete" title="Supprimer cette image" apply="Supprimer" cancel="Annuler" message="Êtes-vous sûr de vouloir supprimer cette image ?" %}
 
+{% endblock %}
 
 
 {% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/modal.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/gallery.js"></script>
 {% endblock %}
