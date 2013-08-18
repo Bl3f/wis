@@ -80,12 +80,7 @@
             image_container.css('z-index', 512);
             $('html, body').animate({scrollTop: image_container.offset().top - 200}, 500);
             for (var key in best_up) {var elt = best_up[key];if (elt == null){continue;}elt.parents('.column').children().first().animate({marginTop: -(elt.offset().top + elt.height() - old_position.top + ESCAPE_MARGIN)},500);}
-            for (var key in best_down) {var elt = best_down[key];if (elt == null){continue;}elt.animate({marginTop: height + ESCAPE_MARGIN},500);}
-            image_container.animate({
-                width: width,
-                height: height,
-                marginLeft: margin_left
-            }, 500);
+            for (var key in best_down) {var elt = best_down[key];if (elt == null){continue;}elt.animate({marginTop: height + ESCAPE_MARGIN},{duration:500, complete: function() {image_container.animate({width: width,height: height,marginLeft: margin_left}, 500);}});}
         }
 
         image.css('cursor', 'pointer');
@@ -93,20 +88,6 @@
             event.preventDefault()
 
             $('html, body').animate({scrollTop: $(this).offset().top - 200}, 500);
-            for (var key in best_down) {
-                var elt = best_down[key]
-                if (elt == null){continue;}
-                elt.animate({
-                    marginTop: 0
-                }, 500);
-            }
-            for (var key in best_up) {
-                var elt = best_up[key]
-                if (elt == null){continue;}
-                elt.parents('.column').children().first().animate({
-                    marginTop: 0
-                }, 500);
-            }
             image_container.animate({
                 width: old_width,
                 height: old_height,
@@ -119,6 +100,20 @@
                     image.find('.vignette-description').show()
                     image.addClass('js-overlay');
                     image.css('overflow', 'hidden');
+                    for (var key in best_down) {
+                    var elt = best_down[key]
+                    if (elt == null){continue;}
+                        elt.animate({
+                            marginTop: 0
+                        },500);
+                    }
+                    for (var key in best_up) {
+                        var elt = best_up[key]
+                        if (elt == null){continue;}
+                        elt.parents('.column').children().first().animate({
+                            marginTop: 0
+                        }, 500);
+                    }
                 }
             });
 
