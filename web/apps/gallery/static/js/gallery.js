@@ -61,6 +61,7 @@
             {
                 duration: 500,
                 complete: function() {
+                    image.find('.delete-photo').show();
                     image.find('.vignette-description').show()
                     image.addClass('js-overlay');
                     image.css('overflow', 'hidden');
@@ -123,6 +124,7 @@
         if (parseInt(width) > 240) {
             image.removeClass('js-overlay')
             image.css('overflow', 'visible');
+            image.find('.delete-photo').hide();
             image.find('.vignette-description').hide()
 
             image_container.css('z-index', 512);
@@ -160,10 +162,10 @@
         var _this = this;
         var _min = null;
         $('#gallery .column').each(function() {
-            var heigth = $(this).height();
-            if (heigth == 0) {
+            var height = $(this).height();
+            if (height == 0) {
                 _min = $(this);
-            } else if (_min == null || heigth < _min.height() ) {
+            } else if (_min == null || height < _min.height() ) {
                 _min = $(this);
             }
         });
@@ -196,6 +198,32 @@
             });
             _this.add_picture($(this).append(img).parent().hide())
         });
+
+        $('.delete-photo').on('click', function(event) {
+            var url = $(this).attr('href');
+            var image = $(this).parent()
+            event.preventDefault();
+            event.stopPropagation();
+
+            $('#popinDelete .validate').unbind('click').on('click', function() {
+                $('#popinDelete').modal('hide');
+
+                $.ajax({
+                    url:url,
+                    type: "GET",
+                    success:function(data){
+                        image.fadeOut(400, function() {
+                            $(this).remove();
+                        });
+                    },
+                    error:function (xhr, textStatus, thrownError){
+                        console.log('error');
+                    }
+                });
+            })
+
+            $('#popinDelete').modal('toggle');
+        })
     }
 
     $(this).gallery_init()
