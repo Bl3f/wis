@@ -145,6 +145,14 @@
                     }
                 });
             }
+            if (best_down.left_column == null && best_down.center_column == null && best_down.right_column == null) {
+                image_container.animate({
+                    width: width,
+                    height: height,
+                    marginLeft: margin_left
+                }, 500);
+                _this.reduce_picture(image, old_width, old_height, best_down, best_up)
+            }
         }
     }
 

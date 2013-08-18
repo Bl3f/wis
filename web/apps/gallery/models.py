@@ -33,7 +33,8 @@ class Photo(models.Model):
 
     @property
     def can_expand(self):
-        return Image.open(self.large_path.path).size[0] > 493
+        width, height = Image.open(self.large_path.path).size
+        return width > 493 and width > height
 
     def save(self, *args, **kwargs):
         dict_sizes = [0, 240, 493, 746]
