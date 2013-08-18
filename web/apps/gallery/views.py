@@ -1,5 +1,6 @@
 import json
 import os
+from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
@@ -38,6 +39,14 @@ def edit_descriptions(request):
         slug_name=gallery_slug))
 
     return render(request, template_name, context)
+
+
+def delete_obj(request, obj_type, obj_id):
+    if ContentType.objects.get(model=obj_type) == ContentType.objects.get_for_model(Photo):
+        photo = Photo.objects.get(pk=obj_id)
+        photo.remove()
+
+    return HttpResponse('')
 
 
 def gallery_home(request, user, gallery_slug):

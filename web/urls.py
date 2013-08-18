@@ -34,6 +34,10 @@ urlpatterns = patterns('',
                        # Edit photos description
                        url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
 
+                       # Delete a picture
+                       url(r'^delete/(?P<obj_type>[-A-Za-z0-9_]+)/(?P<obj_id>[-A-Za-z0-9_]+)$',
+                           'web.apps.gallery.views.delete_obj', name="delete"),
+
                        # Check username availability view
                        url(r'^checkUser/(?P<username>(.+))$$', "web.apps.gallery.views.check_user_availability"),
 

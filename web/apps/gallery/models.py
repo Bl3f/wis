@@ -1,11 +1,10 @@
 import time
 import hashlib
 from PIL import Image
-from django import forms
 from django.db import models
 from django.contrib.auth.models import User
 from web.apps.gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
-    MEDIUM_WIDTH, MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
+    MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
 from web.utils.slug import unique_slugify
 
 
@@ -73,6 +72,10 @@ class Photo(models.Model):
                             (image_height - SMALL_HEIGHT) / 2 + SMALL_HEIGHT))
         image.save('/'.join([abs_path, self.small_path]))
 
+        super(Photo, self).save(*args, **kwargs)
+
+    def remove(self, *args, **kwargs):
+        self.gallery = Gallery.objects.get(pk=1)
         super(Photo, self).save(*args, **kwargs)
 
 
