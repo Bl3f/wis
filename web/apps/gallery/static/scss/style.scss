@@ -231,14 +231,20 @@ hr {
     margin-bottom: 40px;
 }
 
-#registerForm, #creationForm, #uploadForm, #editForm {
-    margin-top: 170px;
+#registerForm, #creationForm, #uploadForm, #editForm, #galleries {
+    margin: auto;
+    margin-top: 130px;
     margin-bottom: 170px;
     text-align: center;
-}
+    width: 550px;
 
-#editForm {
-    margin-top: 100px;
+    h2 {
+        padding-bottom: 40px;
+
+        border-style: solid;
+        border-color: $main-color; 
+        border-width: 0px 0px 1px 0px;
+    }
 }
 
 .overlay {
@@ -463,12 +469,7 @@ form {
     width: 550px;
     text-align: left;
     margin: auto;
-    margin-top: 20px;
-    padding-top: 40px;
-
-    border-style: solid;
-    border-color: $main-color; 
-    border-width: 1px 0px 0px 0px;
+    margin-top: 40px;
 
     .field {
         display: inline-block;
@@ -539,10 +540,6 @@ form {
 }
 
 #galleries {
-    width: 600px;
-    height: 100px;
-    margin: auto;
-    margin-top: 100px;
 
     a {
         text-decoration: none;
@@ -573,6 +570,7 @@ form {
             margin-left: 30px;
 
             .gName {
+                font-family: Walkway;
                 margin-top: 5px;
                 padding-right: 10px;
                 vertical-align: top;
@@ -586,8 +584,9 @@ form {
             }
 
             .gDesc {
-                font-family: "Helvetica Neue";
                 font-style: italic;
+                text-align: left;
+                padding-left: 10px;
             }
 
         }

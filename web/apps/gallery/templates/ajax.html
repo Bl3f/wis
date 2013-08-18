@@ -35,8 +35,6 @@
     <script src="/static/js/jquery.fileupload.js"></script>
     <script src="/static/js/jquery.fileupload-ui.js"></script>
 
-    <hr>
-
 <div id="fileupload">
     <form action="{% url "web.apps.gallery.views.ajax_upload" %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
