@@ -7,3 +7,4 @@ web/apps/gallery/static/generated/*
 .DS_Store
 data/upload/
 bin/git/hooks/pre-commit.py
+static/
