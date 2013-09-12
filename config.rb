@@ -2,10 +2,10 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "web/apps/gallery/static/generated/css"
-sass_dir = "web/apps/gallery/static/scss"
-images_dir = "web/apps/gallery/static/images"
-javascripts_dir = "web/apps/gallery/static/js"
+css_dir = "wis/apps/gallery/static/generated/css"
+sass_dir = "wis/apps/gallery/static/scss"
+images_dir = "wis/apps/gallery/static/images"
+javascripts_dir = "wis/apps/gallery/static/js"
 fonts_dir = "static/fonts/"
 
 
@@ -23,4 +23,4 @@ fonts_dir = "static/fonts/"
 # project again passing --syntax sass, or you can uncomment this:
 # preferred_syntax = :sass
 # and then run:
-# sass-convert -R --from scss --to sass web/apps/gallery/static/scss scss && rm -rf sass && mv scss sass
+# sass-convert -R --from scss --to sass wis/apps/gallery/static/scss scss && rm -rf sass && mv scss sass

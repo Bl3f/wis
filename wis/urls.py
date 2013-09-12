@@ -7,43 +7,43 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', 'web.apps.gallery.views.home'),
-                       url(r'^gallery/', include('web.apps.gallery.urls')),
+                       url(r'^$', 'wis.apps.gallery.views.home'),
+                       url(r'^gallery/', include('wis.apps.gallery.urls')),
 
                        # Register view
-                       url(r'^register', "web.apps.gallery.views.register"),
+                       url(r'^register', "wis.apps.gallery.views.register"),
 
                        # Search view
-                       url(r'^search$', "web.apps.gallery.views.search"),
+                       url(r'^search$', "wis.apps.gallery.views.search"),
 
                        # Login view
-                       url(r'^login$', "web.apps.gallery.views.auth"),
+                       url(r'^login$', "wis.apps.gallery.views.auth"),
 
                        # Logout view
-                       url(r'^logout$', "web.apps.gallery.views.sign_out"),
+                       url(r'^logout$', "wis.apps.gallery.views.sign_out"),
 
                        # Upload view
-                       # url(r'^upload$', "web.apps.gallery.views.upload"),
+                       # url(r'^upload$', "wis.apps.gallery.views.upload"),
 
                        # Creation of a new gallery view
-                       url(r'^creation$', "web.apps.gallery.views.create_gallery"),
+                       url(r'^creation$', "wis.apps.gallery.views.create_gallery"),
 
                        # For the Django Jquery Upload
-                       url(r'^upload$', 'web.apps.gallery.views.ajax_upload'),
+                       url(r'^upload$', 'wis.apps.gallery.views.ajax_upload'),
 
                        # Edit photos description
-                       url(r'^edit$', 'web.apps.gallery.views.edit_descriptions'),
+                       url(r'^edit$', 'wis.apps.gallery.views.edit_descriptions'),
 
                        # Delete a picture
                        url(r'^delete/(?P<obj_type>[-A-Za-z0-9_]+)/(?P<obj_id>[-A-Za-z0-9_]+)$',
-                           'web.apps.gallery.views.delete_obj', name="delete"),
+                           'wis.apps.gallery.views.delete_obj', name="delete"),
 
                        # Check username availability view
-                       url(r'^checkUser/(?P<username>(.+))$$', "web.apps.gallery.views.check_user_availability"),
+                       url(r'^checkUser/(?P<username>(.+))$$', "wis.apps.gallery.views.check_user_availability"),
 
                        # Examples:
-                       # url(r'^$', 'web.views.home', name='home'),
-                       # url(r'^web/', include('web.foo.urls')),
+                       # url(r'^$', 'wis.views.home', name='home'),
+                       # url(r'^wis/', include('wis.foo.urls')),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -1,5 +1,5 @@
-web/settings.py
-web/apps/gallery/static/generated/*
+wis/settings.py
+wis/apps/gallery/static/generated/*
 *.pyc
 *.swp
 .idea/

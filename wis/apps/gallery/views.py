@@ -12,9 +12,9 @@ from django.contrib.auth import logout
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from web.apps.gallery.models import *
-from web.apps.gallery.forms import *
-from web.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION, \
+from wis.apps.gallery.models import *
+from wis.apps.gallery.forms import *
+from wis.apps.gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION, \
     ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY, SUCCESS_EDIT
 
 context = dict()
@@ -111,7 +111,7 @@ def gallery_home(request, user, gallery_slug):
             else:
                 messages.error(request, ERROR_ACCESS_GALLERY)
 
-        return redirect("web.apps.gallery.views.gallery_home", user, gallery.slug_name)
+        return redirect("wis.apps.gallery.views.gallery_home", user, gallery.slug_name)
 
     return render(request, template_name, context)
 

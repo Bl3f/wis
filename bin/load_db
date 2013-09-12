@@ -1,7 +1,7 @@
-DATABASE_NAME=`python -c "import web.settings;print web.settings.DATABASES['default']['NAME']"`
-DATABASE_USER=`python -c "import web.settings;print web.settings.DATABASES['default']['USER']"`
-DATABASE_PASSWORD=`python -c "import web.settings;print web.settings.DATABASES['default']['PASSWORD']"`
-DATABASE_ENGINE=`python -c "import web.settings;print web.settings.DATABASES['default']['ENGINE']"`
+DATABASE_NAME=`python -c "import wis.settings;print wis.settings.DATABASES['default']['NAME']"`
+DATABASE_USER=`python -c "import wis.settings;print wis.settings.DATABASES['default']['USER']"`
+DATABASE_PASSWORD=`python -c "import wis.settings;print wis.settings.DATABASES['default']['PASSWORD']"`
+DATABASE_ENGINE=`python -c "import wis.settings;print wis.settings.DATABASES['default']['ENGINE']"`
 
 if [ "$DATABASE_ENGINE" = 'django.db.backends.postgresql_psycopg2' ]
 then

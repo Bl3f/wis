@@ -8,7 +8,7 @@
     {% endif %}
     
     {% for gallery in galleries %}
-            <a href="{% url "web.apps.gallery.views.gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
+            <a href="{% url "wis.apps.gallery.views.gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
                 <img src="{{ STATIC_URL }}images/gallery_bg.jpg" height="100px" alt="Gallery Cover">
                 <div class="gMeta">
                     <div class="gName">{{ gallery.title }}</div>

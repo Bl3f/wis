@@ -3,9 +3,9 @@ import hashlib
 from PIL import Image
 from django.db import models
 from django.contrib.auth.models import User
-from web.apps.gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
+from wis.apps.gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
     MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
-from web.utils.slug import unique_slugify
+from wis.utils.slug import unique_slugify
 
 
 def content_file_name(instance, filename):

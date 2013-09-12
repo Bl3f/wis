@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
-from web.apps.gallery.models import Image, Gallery
+from wis.apps.gallery.models import Image, Gallery
 
 
 class SearchForm(forms.Form):
