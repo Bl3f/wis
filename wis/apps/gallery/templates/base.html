@@ -18,22 +18,22 @@
         {% block header %}
         {% block logo %}
         <div id="logo"> 
-            <a href="{% url "apps.gallery.views.home" %}">WIS</a>
+            <a href="{% url "wis_home" %}">WIS</a>
         </div>
         {% endblock %}
 
         {% block topRight %}
         {% if user.is_authenticated %}
             <div id="userId"> 
-                <a href="{% url "apps.gallery.views.user_galleries" user.username %}">{{ user.username }}</a>
+                <a href="{% url "wis_user_gallery" user.username %}">{{ user.username }}</a>
             </div>
 
             <div id="signOut">
-                <a href=" {% url "apps.gallery.views.sign_out" %}">Se déconnecter</a>
+                <a href=" {% url "wis_logout" %}">Se déconnecter</a>
             </div>
         {% else %}
             <div id="register"> 
-                <a href="{% url "apps.gallery.views.register" %}">S'inscrire</a>
+                <a href="{% url "wis_register" %}">S'inscrire</a>
             </div>
 
             {% block authForm %}
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="back">
-                        <form id="login" class="inline" method="POST" action="{% url "apps.gallery.views.auth" %}">
+                        <form id="login" class="inline" method="POST" action="{% url "wis_login" %}">
                             {% csrf_token %}
                             {{ loginForm.as_p }}
                             <input type="submit" id="validate" value="Go!" /> 

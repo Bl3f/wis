@@ -7,10 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.contrib.auth import login, logout
+from django.shortcuts import render, redirect
 
 from wis.apps.gallery.models import *
 from wis.apps.gallery.forms import *
@@ -111,7 +109,7 @@ def gallery_home(request, user, gallery_slug):
             else:
                 messages.error(request, ERROR_ACCESS_GALLERY)
 
-        return redirect("wis.apps.gallery.views.gallery_home", user, gallery.slug_name)
+        return redirect("wis_gallery_home", user, gallery.slug_name)
 
     return render(request, template_name, context)
 
@@ -192,11 +190,7 @@ def auth(request):
         return redirect(request.session['history'][-1])
 
     else:
-        template_name = "login.html"
-
-        context['auth'] = False
-
-    return render(request, template_name, context)
+        return HttpResponse(status=404)
 
 
 def sign_out(request):

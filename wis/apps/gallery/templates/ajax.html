@@ -36,7 +36,7 @@
     <script src="/static/js/jquery.fileupload-ui.js"></script>
 
 <div id="fileupload">
-    <form action="{% url "wis.apps.gallery.views.ajax_upload" %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url "wis_upload" %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">
@@ -44,7 +44,7 @@
             </label>
             <button type="submit" class="start">Envoyer tout</button>
             <button type="reset" class="cancel">Annuler tout</button>
-            <a href="{% url "wis.apps.gallery.views.gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
+            <a href="{% url "wis_gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
         </div>
     </form>
     <div class="fileupload-content">
