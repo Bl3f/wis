@@ -242,7 +242,7 @@
 
     SearchBar.prototype.redirect_gallery = function(gallery) {
         $.ajax({
-            url:"/search",
+            url:$('section#home > form').attr('data-url'),
             type: "POST",
             data: gallery,
             success:function(data){
